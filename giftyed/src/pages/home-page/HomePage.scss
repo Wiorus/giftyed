@@ -1,0 +1,17 @@
+.HomePage {
+  display: flex;
+  flex-direction: column;
+
+  &__cornerImg {
+    width: 620px;
+    height: 500px;
+  }
+  &__content{
+    margin: -7% 0px 0% 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+  
+}
