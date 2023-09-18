@@ -1,0 +1,46 @@
+@import "../../utils/variables.scss";
+
+.Navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  top: 0;
+  width: 100vw;
+
+  &__match,
+  &__best,
+  &__categories,
+  &__search {
+    font-size: 32px;
+    margin: 0 1vw 0 1vw;
+    font-family: "Inter", sans-serif;
+    color: $whiteText;
+  }
+
+  &__search {
+    
+    input {
+      color: #854b25;
+      font-size: 28px;
+      font-family: "Inter", sans-serif;
+      height: 50px;
+      width: 350px;
+      border-radius: 25px;
+      background-color: $orange;
+    }
+
+    input::placeholder {
+      color: #854b25;
+    }
+  }
+
+  &__user {
+    margin: 3vh;
+
+    &-img {
+      width: 125px;
+      height: 125px;
+    }
+  }
+}
