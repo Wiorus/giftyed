@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
+.LoginForm {
+  position: absolute;
+  height: 100vh;
+  width: 40%;
+  margin: 0 0 0 28%;
+  background-color: rgba(66, 45, 39, 0.95);
+}
+.LoginForm__logoName {
+  text-align: center;
+  margin-top: 10vh;
+  font-family: "Inter", sans-serif;
+  font-size: 135px;
+}
+.LoginForm__logoName-one {
+  font-size: 135px;
+  color: #eda452;
+}
+.LoginForm__logoName-two {
+  color: #fbd9a3;
+}
+.LoginForm form {
+  font-family: "Inter", sans-serif;
+  margin-top: 14vh;
+}
+.LoginForm form .LoginForm__login,
+.LoginForm form .LoginForm__password {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: space-around;
+  flex-wrap: wrap;
+}
+.LoginForm form .LoginForm__login label,
+.LoginForm form .LoginForm__password label {
+  margin: 0 0 -2% 2%;
+  color: #EDE7DC;
+  font-size: 32px;
+}
+.LoginForm form .LoginForm__login input,
+.LoginForm form .LoginForm__password input {
+  height: 50px;
+  width: 55%;
+  font-family: "Inter", sans-serif;
+  background-color: #F0AB55;
+  font-size: 28px;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 10vh;
+}
+.LoginForm form .LoginForm__button {
+  text-align: center;
+}
+.LoginForm form .LoginForm__button button {
+  height: 65px;
+  width: 150px;
+  font-size: 28px;
+  color: #854b25;
+  background-color: #F0AB55;
+  font-family: "Inter", sans-serif;
+  border: none;
+  border-radius: 25px;
+}/*# sourceMappingURL=LoginForm.css.map */

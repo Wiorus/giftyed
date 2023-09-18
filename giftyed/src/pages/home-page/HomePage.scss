@@ -1,17 +1,54 @@
 .HomePage {
-  display: flex;
   flex-direction: column;
 
   &__cornerImg {
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 620px;
     height: 500px;
   }
-  &__content{
-    margin: -7% 0px 0% 10%;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-around;
+
+  &__content {
+    margin: 285px 0 0 20%;
+
+    &-giftImg {
+      position: absolute;
+      bottom: 60px;
+      right: 135px;
+    }
+
+    &-shadow {
+      position: absolute;
+      height: 355px;
+      width: 730px;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+            to bottom right,
+            rgba(0, 0, 0, 0.2) 35%,
+            rgba(0, 0, 0, 0) 50%
+          )
+          bottom right / 50% 50% no-repeat,
+        linear-gradient(
+            to bottom left,
+            rgba(0, 0, 0, 0.2) 35%,
+            rgba(0, 0, 0, 0) 50%
+          )
+          bottom left / 50% 50% no-repeat,
+        linear-gradient(
+            to top left,
+            rgba(0, 0, 0, 0.2) 35%,
+            rgba(0, 0, 0, 0) 50%
+          )
+          top left / 50% 50% no-repeat,
+        linear-gradient(
+            to top right,
+            rgba(0, 0, 0, 0.2) 35%,
+            rgba(0, 0, 0, 0) 50%
+          )
+          top right / 50% 50% no-repeat,
+        #422d27;
+    }
   }
-  
 }

@@ -11,6 +11,7 @@ const HomePage = () => {
         <div className="HomePage__content-info">
           <HomeInfo />
         </div>
+        <div className="HomePage__content-shadow" alt="shadow"></div>
         <img className="HomePage__content-giftImg" src={gift} alt="gift" />
       </div>
     </div>
