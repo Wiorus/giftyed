@@ -2,11 +2,9 @@
 
 .LoginForm {
   position: absolute;
-
   height: 100vh;
-  width: 40%;
-  margin: 0 0 0 28%;
-  background-color: rgba(66, 45, 39, 0.95);
+  width: 700px;
+  background-color: $brown;
 
   &__logoName {
     text-align: center;
@@ -60,7 +58,7 @@
         height: 65px;
         width: 150px;
         font-size: 28px;
-        color: #854b25;
+        color: $lightBrown;
         background-color: $orange;
         font-family: "Inter", sans-serif;
         border: none;

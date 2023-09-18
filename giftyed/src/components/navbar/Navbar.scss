@@ -19,19 +19,20 @@
   }
 
   &__search {
-    
     input {
-      color: #854b25;
+      padding-left: 20px;
+      color: $lightBrown;
       font-size: 28px;
       font-family: "Inter", sans-serif;
       height: 50px;
       width: 350px;
       border-radius: 25px;
+      border: none;
       background-color: $orange;
     }
 
     input::placeholder {
-      color: #854b25;
+      color: $lightBrown;
     }
   }
 

@@ -1,7 +1,15 @@
 .LoginPage{
+    width: 100vw;
+    height: 100vh;
+    &__form{
+        position: absolute;
+        left: calc(50% - 350px);
+        
+    }
 
     &__wavesImg{
         width: 100vw;
         height: 100vh;
+        object-fit: cover;
     }
 }

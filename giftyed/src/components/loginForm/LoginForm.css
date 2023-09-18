@@ -2,9 +2,8 @@
 .LoginForm {
   position: absolute;
   height: 100vh;
-  width: 40%;
-  margin: 0 0 0 28%;
-  background-color: rgba(66, 45, 39, 0.95);
+  width: 700px;
+  background-color: #422D27;
 }
 .LoginForm__logoName {
   text-align: center;

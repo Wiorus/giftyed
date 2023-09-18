@@ -14,12 +14,14 @@
   color: #EDE7DC;
 }
 .Navbar__search input {
+  padding-left: 20px;
   color: #854b25;
   font-size: 28px;
   font-family: "Inter", sans-serif;
   height: 50px;
   width: 350px;
   border-radius: 25px;
+  border: none;
   background-color: #F0AB55;
 }
 .Navbar__search input::-moz-placeholder {
