@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
+.home__info-element {
+  font-family: "Inter", sans-serif;
+}
+.home__info-element-logoName {
+  font-size: 135px;
+}
+.home__info-element-logoName-one {
+  color: #eda452;
+}
+.home__info-element-logoName-two {
+  color: #fbd9a3;
+}
+.home__info-element-description {
+  color: #fbd9a3;
+  font-size: 28px;
+}/*# sourceMappingURL=HomeInfo.css.map */

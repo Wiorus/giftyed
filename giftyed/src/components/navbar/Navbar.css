@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
+.Navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  top: 0;
+  width: 100vw;
+}
+.Navbar__match, .Navbar__best, .Navbar__categories, .Navbar__search {
+  font-size: 32px;
+  margin: 0 1vw 0 1vw;
+  font-family: "Inter", sans-serif;
+  color: #EDE7DC;
+}
+.Navbar__search input {
+  padding-left: 20px;
+  color: #854b25;
+  font-size: 28px;
+  font-family: "Inter", sans-serif;
+  height: 50px;
+  width: 350px;
+  border-radius: 25px;
+  border: none;
+  background-color: #F0AB55;
+}
+.Navbar__search input::-moz-placeholder {
+  color: #854b25;
+}
+.Navbar__search input::placeholder {
+  color: #854b25;
+}
+.Navbar__user {
+  margin: 3vh;
+}
+.Navbar__user-img {
+  width: 125px;
+  height: 125px;
+}/*# sourceMappingURL=Navbar.css.map */

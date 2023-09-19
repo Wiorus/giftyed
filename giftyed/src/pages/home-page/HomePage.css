@@ -1,0 +1,26 @@
+.HomePage {
+  flex-direction: column;
+}
+.HomePage__cornerImg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 620px;
+  height: 500px;
+}
+.HomePage__content {
+  margin: 140px 0 0 20%;
+}
+.HomePage__content-giftImg {
+  position: absolute;
+  bottom: 60px;
+  right: 135px;
+}
+.HomePage__content-shadow {
+  position: absolute;
+  height: 355px;
+  width: 730px;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0) 50%) bottom right/50% 50% no-repeat, linear-gradient(to bottom left, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0) 50%) bottom left/50% 50% no-repeat, linear-gradient(to top left, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0) 50%) top left/50% 50% no-repeat, linear-gradient(to top right, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0) 50%) top right/50% 50% no-repeat, #422d27;
+}/*# sourceMappingURL=HomePage.css.map */

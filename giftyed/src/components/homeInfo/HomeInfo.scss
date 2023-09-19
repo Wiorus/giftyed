@@ -1,0 +1,22 @@
+@import "../../utils/variables.scss";
+
+.home__info-element {
+  font-family: "Inter", sans-serif;
+
+  &-logoName {
+    font-size: 135px;
+   
+    &-one {
+      color: #eda452;
+    }
+
+    &-two {
+      color: #fbd9a3;
+    }
+  }
+
+  &-description {
+    color: #fbd9a3;
+    font-size: 28px;
+  }
+}
