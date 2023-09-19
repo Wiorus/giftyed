@@ -5,8 +5,8 @@ export default function LoginForm() {
   return (
     <div className="LoginForm">
       <div className="LoginForm__logoName">
-        <spam className="LoginForm__logoName-one">Gift</spam>
-        <spam className="LoginForm__logoName-two">yed</spam>
+        <span className="LoginForm__logoName-one">Gift</span>
+        <span className="LoginForm__logoName-two">yed</span>
       </div>
 
       <form>

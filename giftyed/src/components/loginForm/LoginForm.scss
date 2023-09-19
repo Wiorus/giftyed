@@ -10,10 +10,9 @@
     text-align: center;
     margin-top: 10vh;
     font-family: "Inter", sans-serif;
-    font-size: 135px;
+    font-size: 98px;
 
     &-one {
-      font-size: 135px;
       color: #eda452;
     }
 
@@ -36,7 +35,7 @@
       label {
         margin: 0  0 -2% 2%;
         color: $whiteText;
-        font-size: 32px;
+        font-size: 24px;
       }
 
       input {
@@ -44,7 +43,7 @@
         width: 55%;
         font-family: "Inter", sans-serif;
         background-color: $orange;
-        font-size: 28px;
+        font-size: 18px;
         border: none;
         border-radius: 25px;
         margin-bottom: 10vh;
@@ -57,7 +56,7 @@
       button {
         height: 65px;
         width: 150px;
-        font-size: 28px;
+        font-size: 24px;
         color: $lightBrown;
         background-color: $orange;
         font-family: "Inter", sans-serif;

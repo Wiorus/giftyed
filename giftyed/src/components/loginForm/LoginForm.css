@@ -9,10 +9,9 @@
   text-align: center;
   margin-top: 10vh;
   font-family: "Inter", sans-serif;
-  font-size: 135px;
+  font-size: 98px;
 }
 .LoginForm__logoName-one {
-  font-size: 135px;
   color: #eda452;
 }
 .LoginForm__logoName-two {
@@ -34,7 +33,7 @@
 .LoginForm form .LoginForm__password label {
   margin: 0 0 -2% 2%;
   color: #EDE7DC;
-  font-size: 32px;
+  font-size: 24px;
 }
 .LoginForm form .LoginForm__login input,
 .LoginForm form .LoginForm__password input {
@@ -42,7 +41,7 @@
   width: 55%;
   font-family: "Inter", sans-serif;
   background-color: #F0AB55;
-  font-size: 28px;
+  font-size: 18px;
   border: none;
   border-radius: 25px;
   margin-bottom: 10vh;
@@ -53,7 +52,7 @@
 .LoginForm form .LoginForm__button button {
   height: 65px;
   width: 150px;
-  font-size: 28px;
+  font-size: 24px;
   color: #854b25;
   background-color: #F0AB55;
   font-family: "Inter", sans-serif;
