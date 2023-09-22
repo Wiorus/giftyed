@@ -18,11 +18,17 @@ export default function LoginForm() {
         <div className="LoginForm__password">
           <label htmlFor="passwordName">Password</label>
           <br />
-          <input id="passwordInput" />
+          <input type="password" id="passwordInput" />
         </div>
 
-        <div className="LoginForm__button">
+        <div className="LoginForm__loginButton">
           <button type="submit">Login</button>
+        </div>
+
+        <div className="LoginForm__selection"><p>Or</p></div>
+
+        <div className="LoginForm__registerButton">
+          <button type="submit">Register</button>
         </div>
       </form>
     </div>

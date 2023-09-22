@@ -1,8 +1,8 @@
-.LoginPage__form {
+.RegisterPage__form {
   position: absolute;
-  left: calc(50% - 275px);
+  left: calc(50% - 300px);
 }
-.LoginPage__wavesImg {
+.RegisterPage__wavesImg {
   position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
@@ -10,4 +10,4 @@
   height: 100vh;
   z-index: -1;
   transform: rotate(180deg);
-}/*# sourceMappingURL=LoginPage.css.map */
+}/*# sourceMappingURL=RegisterPage.css.map */

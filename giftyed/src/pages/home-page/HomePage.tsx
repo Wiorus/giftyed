@@ -4,7 +4,8 @@ import HomeInfo from "../../components/homeInfo/HomeInfo";
 import corner from "../../utils/corner.png";
 import gift from "../../utils/gift.png";
 import Navbar from "../../components/navbar/Navbar";
-const HomePage:React.FC = () => {
+
+const HomePage: React.FC = () => {
   return (
     <div className="HomePage">
       <img className="HomePage__cornerImg" src={corner} alt="corner" />
