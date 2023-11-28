@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
+.profile-info {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.profile-info__avatar {
+  position: relative;
+  width: 40%;
+}
+.profile-info__avatar-square {
+  width: calc(20vw + 175px);
+  position: absolute;
+  bottom: calc(50% - 174px);
+  height: 348px;
+  background-color: #2C1E1A;
+}
+.profile-info__avatar-photo {
+  position: absolute;
+  bottom: calc(50% - 175px);
+  left: 20vw;
+}
+.profile-info__avatar-photo img {
+  border-radius: 50%;
+  width: 350px;
+  height: 350px;
+}
+.profile-info__content {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  color: #EDE7DC;
+  font-family: "Inter", sans-serif;
+}
+.profile-info__content-info {
+  width: 50%;
+  height: 25vh;
+}
+.profile-info__content-info-name {
+  font-size: 28px;
+}
+.profile-info__content-info-name-others {
+  margin-left: 25px;
+}
+.profile-info__content-interests {
+  width: 50%;
+  height: 25vh;
+  font-size: 28px;
+}
+.profile-info__content-interests-container .MuiStack-root > :not(style) {
+  font-family: "Inter", sans-serif;
+  background-color: #F0AB55;
+  color: #854b25;
+}/*# sourceMappingURL=ProfileInfo.css.map */

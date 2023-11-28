@@ -5,14 +5,15 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: 620px;
-  height: 500px;
+  width: 35vw;
+  height: 40vh;
 }
 .HomePage__content {
   margin: 140px 0 0 20%;
 }
 .HomePage__content-giftImg {
   position: absolute;
+  width: 40vw;
   bottom: 60px;
   right: 135px;
 }

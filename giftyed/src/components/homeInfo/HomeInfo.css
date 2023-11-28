@@ -3,7 +3,7 @@
   font-family: "Inter", sans-serif;
 }
 .home__info-element-logoName {
-  font-size: 135px;
+  font-size: 115px;
 }
 .home__info-element-logoName-one {
   color: #eda452;
@@ -12,6 +12,7 @@
   color: #fbd9a3;
 }
 .home__info-element-description {
+  margin-left: 10px;
   color: #fbd9a3;
-  font-size: 28px;
+  font-size: 18px;
 }/*# sourceMappingURL=HomeInfo.css.map */

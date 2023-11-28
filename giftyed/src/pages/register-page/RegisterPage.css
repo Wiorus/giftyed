@@ -1,0 +1,13 @@
+.RegisterPage__form {
+  position: absolute;
+  left: calc(50% - 300px);
+}
+.RegisterPage__wavesImg {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  transform: rotate(180deg);
+}/*# sourceMappingURL=RegisterPage.css.map */

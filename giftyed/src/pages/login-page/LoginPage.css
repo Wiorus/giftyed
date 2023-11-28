@@ -1,10 +1,13 @@
 .LoginPage__form {
   position: absolute;
-  left: calc(50% - 350px);
+  left: calc(50% - 300px);
 }
 .LoginPage__wavesImg {
-  width: 100vw;
-  height: 100vh;
+  position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  transform: rotate(180deg);
 }/*# sourceMappingURL=LoginPage.css.map */

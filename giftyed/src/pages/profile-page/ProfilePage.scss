@@ -1,0 +1,15 @@
+.ProfilePage {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 96px);
+    justify-content: flex-start;
+    &-info {
+      height: 50%;
+    }
+
+    &-menu {
+      height: 50%;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
+.AdminPage {
+  display: flex;
+  flex-direction: column;
+}
+.AdminPage__listContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.AdminPage__listContainer-textUsers, .AdminPage__listContainer-textGifts {
+  font-size: 32px;
+  color: #854B25;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+.AdminPage__cubesImg {
+  height: 100%;
+  width: 100vw;
+  position: absolute;
+  z-index: -1;
+}/*# sourceMappingURL=AdminPage.css.map */

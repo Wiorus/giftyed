@@ -1,0 +1,67 @@
+@import "../../utils/variables.scss";
+
+.profile-info {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+  &__avatar {
+    position: relative;
+    width: 40%;
+
+    &-square {
+      width: calc(20vw + 175px);
+      position: absolute;
+      bottom: calc(50% - 174px);
+      height: 348px;
+      background-color: $darkBrown;
+    }
+
+    &-photo {
+      position: absolute;
+      bottom: calc(50% - 175px);
+      left: 20vw;
+
+      img {
+        border-radius: 50%;
+        width: 350px;
+        height: 350px;
+      }
+    }
+  }
+
+  &__content {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    color: $whiteText;
+    font-family: "Inter", sans-serif;
+
+    &-info {
+      width: 50%;
+      height: 25vh;
+
+      &-name {
+        font-size: 28px;
+
+        &-others {
+          margin-left: 25px;
+        }
+      }
+    }
+
+    &-interests {
+      width: 50%;
+      height: 25vh;
+      font-size: 28px;
+
+      &-container {
+        .MuiStack-root > :not(style) {
+          font-family: "Inter", sans-serif;
+          background-color: $orange;
+          color: $lightBrown;
+        }
+      }
+    }
+  }
+}

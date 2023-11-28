@@ -4,7 +4,7 @@
   font-family: "Inter", sans-serif;
 
   &-logoName {
-    font-size: 135px;
+    font-size: 115px;
    
     &-one {
       color: #eda452;
@@ -16,7 +16,8 @@
   }
 
   &-description {
+    margin-left: 10px;
     color: #fbd9a3;
-    font-size: 28px;
+    font-size: 18px;
   }
 }

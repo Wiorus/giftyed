@@ -1,0 +1,24 @@
+@import "../../utils/variables.scss";
+
+.followed-user {
+  text-align: center;
+
+  &__photo {
+    
+    img {
+      
+      width: 50%;
+      height: 50%;
+      border-radius: 50%;
+    }
+  }
+
+  &__name {
+    p{
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      color: $lightBrown;
+    }
+    
+  }
+}
