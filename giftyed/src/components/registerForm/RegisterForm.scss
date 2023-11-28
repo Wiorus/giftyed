@@ -8,7 +8,7 @@
     
       &__logoName {
         text-align: center;
-        margin-top: 5vh;
+        margin-top: 10vh;
         font-family: "Inter", sans-serif;
         font-size: 118px;
     
@@ -21,13 +21,13 @@
         }
       }
     
-      form {
+      Form {
         font-family: "Inter", sans-serif;
         margin-top: 5vh;
         .RegisterForm__email,
         .RegisterForm__login,
-        .RegisterForm__password-one,
-        .RegisterForm__password-two {
+        .RegisterForm__password,
+        .RegisterForm__confirmPassword {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -35,14 +35,13 @@
           flex-wrap: wrap;
     
           label {
-            margin: 0  0 -2% 2%;
             color: $whiteText;
             font-size: 18px;
           }
     
           input {
             height: 35px;
-            width: 55%;
+            width: 60%;
             padding-left: 15px;
             color: $lightBrown;
             font-family: "Inter", sans-serif;
@@ -50,7 +49,7 @@
             font-size: 18px;
             border: none;
             border-radius: 25px;
-            margin-bottom: 4vh;
+            margin-bottom: 5vh;
           }
         }
     
@@ -58,7 +57,7 @@
           text-align: center;
     
           button {
-            height: 55px;
+            height: 50px;
             width: 130px;
             font-size: 24px;
             color: $lightBrown;

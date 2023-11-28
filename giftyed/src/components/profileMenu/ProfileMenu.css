@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
+.profile-menu {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  background-color: #ECD3AF;
+}
+.profile-menu__upcomingBirthday {
+  width: 33.33%;
+  display: grid;
+}
+.profile-menu__upcomingBirthday-header {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  color: #854b25;
+  text-align: center;
+}
+.profile-menu__upcomingBirthday-followedUsers {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-gap: 16px;
+}
+.profile-menu__calendar {
+  display: flex;
+  align-items: center;
+  width: 33.33%;
+}
+.profile-menu__calendar .MuiDateCalendar-root {
+  color: #EDE7DC;
+  border-radius: 25px;
+  background-color: #422D27;
+  font-family: "Inter", sans-serif;
+}
+.profile-menu__calendar .MuiPickersDay-root {
+  color: #EDE7DC;
+  font-family: "Inter", sans-serif;
+}
+.profile-menu__calendar .MuiDayCalendar-weekDayLabel,
+.profile-menu__calendar .MuiPickersArrowSwitcher-button,
+.profile-menu__calendar .MuiPickersCalendarHeader-switchViewButton {
+  color: #EDE7DC;
+  font-family: "Inter", sans-serif !important;
+}
+.profile-menu__calendar .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+  border: 3px solid #EDE7DC;
+}
+.profile-menu__calendar .MuiPickersDay-root.Mui-selected {
+  background-color: #F0AB55 !important;
+}
+.profile-menu__wishList {
+  width: 33.33%;
+}
+.profile-menu__wishList-header {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  color: #854b25;
+  text-align: center;
+}
+.profile-menu__wishList-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}/*# sourceMappingURL=ProfileMenu.css.map */

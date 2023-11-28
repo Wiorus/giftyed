@@ -1,0 +1,77 @@
+@import "../../utils/variables.scss";
+
+.profile-menu {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  background-color: $creamy;
+
+  &__upcomingBirthday {
+    width: 33.33%;
+    display: grid;
+    
+    &-header {
+      font-family: "Inter", sans-serif;
+      font-size: 24px;
+      color: $lightBrown;
+      text-align: center;
+    }
+
+    &-followedUsers {
+      display: grid;
+      justify-items: center;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      grid-gap: 16px;
+    }
+  }
+
+  &__calendar {
+    display: flex;
+    align-items: center;
+    width: 33.33%;
+
+    .MuiDateCalendar-root {
+      color: $whiteText;
+      border-radius: 25px;
+      background-color: $brown;
+      font-family: "Inter", sans-serif;
+    }
+
+    .MuiPickersDay-root {
+      color: $whiteText;
+      font-family: "Inter", sans-serif;
+    }
+
+    .MuiDayCalendar-weekDayLabel,
+    .MuiPickersArrowSwitcher-button,
+    .MuiPickersCalendarHeader-switchViewButton {
+      color: $whiteText;
+      font-family: "Inter", sans-serif !important;
+    }
+
+    .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+      border: 3px solid $whiteText;
+    }
+
+    .MuiPickersDay-root.Mui-selected {
+      background-color: $orange !important;
+    }
+  }
+
+  &__wishList {
+    width: 33.33%;
+
+    &-header {
+      font-family: "Inter", sans-serif;
+      font-size: 24px;
+      color: $lightBrown;
+      text-align: center;
+    }
+
+    &-items {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+  }
+}

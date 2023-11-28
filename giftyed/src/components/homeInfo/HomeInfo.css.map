@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../utils/variables.scss","HomeInfo.scss","HomeInfo.css"],"names":[],"mappings":"AAAQ,mFAAA;ACER;EACE,gCAAA;ACAF;ADEE;EACE,gBAAA;ACAJ;ADEI;EACE,cAAA;ACAN;ADGI;EACE,cAAA;ACDN;ADKE;EACE,cAAA;EACA,eAAA;ACHJ","file":"HomeInfo.css"}
+{"version":3,"sources":["../../utils/variables.scss","HomeInfo.scss","HomeInfo.css"],"names":[],"mappings":"AAAQ,mFAAA;ACER;EACE,gCAAA;ACAF;ADEE;EACE,gBAAA;ACAJ;ADEI;EACE,cAAA;ACAN;ADGI;EACE,cAAA;ACDN;ADKE;EACE,iBAAA;EACA,cAAA;EACA,eAAA;ACHJ","file":"HomeInfo.css"}

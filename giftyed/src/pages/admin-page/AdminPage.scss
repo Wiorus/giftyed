@@ -1,0 +1,27 @@
+@import "../../utils/variables.scss";
+
+.AdminPage {
+  display: flex;
+  flex-direction: column;
+
+  &__listContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    &-textUsers,
+    &-textGifts {
+      font-size: 32px;
+      color: #854B25;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+    }
+  }
+
+  &__cubesImg {
+    height: 100%;
+    width: 100vw;
+    position: absolute;
+    z-index: -1;
+  }
+}

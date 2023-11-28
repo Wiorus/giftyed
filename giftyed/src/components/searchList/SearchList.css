@@ -1,0 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
+.SearchList {
+  width: 95vw;
+  height: 55vh;
+  font-family: "Inter", sans-serif;
+  border-radius: 25px;
+  background-color: rgba(233, 202, 192, 0.7);
+}/*# sourceMappingURL=SearchList.css.map */

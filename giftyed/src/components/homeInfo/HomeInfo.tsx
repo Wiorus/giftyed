@@ -1,7 +1,7 @@
 import React from "react";
 import "./HomeInfo.scss";
 
-export default function HomeInfo() {
+const HomeInfo: React.FC =() => {
   return (
     <div className="home__info-element">
       <div className="home__info-element-logoName">
@@ -15,3 +15,4 @@ export default function HomeInfo() {
     </div>
   );
 }
+export default HomeInfo;

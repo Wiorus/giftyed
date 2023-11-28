@@ -10,38 +10,38 @@
 
   &__match,
   &__best,
-  &__categories,
+  &__followed,
   &__search {
-    font-size: 32px;
+    font-size: 14px;
     margin: 0 1vw 0 1vw;
     font-family: "Inter", sans-serif;
     color: $whiteText;
-  }
 
-  &__search {
-    input {
-      padding-left: 20px;
-      color: $lightBrown;
-      font-size: 28px;
-      font-family: "Inter", sans-serif;
-      height: 50px;
-      width: 350px;
-      border-radius: 25px;
-      border: none;
-      background-color: $orange;
-    }
-
-    input::placeholder {
+    &:hover{
       color: $lightBrown;
     }
   }
 
   &__user {
-    margin: 3vh;
+    margin: 15px;
 
     &-img {
-      width: 125px;
-      height: 125px;
+      width: 45px;
+      height: 45px;
+    }
+
+    &-singIn{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 14px;
+      color: $whiteText;
+      font-family: "Inter", sans-serif;
+      text-decoration: none;
+
+      &:hover{
+        color: $lightBrown;
+      }
     }
   }
 }

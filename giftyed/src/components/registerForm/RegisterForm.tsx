@@ -1,7 +1,56 @@
 import React from 'react'
 import "../registerForm/RegisterForm.scss"
+import { useState } from 'react';
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { FirebaseError } from 'firebase/app';
 
-export default function RegisterForm() {
+
+type RegisterFieldsValues = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string
+}
+
+const initialValues: RegisterFieldsValues = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: ""
+}
+
+const RegisterForm: React.FC = () => {
+
+  // const [registerFields, setRegisterFields] = useState<RegisterFieldsValues>(initialValues);
+
+
+  const handleSubmit = async (values: RegisterFieldsValues) => {
+    const { email, name, password, confirmPassword } = values;
+    if (password != confirmPassword) {
+      alert("password do not match");
+      return;
+    }
+    try {
+      const userCredential = await createAuthUserWithEmailAndPassword(email, password);
+      if (!userCredential) return;
+      const { user } = userCredential;
+      await createUserDocumentFromAuth(user, { name })
+
+      alert("poszło");
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        if (error.code === "auth/email-already-in-use") {
+          alert("email już w użyciu!");
+        }
+        else {
+          console.log(error)
+        }
+      }
+    }
+  }
+
+
   return (
     <div className="RegisterForm">
       <div className="RegisterForm__logoName">
@@ -9,37 +58,56 @@ export default function RegisterForm() {
         <span className="RegisterForm__logoName-two">yed</span>
       </div>
 
-      <form>
+      <Formik initialValues={initialValues}
+        onSubmit={handleSubmit}
+      // validationSchema={validationSchema}
+      >
 
-        <div className="RegisterForm__email">
-          <label htmlFor="emailName">Email</label>
-          <br />
-          <input id="loginInput" />
-        </div>
+        {({ isSubmitting, handleChange, values }) => (
+          <Form>
+            <div className="RegisterForm__login">
+              <label htmlFor="loginName">Login</label>
+              <Field
+                type="text"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+              />
+            </div>
+            <ErrorMessage name="name" component="div" />
 
-        <div className="RegisterForm__login">
-          <label htmlFor="loginName">Login</label>
-          <br />
-          <input id="loginInput" />
-        </div>
+            <div className="RegisterForm__email">
+              <label htmlFor="emailName">Email</label>
+              <Field
+                type="email"
+                name="email"
+              />
+            </div>
+            <ErrorMessage name="email" component="div" />
 
-        <div className="RegisterForm__password-one">
-          <label htmlFor="passwordName-one">Password</label>
-          <br />
-          <input type="password" id="passwordInput-one" />
-        </div>
+            <div className="RegisterForm__password">
+              <label htmlFor="passwordName">Password</label>
+              <Field type="password" name="password" />
+            </div>
+            <ErrorMessage name="password" component="div" />
 
-        <div className="RegisterForm__password-two">
-          <label htmlFor="passwordName-two">Password</label>
-          <br />
-          <input type="password" id="passwordInput-two" />
-        </div>
+            <div className="RegisterForm__confirmPassword">
+              <label htmlFor="passwordName-confirmPassword">Password</label>
+              <Field type="password" name="confirmPassword" />
+            </div>
+            <ErrorMessage name="confirmPassword" component="div" />
+            
+            <div className="RegisterForm__button">
+              <button type="submit" disabled={isSubmitting}>
+                Register
+              </button>
+            </div>
+          </Form>
+        )}
 
-        <div className="RegisterForm__button">
-          <button type="submit">Register</button>
-        </div>
+      </Formik>
 
-      </form>
     </div>
   )
 }
+export default RegisterForm;
