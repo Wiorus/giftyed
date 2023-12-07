@@ -4,6 +4,16 @@
   height: 100vh;
   width: 600px;
   background-color: #422D27;
+  overflow-y: auto;
+}
+.RegisterForm::-webkit-scrollbar {
+  display: none;
+}
+.RegisterForm .error-message {
+  color: red;
+  font-size: 12px;
+  width: 60%;
+  margin: 0 1vh;
 }
 .RegisterForm__logoName {
   text-align: center;
@@ -17,31 +27,23 @@
 .RegisterForm__logoName-two {
   color: #fbd9a3;
 }
-.RegisterForm Form {
+.RegisterForm__container {
   font-family: "Inter", sans-serif;
-  margin-top: 5vh;
+  margin-top: 3vh;
 }
-.RegisterForm Form .RegisterForm__email,
-.RegisterForm Form .RegisterForm__login,
-.RegisterForm Form .RegisterForm__password,
-.RegisterForm Form .RegisterForm__confirmPassword {
+.RegisterForm__container-email, .RegisterForm__container-login, .RegisterForm__container-password, .RegisterForm__container-confirmPassword {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   align-content: space-around;
   flex-wrap: wrap;
 }
-.RegisterForm Form .RegisterForm__email label,
-.RegisterForm Form .RegisterForm__login label,
-.RegisterForm Form .RegisterForm__password label,
-.RegisterForm Form .RegisterForm__confirmPassword label {
+.RegisterForm__container-email label, .RegisterForm__container-login label, .RegisterForm__container-password label, .RegisterForm__container-confirmPassword label {
   color: #EDE7DC;
   font-size: 18px;
+  margin: 0 0 5px 10px;
 }
-.RegisterForm Form .RegisterForm__email input,
-.RegisterForm Form .RegisterForm__login input,
-.RegisterForm Form .RegisterForm__password input,
-.RegisterForm Form .RegisterForm__confirmPassword input {
+.RegisterForm__container-email input, .RegisterForm__container-login input, .RegisterForm__container-password input, .RegisterForm__container-confirmPassword input {
   height: 35px;
   width: 60%;
   padding-left: 15px;
@@ -53,10 +55,10 @@
   border-radius: 25px;
   margin-bottom: 5vh;
 }
-.RegisterForm Form .RegisterForm__button {
+.RegisterForm__container-button {
   text-align: center;
 }
-.RegisterForm Form .RegisterForm__button button {
+.RegisterForm__container-button button {
   height: 50px;
   width: 130px;
   font-size: 24px;
@@ -66,6 +68,6 @@
   border: none;
   border-radius: 20px;
 }
-.RegisterForm Form .RegisterForm__button button:hover {
+.RegisterForm__container-button button:hover {
   color: #EDE7DC;
 }/*# sourceMappingURL=RegisterForm.css.map */

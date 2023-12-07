@@ -1,76 +1,89 @@
 @import "../../utils/variables.scss";
 
-.RegisterForm{
-      position: absolute;
-      height: 100vh;
-      width: 600px;
-      background-color: $brown;
-    
-      &__logoName {
-        text-align: center;
-        margin-top: 10vh;
-        font-family: "Inter", sans-serif;
-        font-size: 118px;
-    
-        &-one {
-          color: #eda452;
-        }
-    
-        &-two {
-          color: #fbd9a3;
-        }
-      }
-    
-      Form {
-        font-family: "Inter", sans-serif;
-        margin-top: 5vh;
-        .RegisterForm__email,
-        .RegisterForm__login,
-        .RegisterForm__password,
-        .RegisterForm__confirmPassword {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          align-content: space-around;
-          flex-wrap: wrap;
-    
-          label {
-            color: $whiteText;
-            font-size: 18px;
-          }
-    
-          input {
-            height: 35px;
-            width: 60%;
-            padding-left: 15px;
-            color: $lightBrown;
-            font-family: "Inter", sans-serif;
-            background-color: $orange;
-            font-size: 18px;
-            border: none;
-            border-radius: 25px;
-            margin-bottom: 5vh;
-          }
-        }
-    
-        .RegisterForm__button {
-          text-align: center;
-    
-          button {
-            height: 50px;
-            width: 130px;
-            font-size: 24px;
-            color: $lightBrown;
-            background-color: $orange;
-            font-family: "Inter", sans-serif;
-            border: none;
-            border-radius: 20px;
-          }
+.RegisterForm {
+  position: absolute;
+  height: 100vh;
+  width: 600px;
+  background-color: $brown;
+  overflow-y: auto;
 
-          button:hover{
-            color: $whiteText;
-          }
-        }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 12px;
+    width: 60%;
+    margin: 0 1vh;
+  }
+
+  &__logoName {
+    text-align: center;
+    margin-top: 10vh;
+    font-family: "Inter", sans-serif;
+    font-size: 118px;
+
+    &-one {
+      color: #eda452;
+    }
+
+    &-two {
+      color: #fbd9a3;
+    }
+  }
+
+  &__container {
+    font-family: "Inter", sans-serif;
+    margin-top: 3vh;
+
+    &-email,
+    &-login,
+    &-password,
+    &-confirmPassword {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      align-content: space-around;
+      flex-wrap: wrap;
+
+      label {
+        color: $whiteText;
+        font-size: 18px;
+        margin:0 0 5px 10px;
       }
-    
+
+      input {
+        height: 35px;
+        width: 60%;
+        padding-left: 15px;
+        color: $lightBrown;
+        font-family: "Inter", sans-serif;
+        background-color: $orange;
+        font-size: 18px;
+        border: none;
+        border-radius: 25px;
+        margin-bottom: 5vh;
+      }
+    }
+
+    &-button {
+      text-align: center;
+
+      button {
+        height: 50px;
+        width: 130px;
+        font-size: 24px;
+        color: $lightBrown;
+        background-color: $orange;
+        font-family: "Inter", sans-serif;
+        border: none;
+        border-radius: 20px;
+      }
+
+      button:hover {
+        color: $whiteText;
+      }
+    }
+  }
 }

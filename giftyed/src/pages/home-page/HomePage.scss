@@ -14,12 +14,13 @@
 
     &-giftImg {
       position: absolute;
-      width: 40vw;
+      width: 35vw;
       bottom: 60px;
       right: 135px;
     }
 
     &-shadow {
+      z-index: -1;
       position: absolute;
       height: 355px;
       width: 730px;
