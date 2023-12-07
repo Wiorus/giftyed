@@ -1,47 +1,61 @@
 import React from 'react'
 import "../registerForm/RegisterForm.scss"
-import { useState } from 'react';
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FirebaseError } from 'firebase/app';
+import * as Yup from 'yup';
 
 
 type RegisterFieldsValues = {
-  name: string;
+  displayName: string;
   email: string;
   password: string;
-  confirmPassword: string
+  confirmPassword: string;
 }
 
 const initialValues: RegisterFieldsValues = {
-  name: "",
+  displayName: "",
   email: "",
   password: "",
   confirmPassword: ""
 }
 
+const validationSchema = Yup.object().shape({
+  displayName: Yup.string().required('Login is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string()
+    .min(6, 'Password must be at least 6 characters')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+      'Password must contain at least one uppercase letter, one digit, and one special character'
+    )
+    .required('Password is required'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords must match')
+    .required('Confirm Password is required'),
+});
+
+
 const RegisterForm: React.FC = () => {
 
-  // const [registerFields, setRegisterFields] = useState<RegisterFieldsValues>(initialValues);
+  const handleSubmit = async (fieldsValues: RegisterFieldsValues) => {
+    const { email, displayName, password, confirmPassword } = fieldsValues;
 
-
-  const handleSubmit = async (values: RegisterFieldsValues) => {
-    const { email, name, password, confirmPassword } = values;
-    if (password != confirmPassword) {
-      alert("password do not match");
+    if (password !== confirmPassword) {
+      alert("password does not match");
       return;
     }
     try {
       const userCredential = await createAuthUserWithEmailAndPassword(email, password);
       if (!userCredential) return;
       const { user } = userCredential;
-      await createUserDocumentFromAuth(user, { name })
+      await createUserDocumentFromAuth(user, { displayName })
+      alert("registered successfully");
 
-      alert("poszło");
     } catch (error) {
       if (error instanceof FirebaseError) {
         if (error.code === "auth/email-already-in-use") {
-          alert("email już w użyciu!");
+          alert("email is already in use!");
         }
         else {
           console.log(error)
@@ -49,7 +63,6 @@ const RegisterForm: React.FC = () => {
       }
     }
   }
-
 
   return (
     <div className="RegisterForm">
@@ -60,53 +73,48 @@ const RegisterForm: React.FC = () => {
 
       <Formik initialValues={initialValues}
         onSubmit={handleSubmit}
-      // validationSchema={validationSchema}
+        validationSchema={validationSchema}
       >
+        {({ isSubmitting }) => (
 
-        {({ isSubmitting, handleChange, values }) => (
           <Form>
-            <div className="RegisterForm__login">
-              <label htmlFor="loginName">Login</label>
-              <Field
-                type="text"
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-              />
-            </div>
-            <ErrorMessage name="name" component="div" />
+            <div className='RegisterForm__container'>
+              <div className="RegisterForm__container-login">
+                <label htmlFor="loginName">Login</label>
+                <ErrorMessage name="displayName" component="div" className="error-message" />
+                <Field type="text" name="displayName" />
+              </div>
 
-            <div className="RegisterForm__email">
-              <label htmlFor="emailName">Email</label>
-              <Field
-                type="email"
-                name="email"
-              />
-            </div>
-            <ErrorMessage name="email" component="div" />
+              <div className="RegisterForm__container-email">
+                <label htmlFor="emailName">Email</label>
+                <ErrorMessage name="email" component="div" className="error-message" />
+                <Field type="email" name="email" />
+              </div>
 
-            <div className="RegisterForm__password">
-              <label htmlFor="passwordName">Password</label>
-              <Field type="password" name="password" />
-            </div>
-            <ErrorMessage name="password" component="div" />
 
-            <div className="RegisterForm__confirmPassword">
-              <label htmlFor="passwordName-confirmPassword">Password</label>
-              <Field type="password" name="confirmPassword" />
-            </div>
-            <ErrorMessage name="confirmPassword" component="div" />
-            
-            <div className="RegisterForm__button">
-              <button type="submit" disabled={isSubmitting}>
-                Register
-              </button>
+              <div className="RegisterForm__container-password">
+                <label htmlFor="passwordName">Password</label>
+                <ErrorMessage name="password" component="div" className="error-message" />
+                <Field type="password" name="password" />
+              </div>
+
+
+              <div className="RegisterForm__container-confirmPassword">
+                <label htmlFor="passwordName-confirmPassword">Password</label>
+                <ErrorMessage name="confirmPassword" component="div" className="error-message" />
+                <Field type="password" name="confirmPassword" />
+              </div>
+
+
+              <div className="RegisterForm__container-button">
+                <button type="submit" disabled={isSubmitting}>
+                  Register
+                </button>
+              </div>
             </div>
           </Form>
         )}
-
       </Formik>
-
     </div>
   )
 }

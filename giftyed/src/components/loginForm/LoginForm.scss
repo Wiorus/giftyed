@@ -5,11 +5,23 @@
   height: 100vh;
   width: 600px;
   background-color: $brown;
+  font-family: "Inter", sans-serif;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 12px;
+    width: 60%;
+    margin: 0 1vh;
+  }
 
   &__logoName {
     text-align: center;
     margin-top: 10vh;
-    font-family: "Inter", sans-serif;
     font-size: 118px;
 
     &-one {
@@ -21,12 +33,11 @@
     }
   }
 
-  form {
-    font-family: "Inter", sans-serif;
+  &__container {
     margin-top: 10vh;
 
-    .LoginForm__login,
-    .LoginForm__password {
+    &-login,
+    &-password {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -34,17 +45,16 @@
       flex-wrap: wrap;
 
       label {
-        margin: 0 0 -2% 2%;
         color: $whiteText;
         font-size: 18px;
+        margin:0 0 5px 10px;
       }
 
       input {
         height: 35px;
-        width: 65%;
+        width: 60%;
         padding-left: 15px;
         color: $lightBrown;
-        font-family: "Inter", sans-serif;
         background-color: $orange;
         font-size: 18px;
         border: none;
@@ -53,17 +63,7 @@
       }
     }
 
-    .LoginForm__selection {
-      text-align: center;
-
-      p {
-        margin: 1vh;
-        color: $lightBrown;
-        font-size: 16px;
-      }
-    }
-
-    .LoginForm__loginButton {
+    &-loginButton {
       text-align: center;
 
       button {
@@ -81,78 +81,22 @@
         color: $whiteText;
       }
     }
+  }
 
-    .LoginForm__otherOptions {
-      margin: 4vh 3vw 0 3vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  .LoginForm__otherOptions {
+    margin: 10vh 40px 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-      .css-1xylxj1-MuiTypography-root-MuiLink-root {
-        font-size: 14px;
-        color: $lightBrown;
-        text-decoration: none;
-      }
+    &-register {
+      font-size: 14px;
+      color: $lightBrown;
+      text-decoration: none;
+    }
 
-      .css-1xylxj1-MuiTypography-root-MuiLink-root:hover{
-        color: $whiteText;
-      }
-
-      &-google{
-        .gsi-material-button {
-          -moz-user-select: none;
-          -webkit-user-select: none;
-          -ms-user-select: none;
-          -webkit-appearance: none;
-          background-color: #f2f2f2;
-          background-image: none;
-          border: none;
-          -webkit-border-radius: 20px;
-          border-radius: 20px;
-          -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-          color: #1f1f1f;
-          cursor: pointer;
-          font-family: 'Roboto', arial, sans-serif;
-          font-size: 14px;
-          height: 40px;
-          letter-spacing: 0.25px;
-          outline: none;
-          overflow: hidden;
-          padding: 0 12px;
-          position: relative;
-          text-align: center;
-          -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
-          transition: background-color .218s, border-color .218s, box-shadow .218s;
-          vertical-align: middle;
-          white-space: nowrap;
-          width: auto;
-          max-width: 400px;
-          min-width: min-content;
-        }
-        
-        .gsi-material-button .gsi-material-button-icon {
-          height: 20px;
-          margin-right: 12px;
-          min-width: 20px;
-          width: 20px;
-        }
-        
-        .gsi-material-button .gsi-material-button-content-wrapper {
-          -webkit-align-items: center;
-          align-items: center;
-          display: flex;
-          -webkit-flex-direction: row;
-          flex-direction: row;
-          -webkit-flex-wrap: nowrap;
-          flex-wrap: nowrap;
-          height: 100%;
-          justify-content: space-between;
-          position: relative;
-          width: 100%;
-        }
-        
-      }
+    &-register:hover {
+      color: $whiteText;
     }
   }
 }

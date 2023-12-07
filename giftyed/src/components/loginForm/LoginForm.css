@@ -4,11 +4,21 @@
   height: 100vh;
   width: 600px;
   background-color: #422D27;
+  font-family: "Inter", sans-serif;
+  overflow-y: auto;
+}
+.LoginForm::-webkit-scrollbar {
+  display: none;
+}
+.LoginForm .error-message {
+  color: red;
+  font-size: 12px;
+  width: 60%;
+  margin: 0 1vh;
 }
 .LoginForm__logoName {
   text-align: center;
   margin-top: 10vh;
-  font-family: "Inter", sans-serif;
   font-size: 118px;
 }
 .LoginForm__logoName-one {
@@ -17,49 +27,36 @@
 .LoginForm__logoName-two {
   color: #fbd9a3;
 }
-.LoginForm form {
-  font-family: "Inter", sans-serif;
+.LoginForm__container {
   margin-top: 10vh;
 }
-.LoginForm form .LoginForm__login,
-.LoginForm form .LoginForm__password {
+.LoginForm__container-login, .LoginForm__container-password {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   align-content: space-around;
   flex-wrap: wrap;
 }
-.LoginForm form .LoginForm__login label,
-.LoginForm form .LoginForm__password label {
-  margin: 0 0 -2% 2%;
+.LoginForm__container-login label, .LoginForm__container-password label {
   color: #EDE7DC;
   font-size: 18px;
+  margin: 0 0 5px 10px;
 }
-.LoginForm form .LoginForm__login input,
-.LoginForm form .LoginForm__password input {
+.LoginForm__container-login input, .LoginForm__container-password input {
   height: 35px;
-  width: 65%;
+  width: 60%;
   padding-left: 15px;
   color: #854b25;
-  font-family: "Inter", sans-serif;
   background-color: #F0AB55;
   font-size: 18px;
   border: none;
   border-radius: 25px;
   margin-bottom: 5vh;
 }
-.LoginForm form .LoginForm__selection {
+.LoginForm__container-loginButton {
   text-align: center;
 }
-.LoginForm form .LoginForm__selection p {
-  margin: 1vh;
-  color: #854b25;
-  font-size: 16px;
-}
-.LoginForm form .LoginForm__loginButton {
-  text-align: center;
-}
-.LoginForm form .LoginForm__loginButton button {
+.LoginForm__container-loginButton button {
   height: 50px;
   width: 115px;
   font-size: 24px;
@@ -69,65 +66,20 @@
   border: none;
   border-radius: 20px;
 }
-.LoginForm form .LoginForm__loginButton button:hover {
+.LoginForm__container-loginButton button:hover {
   color: #EDE7DC;
 }
-.LoginForm form .LoginForm__otherOptions {
-  margin: 4vh 3vw 0 3vw;
+.LoginForm .LoginForm__otherOptions {
+  margin: 10vh 40px 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.LoginForm form .LoginForm__otherOptions .css-1xylxj1-MuiTypography-root-MuiLink-root {
+.LoginForm .LoginForm__otherOptions-register {
   font-size: 14px;
   color: #854b25;
   text-decoration: none;
 }
-.LoginForm form .LoginForm__otherOptions .css-1xylxj1-MuiTypography-root-MuiLink-root:hover {
+.LoginForm .LoginForm__otherOptions-register:hover {
   color: #EDE7DC;
-}
-.LoginForm form .LoginForm__otherOptions-google .gsi-material-button {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -webkit-appearance: none;
-  background-color: #f2f2f2;
-  background-image: none;
-  border: none;
-  border-radius: 20px;
-  box-sizing: border-box;
-  color: #1f1f1f;
-  cursor: pointer;
-  font-family: "Roboto", arial, sans-serif;
-  font-size: 14px;
-  height: 40px;
-  letter-spacing: 0.25px;
-  outline: none;
-  overflow: hidden;
-  padding: 0 12px;
-  position: relative;
-  text-align: center;
-  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: auto;
-  max-width: 400px;
-  min-width: -moz-min-content;
-  min-width: min-content;
-}
-.LoginForm form .LoginForm__otherOptions-google .gsi-material-button .gsi-material-button-icon {
-  height: 20px;
-  margin-right: 12px;
-  min-width: 20px;
-  width: 20px;
-}
-.LoginForm form .LoginForm__otherOptions-google .gsi-material-button .gsi-material-button-content-wrapper {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  height: 100%;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
 }/*# sourceMappingURL=LoginForm.css.map */

@@ -4,9 +4,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-import { Await } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDBv2xXKlGAs89GdEMEmSOoKo_AUcqGizw",
@@ -37,12 +37,12 @@ export const createUserDocumentFromAuth = async (
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
-    const { name, email } = userAuth;
+    const { displayName, email } = userAuth;
     const createAt = new Date();
 
     try {
       await setDoc(userDocRef, {
-        name,
+        displayName,
         email,
         createAt,
         ...additionalInformation,
@@ -61,4 +61,12 @@ export const createAuthUserWithEmailAndPassword = async (
 ) => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signInAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
+  if (!email || !password) return;
+  return await signInWithEmailAndPassword(auth, email, password);
 };
