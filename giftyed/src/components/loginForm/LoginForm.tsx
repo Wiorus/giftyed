@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import "../loginForm/LoginForm.scss";
-import SignUpButton from "../singUpButton/SignUpButton";
+import SignInButton from "../singInButton/SignInButton";
 import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import { FirebaseError } from "firebase/app";
 
@@ -79,7 +79,7 @@ const LoginForm: React.FC = () => {
       <div className="LoginForm__otherOptions">
         <Link className="LoginForm__otherOptions-register" to="/register"> Don't have an account? </Link>
         <div className="LoginForm__otherOptions-google">
-          <SignUpButton />
+          <SignInButton />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
-.sign-up-button .gsi-material-button {
+.sign-in-button .gsi-material-button {
   background-color: #f2f2f2;
   background-image: none;
   border: none;
@@ -25,13 +25,13 @@
   min-width: min-content;
   font-family: "Inter", sans-serif;
 }
-.sign-up-button .gsi-material-button .gsi-material-button-icon {
+.sign-in-button .gsi-material-button .gsi-material-button-icon {
   height: 20px;
   margin-right: 12px;
   min-width: 20px;
   width: 20px;
 }
-.sign-up-button .gsi-material-button .gsi-material-button-content-wrapper {
+.sign-in-button .gsi-material-button .gsi-material-button-content-wrapper {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -40,4 +40,4 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
-}/*# sourceMappingURL=SignUpButton.css.map */
+}/*# sourceMappingURL=SignInButton.css.map */
