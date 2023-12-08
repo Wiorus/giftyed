@@ -2,7 +2,6 @@ import React from 'react'
 import './ProfileInfo.scss'
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
 import photo from '../../utils/user.png'
 
 const handleClick = () => {

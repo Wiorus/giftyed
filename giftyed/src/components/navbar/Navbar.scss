@@ -23,6 +23,9 @@
   }
 
   &__user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 15px;
 
     &-img {
@@ -30,7 +33,7 @@
       height: 45px;
     }
 
-    &-singIn{
+    &-AuthButton{
       display: flex;
       flex-direction: column;
       align-items: center;

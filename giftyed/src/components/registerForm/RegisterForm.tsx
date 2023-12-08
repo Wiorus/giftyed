@@ -4,6 +4,7 @@ import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FirebaseError } from 'firebase/app';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 
 type RegisterFieldsValues = {
@@ -35,9 +36,8 @@ const validationSchema = Yup.object().shape({
     .required('Confirm Password is required'),
 });
 
-
 const RegisterForm: React.FC = () => {
-
+  const navigate = useNavigate();
   const handleSubmit = async (fieldsValues: RegisterFieldsValues) => {
     const { email, displayName, password, confirmPassword } = fieldsValues;
 
@@ -50,8 +50,8 @@ const RegisterForm: React.FC = () => {
       if (!userCredential) return;
       const { user } = userCredential;
       await createUserDocumentFromAuth(user, { displayName })
-      alert("registered successfully");
-
+      navigate("/login")
+      // alert("registered successfully");
     } catch (error) {
       if (error instanceof FirebaseError) {
         if (error.code === "auth/email-already-in-use") {
