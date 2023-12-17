@@ -1,5 +1,5 @@
 .PeopleList {
-  height: 65vh;
+  height: calc(65vh - 15%);
   width: 45vw;
   border-radius: 15px;
   background-color: rgba(237, 231, 220, 0.7);

@@ -8,21 +8,24 @@ import { useNavigate } from 'react-router-dom';
 
 
 type RegisterFieldsValues = {
-  displayName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
 
 const initialValues: RegisterFieldsValues = {
-  displayName: "",
+  firstName: "",
+  lastName: "",
   email: "",
   password: "",
   confirmPassword: ""
 }
 
 const validationSchema = Yup.object().shape({
-  displayName: Yup.string().required('Login is required'),
+  firstName: Yup.string().required('First name is required'),
+  lastName: Yup.string().required('Last name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
     .min(6, 'Password must be at least 6 characters')
@@ -39,7 +42,8 @@ const validationSchema = Yup.object().shape({
 const RegisterForm: React.FC = () => {
   const navigate = useNavigate();
   const handleSubmit = async (fieldsValues: RegisterFieldsValues) => {
-    const { email, displayName, password, confirmPassword } = fieldsValues;
+    const { email, firstName, lastName, password, confirmPassword } = fieldsValues;
+    const displayName = `${firstName} ${lastName}`;
 
     if (password !== confirmPassword) {
       alert("password does not match");
@@ -79,10 +83,16 @@ const RegisterForm: React.FC = () => {
 
           <Form>
             <div className='RegisterForm__container'>
-              <div className="RegisterForm__container-login">
-                <label htmlFor="loginName">Login</label>
-                <ErrorMessage name="displayName" component="div" className="error-message" />
-                <Field type="text" name="displayName" />
+            <div className="RegisterForm__container-firstName">
+                <label htmlFor="firstName">First Name</label>
+                <ErrorMessage name="firstName" component="div" className="error-message" />
+                <Field type="text" name="firstName" />
+              </div>
+
+              <div className="RegisterForm__container-lastName">
+                <label htmlFor="lastName">Last Name</label>
+                <ErrorMessage name="lastName" component="div" className="error-message" />
+                <Field type="text" name="lastName" />
               </div>
 
               <div className="RegisterForm__container-email">

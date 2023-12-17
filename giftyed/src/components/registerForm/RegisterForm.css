@@ -31,19 +31,19 @@
   font-family: "Inter", sans-serif;
   margin-top: 3vh;
 }
-.RegisterForm__container-email, .RegisterForm__container-login, .RegisterForm__container-password, .RegisterForm__container-confirmPassword {
+.RegisterForm__container-email, .RegisterForm__container-firstName, .RegisterForm__container-lastName, .RegisterForm__container-password, .RegisterForm__container-confirmPassword {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   align-content: space-around;
   flex-wrap: wrap;
 }
-.RegisterForm__container-email label, .RegisterForm__container-login label, .RegisterForm__container-password label, .RegisterForm__container-confirmPassword label {
+.RegisterForm__container-email label, .RegisterForm__container-firstName label, .RegisterForm__container-lastName label, .RegisterForm__container-password label, .RegisterForm__container-confirmPassword label {
   color: #EDE7DC;
   font-size: 18px;
   margin: 0 0 5px 10px;
 }
-.RegisterForm__container-email input, .RegisterForm__container-login input, .RegisterForm__container-password input, .RegisterForm__container-confirmPassword input {
+.RegisterForm__container-email input, .RegisterForm__container-firstName input, .RegisterForm__container-lastName input, .RegisterForm__container-password input, .RegisterForm__container-confirmPassword input {
   height: 35px;
   width: 60%;
   padding-left: 15px;

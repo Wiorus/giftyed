@@ -3,8 +3,8 @@
   text-align: center;
 }
 .followed-user__photo img {
-  width: 50%;
-  height: 50%;
+  width: 35%;
+  height: 35%;
   border-radius: 50%;
 }
 .followed-user__name p {
