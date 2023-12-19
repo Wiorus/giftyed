@@ -56,7 +56,11 @@ const LoginForm: React.FC = () => {
             _id: userAuth.user.uid,
             createAt: userData.createAt,
             displayName: userData.displayName,
-            email: userData.email
+            email: userData.email,
+            birthday: userData.birthday || null,
+            age: userData.age || null,
+            photoURL: userData.photoURL || null,
+            interests: userData.interests || null,
           }
           localStorage.setItem('userData', JSON.stringify(loggedUser));
           setCurrentUserContext(loggedUser);
@@ -78,7 +82,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="LoginForm">
-      <div className="LoginForm__logoName">
+      <div className="LoginForm__logoName" onClick={() => navigate("/")}>
         <span className="LoginForm__logoName-one">Gift</span>
         <span className="LoginForm__logoName-two">yed</span>
       </div>

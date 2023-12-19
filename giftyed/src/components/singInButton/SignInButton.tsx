@@ -15,8 +15,6 @@ const SignInButton: React.FC = () => {
         // console.log(currentUserContext);
     }, [currentUserContext]);
 
-
-
     useEffect(() => {
         const storedUserData = localStorage.getItem('userData');
         if (storedUserData) {
@@ -39,7 +37,11 @@ const SignInButton: React.FC = () => {
                         _id: userAuth.user.uid,
                         createAt: userData.createAt,
                         displayName: userData.displayName,
-                        email: userData.email
+                        email: userData.email,
+                        birthday: userData.birthday || null,
+                        age: userData.age || null,
+                        photoURL: userData.photoURL || null,
+                        interests: userData.interests || null,
                     };
                     localStorage.setItem('userData', JSON.stringify(loggedUser));
                     setCurrentUserContext(loggedUser);
@@ -50,7 +52,11 @@ const SignInButton: React.FC = () => {
                     const newUserData = {
                         createAt: new Date(),
                         displayName: userAuth.user.displayName || "",
-                        email: userAuth.user.email || ""
+                        email: userAuth.user.email || "",
+                        birthday: null,
+                        age: null,
+                        photoURL: null,
+                        interests: null,
                     };
 
                     await setDoc(userDocRef, newUserData);
@@ -59,10 +65,18 @@ const SignInButton: React.FC = () => {
                         _id: userAuth.user.uid,
                         createAt: newUserData.createAt,
                         displayName: newUserData.displayName,
-                        email: newUserData.email
+                        email: newUserData.email,
+                        birthday: newUserData.birthday,
+                        age: newUserData.age,
+                        photoURL: newUserData.photoURL,
+                        interests: newUserData.interests,
                     };
 
+                    localStorage.setItem('userData', JSON.stringify(newLoggedUser));
                     setCurrentUserContext(newLoggedUser);
+                    // alert("Sign in with google successful");
+                    navigate("/");
+                    // console.log(currentUserContext);
                     // alert("Acount created/signed with Google");
                     // console.log(currentUserContext);
                 }

@@ -41,36 +41,48 @@ const validationSchema = Yup.object().shape({
 
 const RegisterForm: React.FC = () => {
   const navigate = useNavigate();
+
   const handleSubmit = async (fieldsValues: RegisterFieldsValues) => {
     const { email, firstName, lastName, password, confirmPassword } = fieldsValues;
     const displayName = `${firstName} ${lastName}`;
 
     if (password !== confirmPassword) {
-      alert("password does not match");
+      alert('Password does not match');
       return;
     }
+
     try {
       const userCredential = await createAuthUserWithEmailAndPassword(email, password);
       if (!userCredential) return;
+
       const { user } = userCredential;
-      await createUserDocumentFromAuth(user, { displayName })
-      navigate("/login")
-      // alert("registered successfully");
+      const initialUserData = {
+        _id: user.uid,
+        createAt: new Date(),
+        displayName: displayName,
+        email: email,
+        birthday: null,
+        age: null,
+        photoURL: null,
+        interests: null,
+      };
+
+      await createUserDocumentFromAuth(user, initialUserData);
+      navigate('/login');
     } catch (error) {
       if (error instanceof FirebaseError) {
-        if (error.code === "auth/email-already-in-use") {
-          alert("email is already in use!");
-        }
-        else {
-          console.log(error)
+        if (error.code === 'auth/email-already-in-use') {
+          alert('Email is already in use!');
+        } else {
+          console.log(error);
         }
       }
     }
-  }
+  };
 
   return (
     <div className="RegisterForm">
-      <div className="RegisterForm__logoName">
+      <div className="RegisterForm__logoName" onClick={() => navigate("/")}>
         <span className="RegisterForm__logoName-one">Gift</span>
         <span className="RegisterForm__logoName-two">yed</span>
       </div>
@@ -83,7 +95,7 @@ const RegisterForm: React.FC = () => {
 
           <Form>
             <div className='RegisterForm__container'>
-            <div className="RegisterForm__container-firstName">
+              <div className="RegisterForm__container-firstName">
                 <label htmlFor="firstName">First Name</label>
                 <ErrorMessage name="firstName" component="div" className="error-message" />
                 <Field type="text" name="firstName" />

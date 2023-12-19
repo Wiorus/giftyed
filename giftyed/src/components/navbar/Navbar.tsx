@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { UsersContext, UsersContextType } from "../../contexts/user.context";
 import { getAuth, signOut } from "firebase/auth";
 
-
 const Navbar: React.FC = () => {
   const { currentUserContext, setCurrentUserContext } = useContext(UsersContext) as UsersContextType;
   const navigate = useNavigate();
@@ -24,6 +23,12 @@ const Navbar: React.FC = () => {
     signOut(auth);
   };
 
+  const handleProfileClick = () => {
+    if (currentUserContext) {
+      navigate("/profile");
+    }
+  };
+
   return (
     <div className="Navbar">
       <div className="Navbar__match" onClick={() => navigate("/search")}>Match</div>
@@ -36,7 +41,7 @@ const Navbar: React.FC = () => {
       )}
 
       <div className="Navbar__user">
-        <img className="Navbar__user-img" src={userImg} alt="userImg" />
+        <img className="Navbar__user-img" src={userImg} alt="userImg" onClick={handleProfileClick} />
         <div className="Navbar__user-AuthButton">
           {currentUserContext ?
             (<p className="Navbar__user-AuthButton-signOut"
@@ -50,4 +55,5 @@ const Navbar: React.FC = () => {
     </div>
   );
 }
+
 export default Navbar;

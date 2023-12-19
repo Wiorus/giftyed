@@ -16,6 +16,7 @@
   margin: 0 1vh;
 }
 .RegisterForm__logoName {
+  cursor: pointer;
   text-align: center;
   margin-top: 10vh;
   font-family: "Inter", sans-serif;
@@ -59,6 +60,7 @@
   text-align: center;
 }
 .RegisterForm__container-button button {
+  cursor: pointer;
   height: 50px;
   width: 130px;
   font-size: 24px;

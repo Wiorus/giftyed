@@ -12,6 +12,7 @@
   &__best,
   &__followed,
   &__search {
+    cursor: pointer;
     font-size: 14px;
     margin: 0 1vw 0 1vw;
     font-family: "Inter", sans-serif;
@@ -23,6 +24,7 @@
   }
 
   &__user {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
