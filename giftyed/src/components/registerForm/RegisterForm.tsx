@@ -4,24 +4,28 @@ import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FirebaseError } from 'firebase/app';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 
 type RegisterFieldsValues = {
-  displayName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
 
 const initialValues: RegisterFieldsValues = {
-  displayName: "",
+  firstName: "",
+  lastName: "",
   email: "",
   password: "",
   confirmPassword: ""
 }
 
 const validationSchema = Yup.object().shape({
-  displayName: Yup.string().required('Login is required'),
+  firstName: Yup.string().required('First name is required'),
+  lastName: Yup.string().required('Last name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
     .min(6, 'Password must be at least 6 characters')
@@ -35,38 +39,50 @@ const validationSchema = Yup.object().shape({
     .required('Confirm Password is required'),
 });
 
-
 const RegisterForm: React.FC = () => {
+  const navigate = useNavigate();
 
   const handleSubmit = async (fieldsValues: RegisterFieldsValues) => {
-    const { email, displayName, password, confirmPassword } = fieldsValues;
+    const { email, firstName, lastName, password, confirmPassword } = fieldsValues;
+    const displayName = `${firstName} ${lastName}`;
 
     if (password !== confirmPassword) {
-      alert("password does not match");
+      alert('Password does not match');
       return;
     }
+
     try {
       const userCredential = await createAuthUserWithEmailAndPassword(email, password);
       if (!userCredential) return;
-      const { user } = userCredential;
-      await createUserDocumentFromAuth(user, { displayName })
-      alert("registered successfully");
 
+      const { user } = userCredential;
+      const initialUserData = {
+        _id: user.uid,
+        createAt: new Date(),
+        displayName: displayName,
+        email: email,
+        birthday: null,
+        age: null,
+        photoURL: null,
+        interests: null,
+      };
+
+      await createUserDocumentFromAuth(user, initialUserData);
+      navigate('/login');
     } catch (error) {
       if (error instanceof FirebaseError) {
-        if (error.code === "auth/email-already-in-use") {
-          alert("email is already in use!");
-        }
-        else {
-          console.log(error)
+        if (error.code === 'auth/email-already-in-use') {
+          alert('Email is already in use!');
+        } else {
+          console.log(error);
         }
       }
     }
-  }
+  };
 
   return (
     <div className="RegisterForm">
-      <div className="RegisterForm__logoName">
+      <div className="RegisterForm__logoName" onClick={() => navigate("/")}>
         <span className="RegisterForm__logoName-one">Gift</span>
         <span className="RegisterForm__logoName-two">yed</span>
       </div>
@@ -79,10 +95,16 @@ const RegisterForm: React.FC = () => {
 
           <Form>
             <div className='RegisterForm__container'>
-              <div className="RegisterForm__container-login">
-                <label htmlFor="loginName">Login</label>
-                <ErrorMessage name="displayName" component="div" className="error-message" />
-                <Field type="text" name="displayName" />
+              <div className="RegisterForm__container-firstName">
+                <label htmlFor="firstName">First Name</label>
+                <ErrorMessage name="firstName" component="div" className="error-message" />
+                <Field type="text" name="firstName" />
+              </div>
+
+              <div className="RegisterForm__container-lastName">
+                <label htmlFor="lastName">Last Name</label>
+                <ErrorMessage name="lastName" component="div" className="error-message" />
+                <Field type="text" name="lastName" />
               </div>
 
               <div className="RegisterForm__container-email">

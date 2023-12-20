@@ -1,11 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import "../loginForm/LoginForm.scss";
 import SignInButton from "../singInButton/SignInButton";
-import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+import { db, signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import { FirebaseError } from "firebase/app";
+import { UsersContext, UsersContextType } from "../../contexts/user.context";
+import { UserApp } from "../../utils/types/user";
+import { doc, getDoc } from "firebase/firestore";
 
 type LoginFieldsValues = {
   email: string;
@@ -23,14 +26,49 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm: React.FC = () => {
+  const navigate = useNavigate();
+  const { currentUserContext, setCurrentUserContext } = useContext(UsersContext) as UsersContextType;
+  useEffect(() => {
+    console.log(currentUserContext)
+  }, [currentUserContext])
+
+  useEffect(() => {
+    const storedUserData = localStorage.getItem('userData');
+    if (storedUserData) {
+      const parsedUserData: UserApp = JSON.parse(storedUserData);
+      setCurrentUserContext(parsedUserData);
+    }
+  }, [setCurrentUserContext]);
 
   const handleSubmit = async (fieldsValues: LoginFieldsValues) => {
     const { email, password } = fieldsValues;
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(email, password);
-      console.log(response);
-      alert("Login successful");
+      const userAuth = await signInAuthUserWithEmailAndPassword(email, password);
+      if (userAuth && userAuth.user) {
+        const userDocRef = doc(db, "users", userAuth.user.uid);
+        const userSnapshot = await getDoc(userDocRef);
+
+        if (userSnapshot.exists()) {
+          const userData = userSnapshot.data();
+
+          let loggedUser: UserApp = {
+            _id: userAuth.user.uid,
+            createAt: userData.createAt,
+            displayName: userData.displayName,
+            email: userData.email,
+            birthday: userData.birthday || null,
+            age: userData.age || null,
+            photoURL: userData.photoURL || null,
+            interests: userData.interests || null,
+          }
+          localStorage.setItem('userData', JSON.stringify(loggedUser));
+          setCurrentUserContext(loggedUser);
+          navigate("/")
+          // alert("Login successful");
+          console.log(currentUserContext)
+        }
+      }
     } catch (error) {
       if (error instanceof FirebaseError) {
         if (error.code === "auth/invalid-login-credentials") {
@@ -44,7 +82,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="LoginForm">
-      <div className="LoginForm__logoName">
+      <div className="LoginForm__logoName" onClick={() => navigate("/")}>
         <span className="LoginForm__logoName-one">Gift</span>
         <span className="LoginForm__logoName-two">yed</span>
       </div>

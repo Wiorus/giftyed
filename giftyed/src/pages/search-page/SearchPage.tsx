@@ -9,7 +9,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import SearchList from '../../components/searchList/SearchList';
 import { Chip } from '@mui/material';
 
-const Item = styled(Paper)(({ theme }) => ({
+styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),

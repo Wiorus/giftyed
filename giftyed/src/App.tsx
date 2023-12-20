@@ -8,8 +8,6 @@ import AdminPage from "./pages/admin-page/AdminPage";
 import FollowPage from "./pages/follow-page/FollowPage";
 import SearchPage from "./pages/search-page/SearchPage";
 import ProfilePage from "./pages/profile-page/ProfilePage";
-import SignUpButton from "./components/singInButton/SignInButton";
-
 
 const App:React.FC = () => {
   return (
@@ -23,7 +21,6 @@ const App:React.FC = () => {
         <Route path="/follow" element={<FollowPage/>}/>
         <Route path="/search" element={<SearchPage/>}/>
         <Route path="/profile" element={<ProfilePage/>}/>
-        <Route path="/signup" element={<SignUpButton/>}/>
       </Routes>
     </BrowserRouter>
   )

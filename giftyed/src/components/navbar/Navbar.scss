@@ -12,6 +12,7 @@
   &__best,
   &__followed,
   &__search {
+    cursor: pointer;
     font-size: 14px;
     margin: 0 1vw 0 1vw;
     font-family: "Inter", sans-serif;
@@ -23,6 +24,10 @@
   }
 
   &__user {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 15px;
 
     &-img {
@@ -30,7 +35,7 @@
       height: 45px;
     }
 
-    &-singIn{
+    &-AuthButton{
       display: flex;
       flex-direction: column;
       align-items: center;

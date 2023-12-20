@@ -17,6 +17,7 @@
   margin: 0 1vh;
 }
 .LoginForm__logoName {
+  cursor: pointer;
   text-align: center;
   margin-top: 10vh;
   font-size: 118px;
@@ -57,6 +58,7 @@
   text-align: center;
 }
 .LoginForm__container-loginButton button {
+  cursor: pointer;
   height: 50px;
   width: 115px;
   font-size: 24px;

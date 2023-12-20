@@ -8,6 +8,7 @@
   width: 100vw;
 }
 .Navbar__match, .Navbar__best, .Navbar__followed, .Navbar__search {
+  cursor: pointer;
   font-size: 14px;
   margin: 0 1vw 0 1vw;
   font-family: "Inter", sans-serif;
@@ -17,13 +18,17 @@
   color: #854b25;
 }
 .Navbar__user {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 15px;
 }
 .Navbar__user-img {
   width: 45px;
   height: 45px;
 }
-.Navbar__user-singIn {
+.Navbar__user-AuthButton {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +37,6 @@
   font-family: "Inter", sans-serif;
   text-decoration: none;
 }
-.Navbar__user-singIn:hover {
+.Navbar__user-AuthButton:hover {
   color: #854b25;
 }/*# sourceMappingURL=Navbar.css.map */
