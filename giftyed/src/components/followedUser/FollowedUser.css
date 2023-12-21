@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
 .followed-user {
   text-align: center;
+  margin-bottom: 2vh;
 }
 .followed-user__photo img {
   width: 35%;

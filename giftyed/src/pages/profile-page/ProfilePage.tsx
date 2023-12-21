@@ -7,7 +7,7 @@ import ProfileMenu from '../../components/profileMenu/ProfileMenu'
 const ProfilePage: React.FC = () => {
     return (
         <div className='ProfilePage'>
-            <Navbar />
+                <Navbar />
             <div className='ProfilePage__content'>
                 <div className='ProfilePage__content-info'>
                     <ProfileInfo />

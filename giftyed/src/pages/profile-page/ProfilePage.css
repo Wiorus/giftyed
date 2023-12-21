@@ -1,12 +1,12 @@
 .ProfilePage__content {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 96px);
   justify-content: flex-start;
 }
 .ProfilePage__content-info {
-  height: 50%;
+  height: 55%;
 }
 .ProfilePage__content-menu {
-  height: 50%;
+  height: 45%;
 }/*# sourceMappingURL=ProfilePage.css.map */

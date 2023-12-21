@@ -1,50 +1,53 @@
 @import "../../utils/variables.scss";
 
 .profile-menu {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: #ecd3af;
   height: 100%;
-  background-color: $creamy;
 
   &__upcomingBirthday {
-    width: 33.33%;
-    display: grid;
     
     &-header {
       font-family: "Inter", sans-serif;
-      font-size: 24px;
+      font-size: 18px;
       color: $lightBrown;
       text-align: center;
     }
 
     &-followedUsers {
       display: grid;
-      justify-items: center;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      grid-gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
     }
   }
 
   &__calendar {
-    display: flex;
-    align-items: center;
-    width: 33.33%;
+    margin-top: 4vh;
 
     .MuiDateCalendar-root {
       color: $whiteText;
       border-radius: 25px;
       background-color: $brown;
       font-family: "Inter", sans-serif;
+      height: 40vh;
+      width: 25vw;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
 
     .MuiPickersDay-root {
       color: $whiteText;
       font-family: "Inter", sans-serif;
+      margin: 0;
     }
 
     .MuiDayCalendar-weekDayLabel,
     .MuiPickersArrowSwitcher-button,
     .MuiPickersCalendarHeader-switchViewButton {
+      margin: 0;
       color: $whiteText;
       font-family: "Inter", sans-serif !important;
     }
@@ -59,19 +62,17 @@
   }
 
   &__wishList {
-    width: 33.33%;
 
     &-header {
       font-family: "Inter", sans-serif;
-      font-size: 24px;
+      font-size: 18px;
       color: $lightBrown;
       text-align: center;
     }
 
     &-items {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
     }
   }
 }

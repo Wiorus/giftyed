@@ -2,9 +2,10 @@
 
 .wish-item{
     &__square{
-        width: 200px;
-        height: 200px;
-        border-radius: 25px;
+        width: 7vw;
+        height: 7vw;
+        border-radius: 1.5vw;
         background-color: $brown;
+        margin-bottom: 2vh;
     }
 }

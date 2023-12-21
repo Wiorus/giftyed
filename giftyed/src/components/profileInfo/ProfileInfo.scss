@@ -10,22 +10,22 @@
     width: 40%;
 
     &-square {
-      width: calc(20vw + 175px);
+      width: calc(10vw + 175px);
       position: absolute;
-      bottom: calc(50% - 174px);
-      height: 348px;
+      top: 25%;
+      height: 248px;
       background-color: $darkBrown;
     }
 
     &-photo {
       position: absolute;
-      bottom: calc(50% - 175px);
-      left: 20vw;
+      top: 25%;
+      left: 15vw;
 
       img {
         border-radius: 50%;
-        width: 350px;
-        height: 350px;
+        width: 250px;
+        height: 250px;
       }
     }
   }
@@ -37,22 +37,53 @@
     color: $whiteText;
     font-family: "Inter", sans-serif;
 
+    input {
+      font-family: "Inter", sans-serif;
+      margin-bottom: 23px;
+      color: $lightBrown;
+      background-color: $orange;
+      font-size: 14px;
+      border: none;
+      border-radius: 10px;
+      padding-left: 10px;
+    }
+
     &-info {
       width: 50%;
-      height: 25vh;
+      height: 50%;
+
+      button {
+        cursor: pointer;
+        height: 25px;
+        width: 65px;
+        font-size: 14px;
+        color: $lightBrown;
+        background-color: $orange;
+        font-family: "Inter", sans-serif;
+        border: none;
+        border-radius: 7px;
+        margin-right: 5px;
+        margin-top: 10px;
+      }
 
       &-name {
         font-size: 28px;
 
         &-others {
+          display: flex;
+          flex-direction: column;
           margin-left: 25px;
+
+          input {
+            width: 110px;
+          }
         }
       }
     }
 
     &-interests {
       width: 50%;
-      height: 25vh;
+      height: 50%;
       font-size: 28px;
 
       &-container {
