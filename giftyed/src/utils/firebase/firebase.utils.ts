@@ -13,6 +13,7 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
+import {getStorage} from "firebase/storage"
 
 const firebaseConfig = {
   apiKey: "AIzaSyDBv2xXKlGAs89GdEMEmSOoKo_AUcqGizw",
@@ -33,6 +34,7 @@ provider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 export const db = getFirestore();
+export const storagePhoto = getStorage()
 
 export const createUserDocumentFromAuth = async (
   userAuth: any,

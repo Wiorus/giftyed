@@ -6,16 +6,23 @@ import photo from '../../utils/user.png';
 import { UsersContext, UsersContextType } from '../../contexts/user.context';
 import { useNavigate } from 'react-router-dom';
 import { Timestamp } from "firebase/firestore";
-import { updateUserDoc } from '../../utils/firebase/firebase.utils';
+import { storagePhoto, updateUserDoc } from '../../utils/firebase/firebase.utils';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const ProfileInfo: React.FC = () => {
+
   const { currentUserContext, setCurrentUserContext } = useContext(UsersContext) as UsersContextType;
   const [editProfile, setEditProfile] = useState(false);
   const [editDisplayName, setEditDisplayName] = useState(currentUserContext?.displayName || '');
   const [editAge, setEditAge] = useState(currentUserContext?.age || 0);
   const [editBirthday, setEditBirthday] = useState(currentUserContext?.birthday ? new Date(currentUserContext.birthday.seconds * 1000) : null);
   const [isInitialRender, setIsInitialRender] = useState(true);
+  const [selectedPhotoFile, setSelectedPhotoFile] = useState<File | null>(null);
+  const [realTimeURL, setRealTimeURL] = useState<string | null>(currentUserContext && currentUserContext.photoURL ? currentUserContext.photoURL : null);
+
   const navigate = useNavigate();
+  const { age, birthday, interests } = currentUserContext || {};
+  const formattedBirthday = birthday ? new Date(birthday.seconds * 1000).toLocaleDateString() : 'Not set yet';
 
   const handleClick = () => {
     console.info('You clicked the Chip.');
@@ -28,35 +35,92 @@ const ProfileInfo: React.FC = () => {
     }
     if (!currentUserContext) {
       navigate('/');
+    } else {
+      setRealTimeURL(currentUserContext.photoURL || null);
     }
   }, [currentUserContext, navigate, isInitialRender]);
-
-  const { age, birthday, interests } = currentUserContext || {};
-  const formattedBirthday = birthday ? new Date(birthday.seconds * 1000).toLocaleDateString() : 'Not set yet';
 
   const handleEditProfile = () => {
     setEditProfile(true);
   };
 
+  const validateFile = (file: File | null) => {
+    if (file) {
+      const reader = new FileReader();
+  
+      reader.onload = (e) => {
+        // Attempt to create an image element
+        const img = new Image();
+        img.src = e.target?.result as string;
+  
+        img.onload = () => {
+          // Check if the image dimensions or other criteria meet your requirements
+          const maxWidth = 500; // Set your maximum width
+          const maxHeight = 500; // Set your maximum height
+  
+          if (img.width > maxWidth || img.height > maxHeight) {
+            alert("Image dimensions exceed the maximum allowed size");
+          } else {
+            // If the image meets the criteria, set it as the selected photo file
+            setSelectedPhotoFile(file);
+          }
+        };
+  
+        img.onerror = () => {
+          alert("Error loading the image");
+        };
+      };
+  
+      // Read the file as a data URL
+      reader.readAsDataURL(file);
+    }
+  };
   const handleSaveEdit = async () => {
     if (currentUserContext) {
       try {
-        await updateUserDoc(currentUserContext._id, {
-          displayName: editDisplayName,
-          age: editAge,
-          birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
-        });
-        const updatedUser = {
-          ...currentUserContext,
-          displayName: editDisplayName,
-          age: editAge,
-          birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
-        };
-        localStorage.setItem('userData', JSON.stringify(updatedUser));
-        setCurrentUserContext(updatedUser);
+        if (selectedPhotoFile) {
+          const fileRef = ref(storagePhoto, `usersPhotos/${selectedPhotoFile.name}`);
+          await uploadBytes(fileRef, selectedPhotoFile);
+          const photoURL = await getDownloadURL(fileRef);
+
+          await updateUserDoc(currentUserContext._id, {
+            displayName: editDisplayName,
+            age: editAge,
+            birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
+            photoURL: photoURL,
+          });
+
+          const updatedUser = {
+            ...currentUserContext,
+            displayName: editDisplayName,
+            age: editAge,
+            birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
+            photoURL: photoURL,
+          };
+
+          localStorage.setItem('userData', JSON.stringify(updatedUser));
+          setCurrentUserContext(updatedUser);
+          setRealTimeURL(photoURL);
+        } else {
+          await updateUserDoc(currentUserContext._id, {
+            displayName: editDisplayName,
+            age: editAge,
+            birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
+          });
+
+          const updatedUser = {
+            ...currentUserContext,
+            displayName: editDisplayName,
+            age: editAge,
+            birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
+          };
+
+          localStorage.setItem('userData', JSON.stringify(updatedUser));
+          setCurrentUserContext(updatedUser);
+        }
         setEditProfile(false);
       } catch (error) {
-        console.error("Error updating user data:", error);
+        console.error(error);
       }
     }
   };
@@ -68,14 +132,14 @@ const ProfileInfo: React.FC = () => {
       currentUserContext?.birthday ? new Date(currentUserContext.birthday.seconds * 1000) : null
     );
     setEditProfile(false);
-  }
+  };
 
   return (
     <div className='profile-info'>
       <div className='profile-info__avatar'>
         <div className='profile-info__avatar-square'></div>
         <div className='profile-info__avatar-photo'>
-          <img src={photo} alt='user' />
+          <img src={realTimeURL || photo} />
         </div>
       </div>
       <div className='profile-info__content'>
@@ -90,20 +154,19 @@ const ProfileInfo: React.FC = () => {
             ) : null}
           </div>
           <div className='profile-info__content-info-name-others'>
-            {editProfile ?
-              (
-                <>
-                  <input type='number' value={editAge} onChange={(event) => setEditAge(parseInt(event.target.value))} />
-                  <input type='date' value={editBirthday?.toISOString().split('T')[0]}
-                    onChange={(e) => setEditBirthday(new Date(e.target.value))} />
-                </>
-              ) : (
-                <>
-                  <p> Age: {age?.toString()}</p>
-                  <p> Birthday: {formattedBirthday}</p>
-                </>
-              )
-            }
+            {editProfile ? (
+              <>
+                <input type='number' value={editAge} onChange={(event) => setEditAge(parseInt(event.target.value))} />
+                <input type='date' value={editBirthday?.toISOString().split('T')[0]}
+                  onChange={(e) => setEditBirthday(new Date(e.target.value))} />
+                  <input type="file" accept="image/*" onChange={(e) => validateFile(e.target.files?.[0] || null)} />
+              </>
+            ) : (
+              <>
+                <p> Age: {age?.toString()}</p>
+                <p> Birthday: {formattedBirthday}</p>
+              </>
+            )}
           </div>
           {
             editProfile ? (
