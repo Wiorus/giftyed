@@ -5,6 +5,11 @@
   background-color: #ecd3af;
   height: 100%;
 }
+.profile-menu__upcomingBirthday {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .profile-menu__upcomingBirthday-header {
   font-family: "Inter", sans-serif;
   font-size: 18px;
@@ -12,25 +17,30 @@
   text-align: center;
 }
 .profile-menu__upcomingBirthday-followedUsers {
+  height: calc(100% - 57px);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
+  align-items: center;
 }
 .profile-menu__calendar {
-  margin-top: 4vh;
+  display: flex;
+  align-items: center;
 }
 .profile-menu__calendar .MuiDateCalendar-root {
   color: #EDE7DC;
   border-radius: 25px;
   background-color: #422D27;
   font-family: "Inter", sans-serif;
-  height: 40vh;
-  width: 25vw;
+  height: 37vh;
+  width: 22vw;
   overflow-y: auto;
 }
 .profile-menu__calendar .MuiDateCalendar-root::-webkit-scrollbar {
   display: none;
 }
 .profile-menu__calendar .MuiPickersDay-root {
+  height: 3vw;
+  width: 3vw;
   color: #EDE7DC;
   font-family: "Inter", sans-serif;
   margin: 0;
@@ -38,6 +48,8 @@
 .profile-menu__calendar .MuiDayCalendar-weekDayLabel,
 .profile-menu__calendar .MuiPickersArrowSwitcher-button,
 .profile-menu__calendar .MuiPickersCalendarHeader-switchViewButton {
+  height: 3vw;
+  width: 3vw;
   margin: 0;
   color: #EDE7DC;
   font-family: "Inter", sans-serif !important;
@@ -45,8 +57,11 @@
 .profile-menu__calendar .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
   border: 3px solid #EDE7DC;
 }
-.profile-menu__calendar .MuiPickersDay-root.Mui-selected {
+.profile-menu__calendar .Mui-selected {
   background-color: #F0AB55 !important;
+}
+.profile-menu__calendar .MuiPickersYear-root {
+  flex-basis: 20vw;
 }
 .profile-menu__wishList-header {
   font-family: "Inter", sans-serif;
@@ -55,6 +70,9 @@
   text-align: center;
 }
 .profile-menu__wishList-items {
+  height: calc(100% - 57px);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
+  align-content: space-around;
+  justify-items: center;
 }/*# sourceMappingURL=ProfileMenu.css.map */

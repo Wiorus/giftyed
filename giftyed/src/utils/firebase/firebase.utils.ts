@@ -6,7 +6,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDBv2xXKlGAs89GdEMEmSOoKo_AUcqGizw",
@@ -71,15 +77,10 @@ export const signInAuthUserWithEmailAndPassword = async (
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
-export const updateUserDoc = async (
-  uid: string,
-  updatedData: any
-) => {
+export const updateUserDoc = async (uid: string, updatedData: any) => {
   const userDocRef = doc(db, "users", uid);
   try {
-    await updateDoc(userDocRef, {
-      ...updatedData,});
-    console.log("User data updated successfully!");
+    await updateDoc(userDocRef, { ...updatedData });
   } catch (error) {
     console.error("Error updating user data:", error);
     throw error;

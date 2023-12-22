@@ -8,12 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import { Timestamp } from "firebase/firestore";
 import { updateUserDoc } from '../../utils/firebase/firebase.utils';
 
-
-
 const ProfileInfo: React.FC = () => {
   const { currentUserContext, setCurrentUserContext } = useContext(UsersContext) as UsersContextType;
   const [editProfile, setEditProfile] = useState(false);
-  const [editDisplayName, setEditDisplayName] = useState(currentUserContext?.displayName ?? '');
+  const [editDisplayName, setEditDisplayName] = useState(currentUserContext?.displayName || '');
   const [editAge, setEditAge] = useState(currentUserContext?.age || 0);
   const [editBirthday, setEditBirthday] = useState(currentUserContext?.birthday ? new Date(currentUserContext.birthday.seconds * 1000) : null);
   const [isInitialRender, setIsInitialRender] = useState(true);
@@ -34,7 +32,6 @@ const ProfileInfo: React.FC = () => {
   }, [currentUserContext, navigate, isInitialRender]);
 
   const { age, birthday, interests } = currentUserContext || {};
-
   const formattedBirthday = birthday ? new Date(birthday.seconds * 1000).toLocaleDateString() : 'Not set yet';
 
   const handleEditProfile = () => {
@@ -44,17 +41,19 @@ const ProfileInfo: React.FC = () => {
   const handleSaveEdit = async () => {
     if (currentUserContext) {
       try {
-        setCurrentUserContext({
-          ...currentUserContext,
-          displayName: editDisplayName,
-          age: editAge,
-          birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
-        });
         await updateUserDoc(currentUserContext._id, {
           displayName: editDisplayName,
           age: editAge,
           birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
         });
+        const updatedUser = {
+          ...currentUserContext,
+          displayName: editDisplayName,
+          age: editAge,
+          birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
+        };
+        localStorage.setItem('userData', JSON.stringify(updatedUser));
+        setCurrentUserContext(updatedUser);
         setEditProfile(false);
       } catch (error) {
         console.error("Error updating user data:", error);

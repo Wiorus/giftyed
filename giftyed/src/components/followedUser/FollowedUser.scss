@@ -2,12 +2,10 @@
 
 .followed-user {
   text-align: center;
-  margin-bottom: 2vh;
 
   &__photo {
     
     img {
-      
       width: 35%;
       height: 35%;
       border-radius: 50%;
@@ -17,9 +15,8 @@
   &__name {
     p{
       font-family: "Inter", sans-serif;
-      font-size: 14px;
+      font-size: 12px;
       color: $lightBrown;
     }
-    
   }
 }

@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
 .followed-user {
   text-align: center;
-  margin-bottom: 2vh;
 }
 .followed-user__photo img {
   width: 35%;
@@ -10,6 +9,6 @@
 }
 .followed-user__name p {
   font-family: "Inter", sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   color: #854b25;
 }/*# sourceMappingURL=FollowedUser.css.map */

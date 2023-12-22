@@ -4,6 +4,7 @@
   height: 100%;
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
 
   &__avatar {
     position: relative;
@@ -33,7 +34,6 @@
   &__content {
     width: 60%;
     display: flex;
-    align-items: center;
     color: $whiteText;
     font-family: "Inter", sans-serif;
 

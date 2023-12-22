@@ -6,7 +6,6 @@
   align-items: center;
   width: 100%;
   top: 0;
-  position: absolute;
 }
 .Navbar__match, .Navbar__best, .Navbar__followed, .Navbar__search {
   cursor: pointer;
