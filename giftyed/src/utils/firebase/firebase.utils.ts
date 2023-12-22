@@ -6,7 +6,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+import {getStorage} from "firebase/storage"
 
 const firebaseConfig = {
   apiKey: "AIzaSyDBv2xXKlGAs89GdEMEmSOoKo_AUcqGizw",
@@ -27,6 +34,7 @@ provider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 export const db = getFirestore();
+export const storagePhoto = getStorage()
 
 export const createUserDocumentFromAuth = async (
   userAuth: any,
@@ -69,4 +77,14 @@ export const signInAuthUserWithEmailAndPassword = async (
 ) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const updateUserDoc = async (uid: string, updatedData: any) => {
+  const userDocRef = doc(db, "users", uid);
+  try {
+    await updateDoc(userDocRef, { ...updatedData });
+  } catch (error) {
+    console.error("Error updating user data:", error);
+    throw error;
+  }
 };

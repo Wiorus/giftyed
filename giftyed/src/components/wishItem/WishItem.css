@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
 .wish-item__square {
-  width: 200px;
-  height: 200px;
-  border-radius: 25px;
+  width: 6vw;
+  height: 6vw;
+  border-radius: 1.5vw;
   background-color: #422D27;
 }/*# sourceMappingURL=WishItem.css.map */

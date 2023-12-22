@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../utils/variables.scss","WishItem.scss","WishItem.css"],"names":[],"mappings":"AAAQ,mFAAA;ACGJ;EACI,YAAA;EACA,aAAA;EACA,mBAAA;EACA,yBDNA;AEKR","file":"WishItem.css"}
+{"version":3,"sources":["../../utils/variables.scss","WishItem.scss","WishItem.css"],"names":[],"mappings":"AAAQ,mFAAA;ACIJ;EACI,UAAA;EACA,WAAA;EACA,oBAAA;EACA,yBDPA;AEKR","file":"WishItem.css"}

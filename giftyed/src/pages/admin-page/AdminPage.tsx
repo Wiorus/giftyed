@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+// import React, { useContext, useEffect } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import AdminList from '../../components/adminList/AdminList';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import "./AdminPage.scss"
 import cubes from "../../utils/cubes.png"
-import { UsersContext, UsersContextType } from '../../contexts/user.context';
+// import { UsersContext, UsersContextType } from '../../contexts/user.context';
 
 const AdminPage: React.FC = () => {
   // let navigate = useNavigate();

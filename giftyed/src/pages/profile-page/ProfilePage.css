@@ -1,7 +1,7 @@
 .ProfilePage__content {
+  height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 96px);
   justify-content: flex-start;
 }
 .ProfilePage__content-info {
