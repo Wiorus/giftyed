@@ -29,6 +29,7 @@
   &__calendar {
     display: flex;
     align-items: center;
+
     .MuiDateCalendar-root {
       color: $whiteText;
       border-radius: 25px;
@@ -37,8 +38,10 @@
       height: 37vh;
       width: 22vw;
       overflow-y: auto;
-
-      &::-webkit-scrollbar {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+      div::-webkit-scrollbar {
         display: none;
       }
     }

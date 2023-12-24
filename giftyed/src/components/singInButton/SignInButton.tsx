@@ -42,6 +42,7 @@ const SignInButton: React.FC = () => {
                         age: userData.age || null,
                         photoURL: userData.photoURL || null,
                         interests: userData.interests || null,
+                        followed: userData.followed || null,
                     };
                     localStorage.setItem('userData', JSON.stringify(loggedUser));
                     setCurrentUserContext(loggedUser);
@@ -50,13 +51,15 @@ const SignInButton: React.FC = () => {
                     // console.log(currentUserContext);
                 } else {
                     const newUserData = {
+                        _id: userAuth.user.uid,
                         createAt: new Date(),
                         displayName: userAuth.user.displayName || "",
                         email: userAuth.user.email || "",
                         birthday: null,
                         age: null,
-                        photoURL: null,
+                        photoURL: userAuth.user.photoURL || null,
                         interests: null,
+                        followed: null,
                     };
 
                     await setDoc(userDocRef, newUserData);
@@ -70,6 +73,7 @@ const SignInButton: React.FC = () => {
                         age: newUserData.age,
                         photoURL: newUserData.photoURL,
                         interests: newUserData.interests,
+                        followed: newUserData.followed,
                     };
 
                     localStorage.setItem('userData', JSON.stringify(newLoggedUser));

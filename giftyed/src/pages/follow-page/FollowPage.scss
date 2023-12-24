@@ -3,37 +3,41 @@
 .FollowPage {
   display: flex;
   flex-direction: column;
+  font-family: "Inter", sans-serif;
 
   &__search {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    
     input {
-      height: 35px;
-      width: 200px;
+      height: 28px;
+      width: 220px;
       padding-left: 15px;
-
       color: $lightBrown;
-      font-family: "Inter", sans-serif;
       background-color: $orange;
-      font-size: 18px;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
       border: none;
       border-radius: 25px;
+    }
+
+    input::placeholder {
+      color: $lightBrown;
     }
   }
 
   &__peoplelist {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
 
-    &-Users,
+    &-users,
     &-followedUsers {
-      font-size: 32px;
-      color: #854b25;
-      text-align: center;
-      font-family: "Inter", sans-serif;
+      &-header {
+        text-align: center;
+        color: $brown;
+      }
     }
   }
 

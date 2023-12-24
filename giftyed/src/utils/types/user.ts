@@ -9,4 +9,5 @@ export type UserApp = {
   age: number | null;
   photoURL: string | null;
   interests: Array<string> | null;
+  followed: Array<string> | null;
 };

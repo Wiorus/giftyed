@@ -70,6 +70,18 @@
 .profile-info__content-info-name-others input {
   width: 110px;
 }
+.profile-info__content-info-name-others-upload {
+  width: 120px;
+  font-size: 12px !important;
+  background-color: #F0AB55 !important;
+  color: #854b25 !important;
+  border-radius: 25px !important;
+  height: 25px;
+  font-family: "Inter", sans-serif !important;
+}
+.profile-info__content-info-name-others-upload-uploadHiden {
+  display: none;
+}
 .profile-info__content-interests {
   width: 50%;
   height: 50%;

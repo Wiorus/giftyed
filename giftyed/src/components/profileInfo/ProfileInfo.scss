@@ -77,6 +77,19 @@
           input {
             width: 110px;
           }
+
+          &-upload {
+            width: 120px;
+            font-size: 12px !important;
+            background-color: $orange !important;
+            color: $lightBrown !important;
+            border-radius: 25px !important;
+            height: 25px;
+            font-family: "Inter", sans-serif !important;
+            &-uploadHiden {
+              display: none;
+            }
+          }
         }
       }
     }
