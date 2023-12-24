@@ -14,11 +14,11 @@ const FollowPage: React.FC = () => {
             <div className='FollowPage__peoplelist'>
                 <div className='FollowPage__peoplelist-users'>
                     <p className='FollowPage__peoplelist-users-header'>USERS</p>
-                    <PeopleList />
+                    <PeopleList showFollowedUsers={false} />
                 </div>
                 <div className='FollowPage__peoplelist-followedUsers'>
                     <p className='FollowPage__peoplelist-followedUsers-header'>FOLLOWED USERS</p>
-                    <PeopleList />
+                    <PeopleList showFollowedUsers={true} />
                 </div>
             </div>
             <img className="FollowPage__wavesTwoImg" src={wavesTwo} alt="wavesTwo" />
