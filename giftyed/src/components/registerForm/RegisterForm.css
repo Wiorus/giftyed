@@ -2,7 +2,7 @@
 .RegisterForm {
   position: absolute;
   height: 100vh;
-  width: 600px;
+  width: 500px;
   background-color: #422D27;
   overflow-y: auto;
 }
@@ -18,7 +18,7 @@
 .RegisterForm__logoName {
   cursor: pointer;
   text-align: center;
-  margin-top: 10vh;
+  margin-top: 7vh;
   font-family: "Inter", sans-serif;
   font-size: 118px;
 }
@@ -45,7 +45,7 @@
   margin: 0 0 5px 10px;
 }
 .RegisterForm__container-email input, .RegisterForm__container-firstName input, .RegisterForm__container-lastName input, .RegisterForm__container-password input, .RegisterForm__container-confirmPassword input {
-  height: 35px;
+  height: 25px;
   width: 60%;
   padding-left: 15px;
   color: #854b25;
@@ -54,21 +54,22 @@
   font-size: 18px;
   border: none;
   border-radius: 25px;
-  margin-bottom: 5vh;
+  margin-bottom: 15px;
 }
 .RegisterForm__container-button {
   text-align: center;
 }
 .RegisterForm__container-button button {
   cursor: pointer;
-  height: 50px;
-  width: 130px;
-  font-size: 24px;
+  height: 45px;
+  width: 120px;
+  font-size: 21px;
   color: #854b25;
   background-color: #F0AB55;
   font-family: "Inter", sans-serif;
   border: none;
   border-radius: 20px;
+  margin-top: 15px;
 }
 .RegisterForm__container-button button:hover {
   color: #EDE7DC;

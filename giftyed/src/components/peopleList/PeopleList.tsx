@@ -1,34 +1,37 @@
-import React from 'react'
-import './PeopleList.scss'
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
-import { Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import './PeopleList.scss';
+import { collection, getDocs } from 'firebase/firestore';
+import { UserApp } from '../../utils/types/user';
+import { db } from '../../utils/firebase/firebase.utils';
+import photo from '../../utils/user.png'
+
 
 const PeopleList: React.FC = () => {
-    return (
-        <div className='PeopleList'>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2} columnSpacing={2} minHeight={100} direction="row">
-                    <Grid xs={3} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                        <Avatar sx={{ width: 100, height: 100 }} src="" />
-                        <Typography variant="caption">Avatar 1</Typography>
-                    </Grid>
-                    <Grid xs={3} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                        <Avatar sx={{ width: 100, height: 100 }} src="" />
-                        <Typography variant="caption">Avatar 2</Typography>
-                    </Grid>
-                    <Grid xs={3} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                        <Avatar sx={{ width: 100, height: 100 }} src="" />
-                        <Typography variant="caption">Avatar 3</Typography>
-                    </Grid>
-                    <Grid xs={3} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                        <Avatar sx={{ width: 100, height: 100 }} src="" />
-                        <Typography variant="caption">Avatar 4</Typography>
-                    </Grid>
-                </Grid>
-            </Box>
+  const [users, setUsers] = useState<UserApp[]>([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const usersCollection = collection(db, 'users');
+      const usersSnapshot = await getDocs(usersCollection);
+      const usersData = usersSnapshot.docs.map((doc) => ({ _id: doc.id, ...doc.data() } as UserApp));
+      setUsers(usersData);
+    };
+
+    fetchUsers();
+  }, []);
+
+  return (
+    <div className='PeopleList'>
+      {users.map((user, index) => (
+        <div key={index} className='PeopleList__container'>
+          <div className='PeopleList__container-user'>
+            <img className='PeopleList__container-user-photo' src={user.photoURL ?? photo} alt="user" />
+            <p className='PeopleList__container-user-name'>{user.displayName}</p>
+          </div>
         </div>
-    )
-}
+      ))}
+    </div>
+  );
+};
+
 export default PeopleList;

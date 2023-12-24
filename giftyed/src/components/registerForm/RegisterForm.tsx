@@ -65,6 +65,7 @@ const RegisterForm: React.FC = () => {
         age: null,
         photoURL: null,
         interests: null,
+        followed: null,
       };
 
       await createUserDocumentFromAuth(user, initialUserData);
@@ -113,20 +114,17 @@ const RegisterForm: React.FC = () => {
                 <Field type="email" name="email" />
               </div>
 
-
               <div className="RegisterForm__container-password">
                 <label htmlFor="passwordName">Password</label>
                 <ErrorMessage name="password" component="div" className="error-message" />
                 <Field type="password" name="password" />
               </div>
 
-
               <div className="RegisterForm__container-confirmPassword">
-                <label htmlFor="passwordName-confirmPassword">Password</label>
+                <label htmlFor="passwordName-confirmPassword">Repeat Password</label>
                 <ErrorMessage name="confirmPassword" component="div" className="error-message" />
                 <Field type="password" name="confirmPassword" />
               </div>
-
 
               <div className="RegisterForm__container-button">
                 <button type="submit" disabled={isSubmitting}>

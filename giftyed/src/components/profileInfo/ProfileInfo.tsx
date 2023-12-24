@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Timestamp } from "firebase/firestore";
 import { storagePhoto, updateUserDoc } from '../../utils/firebase/firebase.utils';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import Button from '@mui/material/Button';
 
 const ProfileInfo: React.FC = () => {
 
@@ -17,7 +18,7 @@ const ProfileInfo: React.FC = () => {
   const [editAge, setEditAge] = useState(currentUserContext?.age || 0);
   const [editBirthday, setEditBirthday] = useState(currentUserContext?.birthday ? new Date(currentUserContext.birthday.seconds * 1000) : null);
   const [isInitialRender, setIsInitialRender] = useState(true);
-  const [selectedPhotoFile, setSelectedPhotoFile] = useState<File | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<File | null>(null);
   const [realTimeURL, setRealTimeURL] = useState<string | null>(currentUserContext && currentUserContext.photoURL ? currentUserContext.photoURL : null);
 
   const navigate = useNavigate();
@@ -47,40 +48,34 @@ const ProfileInfo: React.FC = () => {
   const validateFile = (file: File | null) => {
     if (file) {
       const reader = new FileReader();
-  
+
       reader.onload = (e) => {
-        // Attempt to create an image element
         const img = new Image();
         img.src = e.target?.result as string;
-  
+
         img.onload = () => {
-          // Check if the image dimensions or other criteria meet your requirements
-          const maxWidth = 500; // Set your maximum width
-          const maxHeight = 500; // Set your maximum height
-  
+          const maxWidth = 500;
+          const maxHeight = 500;
+
           if (img.width > maxWidth || img.height > maxHeight) {
             alert("Image dimensions exceed the maximum allowed size");
           } else {
-            // If the image meets the criteria, set it as the selected photo file
-            setSelectedPhotoFile(file);
+            setSelectedPhoto(file);
           }
         };
-  
         img.onerror = () => {
           alert("Error loading the image");
         };
       };
-  
-      // Read the file as a data URL
       reader.readAsDataURL(file);
     }
   };
   const handleSaveEdit = async () => {
     if (currentUserContext) {
       try {
-        if (selectedPhotoFile) {
-          const fileRef = ref(storagePhoto, `usersPhotos/${selectedPhotoFile.name}`);
-          await uploadBytes(fileRef, selectedPhotoFile);
+        if (selectedPhoto) {
+          const fileRef = ref(storagePhoto, `usersPhotos/${selectedPhoto.name}`);
+          await uploadBytes(fileRef, selectedPhoto);
           const photoURL = await getDownloadURL(fileRef);
 
           await updateUserDoc(currentUserContext._id, {
@@ -159,7 +154,10 @@ const ProfileInfo: React.FC = () => {
                 <input type='number' value={editAge} onChange={(event) => setEditAge(parseInt(event.target.value))} />
                 <input type='date' value={editBirthday?.toISOString().split('T')[0]}
                   onChange={(e) => setEditBirthday(new Date(e.target.value))} />
-                  <input type="file" accept="image/*" onChange={(e) => validateFile(e.target.files?.[0] || null)} />
+                <Button className='profile-info__content-info-name-others-upload' component="label" variant="contained">
+                  Upload file
+                  <input className='profile-info__content-info-name-others-upload-uploadHiden' type="file" accept="image/*" onChange={(e) => validateFile(e.target.files?.[0] || null)} />
+                </Button>
               </>
             ) : (
               <>

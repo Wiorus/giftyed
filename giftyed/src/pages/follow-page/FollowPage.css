@@ -2,6 +2,7 @@
 .FollowPage {
   display: flex;
   flex-direction: column;
+  font-family: "Inter", sans-serif;
 }
 .FollowPage__search {
   display: flex;
@@ -9,26 +10,30 @@
   align-items: center;
 }
 .FollowPage__search input {
-  height: 35px;
-  width: 200px;
+  height: 28px;
+  width: 220px;
   padding-left: 15px;
   color: #854b25;
-  font-family: "Inter", sans-serif;
   background-color: #F0AB55;
-  font-size: 18px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
   border: none;
   border-radius: 25px;
+}
+.FollowPage__search input::-moz-placeholder {
+  color: #854b25;
+}
+.FollowPage__search input::placeholder {
+  color: #854b25;
 }
 .FollowPage__peoplelist {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
-.FollowPage__peoplelist-Users, .FollowPage__peoplelist-followedUsers {
-  font-size: 32px;
-  color: #854b25;
+.FollowPage__peoplelist-users-header, .FollowPage__peoplelist-followedUsers-header {
   text-align: center;
-  font-family: "Inter", sans-serif;
+  color: #422D27;
 }
 .FollowPage__wavesTwoImg {
   height: 100%;

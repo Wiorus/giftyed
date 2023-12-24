@@ -38,6 +38,9 @@
 .profile-menu__calendar .MuiDateCalendar-root::-webkit-scrollbar {
   display: none;
 }
+.profile-menu__calendar .MuiDateCalendar-root div::-webkit-scrollbar {
+  display: none;
+}
 .profile-menu__calendar .MuiPickersDay-root {
   height: 3vw;
   width: 3vw;
