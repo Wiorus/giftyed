@@ -27,6 +27,10 @@ const ProfileMenu: React.FC = () => {
           <WishItem />
           <WishItem />
           <WishItem />
+          <WishItem />
+          <WishItem />
+          <WishItem />
+          <WishItem />
         </div>
       </div>
     </div>
