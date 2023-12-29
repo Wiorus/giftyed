@@ -1,0 +1,12 @@
+.MyProfilePage__content {
+  height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.MyProfilePage__content-info {
+  height: 50%;
+}
+.MyProfilePage__content-menu {
+  height: 50%;
+}/*# sourceMappingURL=MyProfilePage.css.map */

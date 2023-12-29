@@ -12,10 +12,7 @@ const ProfileMenu: React.FC = () => {
       <div className='profile-menu__upcomingBirthday'>
         <p className='profile-menu__upcomingBirthday-header'>Upcoming Birthday</p>
         <div className='profile-menu__upcomingBirthday-followedUsers'>
-          <FollowedUser />
-          <FollowedUser />
-          <FollowedUser />
-          <FollowedUser />
+        <FollowedUser />
         </div>
       </div>
       <div className='profile-menu__calendar'>

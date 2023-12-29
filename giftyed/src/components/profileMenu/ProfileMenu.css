@@ -20,7 +20,6 @@
   height: calc(100% - 57px);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
-  align-items: center;
 }
 .profile-menu__calendar {
   display: flex;

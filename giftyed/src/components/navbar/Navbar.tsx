@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
 
   const handleProfileClick = () => {
     if (currentUserContext) {
-      navigate("/profile");
+      navigate("/MyProfile");
     }
   };
 

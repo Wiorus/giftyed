@@ -1,6 +1,6 @@
 @import "../../utils/variables.scss";
 
-.profile-info {
+.my-profile-info {
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -55,7 +55,7 @@
       button {
         cursor: pointer;
         height: 25px;
-        width: 80px;
+        width: 65px;
         font-size: 14px;
         color: $lightBrown;
         background-color: $orange;
