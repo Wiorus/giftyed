@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     &-header {
       font-family: "Inter", sans-serif;
       font-size: 18px;
@@ -19,9 +19,22 @@
     }
 
     &-followedUsers {
-      height: calc(100% - 57px);
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(33%, 1fr)); 
+      height: calc(100% - 95px);
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+
+        &-thumb {
+          background-color: $orange;
+          border-radius: 20px;
+        }
+
+        &-track {
+          background-color: rgba(237, 231, 220, 0.7);
+          border-radius: 20px;
+        }
+      }
     }
   }
 
@@ -34,12 +47,12 @@
       border-radius: 25px;
       background-color: $brown;
       font-family: "Inter", sans-serif;
-      height: 37vh;
+      height: 39vh;
       width: 22vw;
       overflow-y: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+      &::-webkit-scrollbar {
+        display: none;
+      }
       div::-webkit-scrollbar {
         display: none;
       }
@@ -67,30 +80,47 @@
       border: 3px solid $whiteText;
     }
 
-    .Mui-selected
-     {
+    .Mui-selected {
       background-color: $orange !important;
     }
     .MuiPickersYear-root {
-    flex-basis: 20vw;
+      flex-basis: 20vw;
     }
   }
 
   &__wishList {
-
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+text-align: center;
     &-header {
       font-family: "Inter", sans-serif;
       font-size: 18px;
       color: $lightBrown;
-      text-align: center;
+      
     }
 
     &-items {
-      height: calc(100% - 57px);
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
-      align-content: space-around;
-      justify-items: center;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      height: 30vh;
+      overflow-y: auto;
+      justify-content: space-between;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+
+        &-thumb {
+          background-color: $orange;
+          border-radius: 20px;
+        }
+
+        &-track {
+          background-color: rgba(237, 231, 220, 0.7);
+          border-radius: 20px;
+        }
+      }
     }
   }
 }

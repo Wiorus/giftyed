@@ -1,10 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
 .followed-user {
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 30vh;
+}
+.followed-user__container {
+  width: 28%;
+  margin: 11px;
+  cursor: pointer;
 }
 .followed-user__container-photo img {
-  width: 35%;
-  height: 35%;
+  max-width: 35%;
+  height: auto;
   border-radius: 50%;
 }
 .followed-user__container-name p {
