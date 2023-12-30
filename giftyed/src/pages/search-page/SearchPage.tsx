@@ -96,7 +96,9 @@ const SearchPage: React.FC = () => {
                     </Box>
                 </div>
             )}
-            <SearchList searchQuery={selectedTags.join(' ')} />
+            <div className='SearchPage__searchListContainer'>
+                <SearchList searchQuery={selectedTags.join(' ')} />
+            </div>
             <img className="FollowPage__wavesTwoImg" src={wavesTwo} alt="wavesTwo" />
         </div>
     );

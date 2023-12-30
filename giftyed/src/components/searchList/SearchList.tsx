@@ -37,9 +37,9 @@ const SearchList: React.FC<SearchListProps> = ({ searchQuery }) => {
     <div className='SearchList'>
       {gifts.map((gift) => (
         <div key={gift.id} className='SearchList__item'>
-          <img src={gift.photoURL || 'placeholder-url'} alt={gift.name} />
-          <p>{gift.name}</p>
-          <p>Tags: {gift.tags?.join(', ')}</p>
+          <img className='SearchList__item-photo' src={gift.photoURL || 'placeholder-url'} alt={gift.name} />
+          <p className='SearchList__item-name'>{gift.name}</p>
+          {/* <p>Tags: {gift.tags?.join(', ')}</p> */}
         </div>
       ))}
     </div>
