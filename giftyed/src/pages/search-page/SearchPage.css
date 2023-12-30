@@ -14,9 +14,17 @@
   font-size: 14px;
   border: none;
   border-radius: 25px;
+  margin: 5px;
+}
+.SearchPage__search input::-moz-placeholder {
+  color: #854b25;
+}
+.SearchPage__search input::placeholder {
+  color: #854b25;
 }
 .SearchPage__categories {
-  margin: 15px;
+  width: 50%;
+  margin: 5px;
 }
 .SearchPage__wavesTwoImg {
   height: 100%;

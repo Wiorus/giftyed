@@ -9,6 +9,8 @@ import { Timestamp } from "firebase/firestore";
 import { storagePhoto, updateUserDoc } from '../../utils/firebase/firebase.utils';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Button from '@mui/material/Button';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../../utils/firebase/firebase.utils';
 
 const MyProfileInfo: React.FC = () => {
   const { currentUserContext, setCurrentUserContext } = useContext(UsersContext) as UsersContextType;
@@ -19,9 +21,11 @@ const MyProfileInfo: React.FC = () => {
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState<File | null>(null);
   const [realTimeURL, setRealTimeURL] = useState<string | null>(currentUserContext && currentUserContext.photoURL ? currentUserContext.photoURL : null);
+  const [availableTags, setAvailableTags] = useState<string[]>([]);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(currentUserContext?.interests || []);
 
   const navigate = useNavigate();
-  const { age, birthday, interests } = currentUserContext || {};
+  const { age, birthday } = currentUserContext || {};
   const formattedBirthday = birthday ? new Date(birthday.seconds * 1000).toLocaleDateString() : 'Not set yet';
 
   const handleClick = () => {
@@ -42,6 +46,81 @@ const MyProfileInfo: React.FC = () => {
 
   const handleEditProfile = () => {
     setEditProfile(true);
+    fetchAvailableTags();
+  };
+
+  const fetchAvailableTags = async () => {
+    try {
+      const giftsCollection = collection(db, 'gifts');
+      const giftsSnapshot = await getDocs(giftsCollection);
+      const tagsSet = new Set<string>();
+
+      giftsSnapshot.forEach((doc) => {
+        const gift = doc.data();
+        const { tags } = gift;
+        if (tags && Array.isArray(tags)) {
+          tags.forEach((tag) => tagsSet.add(tag));
+        }
+      });
+
+      const uniqueTags = Array.from(tagsSet);
+      setAvailableTags(uniqueTags);
+    } catch (error) {
+      console.error('Error fetching tags:', error);
+    }
+  };
+
+  const handleAddTag = (tag: string) => {
+    setSelectedInterests((prevInterests) => [...prevInterests, tag]);
+  };
+
+  const handleRemoveTag = (tag: string) => {
+    setSelectedInterests((prevInterests) => prevInterests.filter((interest) => interest !== tag));
+  };
+
+  const handleSaveEdit = async () => {
+    if (currentUserContext) {
+      try {
+        if (selectedPhoto) {
+          const fileRef = ref(storagePhoto, `usersPhotos/${selectedPhoto.name}`);
+          await uploadBytes(fileRef, selectedPhoto);
+          const photoURL = await getDownloadURL(fileRef);
+          const updatedData = {
+            displayName: editDisplayName,
+            age: editAge,
+            birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
+            photoURL: photoURL,
+            interests: selectedInterests,
+          };
+          await updateUserDoc(currentUserContext._id, updatedData);
+          const updatedUser = { ...currentUserContext, ...updatedData };
+          localStorage.setItem('userData', JSON.stringify(updatedUser));
+          setCurrentUserContext(updatedUser);
+          setRealTimeURL(photoURL);
+        } else {
+          const updatedData = {
+            displayName: editDisplayName,
+            age: editAge,
+            birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
+            interests: selectedInterests,
+          };
+          await updateUserDoc(currentUserContext._id, updatedData);
+          const updatedUser = { ...currentUserContext, ...updatedData };
+          localStorage.setItem('userData', JSON.stringify(updatedUser));
+          setCurrentUserContext(updatedUser);
+        }
+        setEditProfile(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditDisplayName(currentUserContext?.displayName ?? '');
+    setEditAge(currentUserContext?.age || 0);
+    setEditBirthday(currentUserContext?.birthday ? new Date(currentUserContext.birthday.seconds * 1000) : null);
+    setEditProfile(false);
   };
 
   const validateFile = (file: File | null) => {
@@ -65,49 +144,6 @@ const MyProfileInfo: React.FC = () => {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const handleSaveEdit = async () => {
-    if (currentUserContext) {
-      try {
-        if (selectedPhoto) {
-          const fileRef = ref(storagePhoto, `usersPhotos/${selectedPhoto.name}`);
-          await uploadBytes(fileRef, selectedPhoto);
-          const photoURL = await getDownloadURL(fileRef);
-          const updatedData = {
-            displayName: editDisplayName,
-            age: editAge,
-            birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
-            photoURL: photoURL,
-          };
-          await updateUserDoc(currentUserContext._id, updatedData);
-          const updatedUser = { ...currentUserContext, ...updatedData };
-          localStorage.setItem('userData', JSON.stringify(updatedUser));
-          setCurrentUserContext(updatedUser);
-          setRealTimeURL(photoURL);
-        } else {
-          const updatedData = {
-            displayName: editDisplayName,
-            age: editAge,
-            birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
-          };
-          await updateUserDoc(currentUserContext._id, updatedData);
-          const updatedUser = { ...currentUserContext, ...updatedData };
-          localStorage.setItem('userData', JSON.stringify(updatedUser));
-          setCurrentUserContext(updatedUser);
-        }
-        setEditProfile(false);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
-
-  const handleCancelEdit = () => {
-    setEditDisplayName(currentUserContext?.displayName ?? '');
-    setEditAge(currentUserContext?.age || 0);
-    setEditBirthday(currentUserContext?.birthday ? new Date(currentUserContext.birthday.seconds * 1000) : null);
-    setEditProfile(false);
   };
 
   return (
@@ -167,12 +203,28 @@ const MyProfileInfo: React.FC = () => {
         <div className='my-profile-info__content-interests'>
           <p>Interests</p>
           <div className='my-profile-info__content-interests-container'>
-            <Stack direction='row' spacing={1}>
-              {interests?.map((interest, index) => (
-                <Chip key={index} label={interest} onClick={handleClick} />
-              ))}
-              <Chip onClick={handleClick} label="+" />
-            </Stack>
+            {editProfile ? (
+              <>
+                <Stack direction='row' spacing={1}>
+                  {selectedInterests.map((tag, index) => (
+                    <Chip key={index} label={tag} onDelete={() => handleRemoveTag(tag)} />
+                  ))}
+                </Stack>
+                <Stack direction='row' spacing={1}>
+                  {availableTags
+                    .filter((tag) => !selectedInterests.includes(tag))
+                    .map((tag, index) => (
+                      <Chip key={index} label={tag} onClick={() => handleAddTag(tag)} />
+                    ))}
+                </Stack>
+              </>
+            ) : (
+              <Stack direction='row' spacing={1}>
+                {(currentUserContext?.interests || []).map((interest, index) => (
+                  <Chip key={index} label={interest} onClick={handleClick} />
+                ))}
+              </Stack>
+            )}
           </div>
         </div>
       </div>

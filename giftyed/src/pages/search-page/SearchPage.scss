@@ -17,11 +17,17 @@
       font-size: 14px;
       border: none;
       border-radius: 25px;
+      margin: 5px;
+    }
+
+    input::placeholder {
+      color: $lightBrown;
     }
   }
 
   &__categories {
-    margin: 15px;
+    width: 50%;
+    margin: 5px;
   }
 
   &__wavesTwoImg {
