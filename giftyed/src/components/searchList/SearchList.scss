@@ -15,10 +15,26 @@
     width: 20%;
     text-align: center;
     margin: 10px;
+    position: relative; // Ensure the container is positioned relative
 
     &-photo {
       width: 50%;
       border-radius: 20px;
+      transition: opacity 0.3s ease-out;
+      position: relative;
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      & + .SearchList__item-label {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color:$lightBrown;
+        font-size: 16px;
+      }
     }
     &-name {
       font-size: 12px;

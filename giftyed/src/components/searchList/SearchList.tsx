@@ -7,9 +7,10 @@ import { getDocs, collection, query, where } from 'firebase/firestore';
 interface SearchListProps {
   searchQuery: string;
   onGiftClick: (giftId: string) => void;
+  userWishes: string[] | null; // Add this prop to pass user wishes
 }
 
-const SearchList: React.FC<SearchListProps> = ({ searchQuery,onGiftClick }) => {
+const SearchList: React.FC<SearchListProps> = ({ searchQuery, onGiftClick, userWishes }) => {
   const [gifts, setGifts] = useState<GiftApp[]>([]);
 
   useEffect(() => {
@@ -42,8 +43,10 @@ const SearchList: React.FC<SearchListProps> = ({ searchQuery,onGiftClick }) => {
       {gifts.map((gift) => (
         <div key={gift.id} className='SearchList__item' onClick={() => handleGiftClick(gift.id)}>
           <img className='SearchList__item-photo' src={gift.photoURL || 'placeholder-url'} alt={gift.name} />
+          {userWishes && userWishes.includes(gift.id) && (
+            <p className='SearchList__item-label'>Added</p>
+          )}
           <p className='SearchList__item-name'>{gift.name}</p>
-          {/* <p>Tags: {gift.tags?.join(', ')}</p> */}
         </div>
       ))}
     </div>

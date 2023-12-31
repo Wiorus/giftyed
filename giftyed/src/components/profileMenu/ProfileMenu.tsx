@@ -7,16 +7,17 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import WishItem from '../wishItem/WishItem';
 import { UsersContext, UsersContextType } from '../../contexts/user.context';
 import { GiftApp } from '../../utils/types/gift';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { db } from '../../utils/firebase/firebase.utils';
+import { UserApp } from '../../utils/types/user';
 
 const ProfileMenu: React.FC = () => {
-  const { currentUserContext } = useContext(UsersContext) as UsersContextType;
+  const { currentUserContext, setCurrentUserContext } = useContext(UsersContext) as UsersContextType;
   const [wishGifts, setWishGifts] = useState<GiftApp[]>([]);
 
   useEffect(() => {
     const fetchWishGifts = async () => {
-      if (currentUserContext && currentUserContext.wishes) {
+      if (currentUserContext && currentUserContext.wishes && currentUserContext.wishes.length > 0) {
         const giftsCollection = collection(db, 'gifts');
         const wishesQuery = query(giftsCollection, where('id', 'in', currentUserContext.wishes));
 
@@ -27,11 +28,37 @@ const ProfileMenu: React.FC = () => {
         } catch (error) {
           console.error('Error fetching wish gifts:', error);
         }
+      } else {
+        setWishGifts([]);
       }
     };
 
     fetchWishGifts();
   }, [currentUserContext]);
+
+  const removeGiftFromWishes = async (giftId: string) => {
+    try {
+      if (currentUserContext && currentUserContext._id) {
+        const userId = currentUserContext._id;
+
+        const updatedUser: UserApp = {
+          ...currentUserContext,
+          wishes: (currentUserContext?.wishes || []).filter((id) => id !== giftId),
+        };
+
+        setCurrentUserContext(updatedUser);
+        localStorage.setItem('userData', JSON.stringify(updatedUser));
+        const userWishesRef = doc(collection(db, 'users'), userId);
+        await updateDoc(userWishesRef, { wishes: updatedUser.wishes });
+        setWishGifts((prevWishGifts) => prevWishGifts.filter((gift) => gift.id !== giftId));
+      }
+    } catch (error) {
+      console.error('Error removing gift from wishes:', error);
+    }
+  };
+
+
+
   return (
     <div className='profile-menu'>
       <div className='profile-menu__upcomingBirthday'>
@@ -48,7 +75,7 @@ const ProfileMenu: React.FC = () => {
       <div className='profile-menu__wishList'>
         <p className='profile-menu__wishList-header'>Wish List</p>
         <div className='profile-menu__wishList-items'>
-          <WishItem gifts={wishGifts} />
+          <WishItem gifts={wishGifts} onRemoveGift={removeGiftFromWishes} />
         </div>
       </div>
     </div>
