@@ -10,4 +10,5 @@ export type UserApp = {
   photoURL: string | null;
   interests: Array<string> | null;
   followed: Array<string> | null;
+  wishes: Array<string> |null;
 };

@@ -43,6 +43,7 @@ const SignInButton: React.FC = () => {
                         photoURL: userData.photoURL || null,
                         interests: userData.interests || null,
                         followed: userData.followed || null,
+                        wishes: userData.wishes || null,
                     };
                     localStorage.setItem('userData', JSON.stringify(loggedUser));
                     setCurrentUserContext(loggedUser);
@@ -60,6 +61,7 @@ const SignInButton: React.FC = () => {
                         photoURL: userAuth.user.photoURL || null,
                         interests: null,
                         followed: null,
+                        wishes: null,
                     };
 
                     await setDoc(userDocRef, newUserData);
@@ -74,6 +76,7 @@ const SignInButton: React.FC = () => {
                         photoURL: newUserData.photoURL,
                         interests: newUserData.interests,
                         followed: newUserData.followed,
+                        wishes: newUserData.wishes,
                     };
 
                     localStorage.setItem('userData', JSON.stringify(newLoggedUser));

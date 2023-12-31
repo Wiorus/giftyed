@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import wavesTwo from '../../utils/wavesTwo.png';
 import './SearchPage.scss';
@@ -8,8 +8,9 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import SearchList from '../../components/searchList/SearchList';
 import { Chip } from '@mui/material';
-import { db } from '../../utils/firebase/firebase.utils';
+import { db, removeGiftFromWishes, updateUserWishes } from '../../utils/firebase/firebase.utils';
 import { getDocs, collection } from 'firebase/firestore';
+import { UsersContext, UsersContextType } from '../../contexts/user.context';
 
 styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -23,6 +24,16 @@ const SearchPage: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [availableTags, setAvailableTags] = useState<string[]>([]);
+    const { currentUserContext, setCurrentUserContext } = useContext(UsersContext) as UsersContextType;
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const interestsParam = params.get('interests');
+        if (interestsParam) {
+            const decodedInterests = JSON.parse(decodeURIComponent(interestsParam));
+            setSelectedTags(decodedInterests);
+        }
+    }, []);
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value);
@@ -56,6 +67,38 @@ const SearchPage: React.FC = () => {
 
         fetchTags();
     }, []);
+
+    const handleGiftClick = async (giftId: string) => {
+        if (currentUserContext) {
+            if (currentUserContext.wishes && currentUserContext.wishes.includes(giftId)) {
+                try {
+                    await removeGiftFromWishes(currentUserContext._id, giftId);
+                    const updatedUser = {
+                        ...currentUserContext,
+                        wishes: currentUserContext.wishes.filter((id) => id !== giftId),
+                    };
+
+                    localStorage.setItem('userData', JSON.stringify(updatedUser));
+                    setCurrentUserContext(updatedUser);
+                } catch (error) {
+                    console.error('Error removing gift from wishes:', error);
+                }
+            } else {
+                try {
+                    await updateUserWishes(currentUserContext._id, giftId);
+                    const updatedUser = {
+                        ...currentUserContext,
+                        wishes: [...(currentUserContext.wishes || []), giftId],
+                    };
+
+                    localStorage.setItem('userData', JSON.stringify(updatedUser));
+                    setCurrentUserContext(updatedUser);
+                } catch (error) {
+                    console.error('Error adding gift to wishes:', error);
+                }
+            }
+        }
+    };
 
     return (
         <div className='SearchPage'>
@@ -97,7 +140,7 @@ const SearchPage: React.FC = () => {
                 </div>
             )}
             <div className='SearchPage__searchListContainer'>
-                <SearchList searchQuery={selectedTags.join(' ')} />
+                <SearchList searchQuery={selectedTags.join(' ')} onGiftClick={handleGiftClick} />
             </div>
             <img className="FollowPage__wavesTwoImg" src={wavesTwo} alt="wavesTwo" />
         </div>

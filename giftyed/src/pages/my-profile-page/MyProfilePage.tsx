@@ -7,7 +7,7 @@ import MyProfileInfo from '../../components/myProfileInfo/MyProfileInfo'
 const MyProfilePage: React.FC = () => {
     return (
         <div className='MyProfilePage'>
-                <Navbar />
+            <Navbar />
             <div className='MyProfilePage__content'>
                 <div className='MyProfilePage__content-info'>
                     <MyProfileInfo />

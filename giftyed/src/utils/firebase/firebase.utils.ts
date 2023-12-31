@@ -34,8 +34,8 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 
+// AUTH
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
-
 export const auth = getAuth();
 export const db = getFirestore();
 export const storagePhoto = getStorage();
@@ -95,7 +95,6 @@ export const updateUserDoc = async (uid: string, updatedData: any) => {
 
 // GIFTS
 
-// Funkcja do pobierania wszystkich prezentów
 export const getAllGifts = async () => {
   try {
     const giftsCollection = collection(db, "gifts");
@@ -112,19 +111,34 @@ export const getAllGifts = async () => {
   }
 };
 
-// Funkcja do pobierania prezentów na podstawie tagów
-// export const getGiftsByTags = async (tags) => {
-//   try {
-//     const giftsCollection = collection(db, "gifts");
-//     const giftsQuery = query(giftsCollection, where("tags", "array-contains-any", tags));
-//     const giftsSnapshot = await getDocs(giftsQuery);
+export const updateUserWishes = async (uid: string, giftId: string) => {
+  try {
+    const userDocRef = doc(db, "users", uid);
+    const userDoc = await getDoc(userDocRef);
 
-//     return giftsSnapshot.docs.map((doc) => ({
-//       id: doc.id,
-//       ...doc.data(),
-//     }));
-//   } catch (error) {
-//     console.error("Error getting gifts by tags:", error);
-//     throw error;
-//   }
-// };
+    if (userDoc.exists()) {
+      await updateDoc(userDocRef, {
+        wishes: [...(userDoc.data().wishes || []), giftId],
+      });
+    }
+  } catch (error) {
+    console.error('Error updating user wishes:', error);
+    throw error;
+  }
+};
+
+export const removeGiftFromWishes = async (uid: string, giftId: string) => {
+  try {
+    const userDocRef = doc(db, "users", uid);
+    const userDoc = await getDoc(userDocRef);
+
+    if (userDoc.exists()) {
+      await updateDoc(userDocRef, {
+        wishes: userDoc.data().wishes.filter((id: string) => id !== giftId),
+      });
+    }
+  } catch (error) {
+    console.error('Error removing gift from wishes:', error);
+    throw error;
+  }
+};
