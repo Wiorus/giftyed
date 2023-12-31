@@ -6,6 +6,7 @@ import photo from '../../utils/user.png';
 import { UserApp } from '../../utils/types/user';
 import { UsersContext, UsersContextType } from '../../contexts/user.context';
 import { updateUserDoc } from '../../utils/firebase/firebase.utils';
+import { useNavigate } from 'react-router-dom';
 
 interface ProfileInfoProps {
   user: UserApp;
@@ -15,6 +16,13 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user }) => {
   const { currentUserContext, setCurrentUserContext } = useContext(UsersContext) as UsersContextType;
   const formattedBirthday = user.birthday ? new Date(user.birthday.seconds * 1000).toLocaleDateString() : 'Not set yet';
   const [isFollowed, setIsFollowed] = useState(currentUserContext?.followed?.includes(user._id) || false);
+
+  const navigate = useNavigate();
+
+  const handleInterestsButtonClick = () => {
+    // Przekierowanie do SearchPage z zainteresowaniami jako parametrem
+    navigate(`/search?interests=${encodeURIComponent(JSON.stringify(user.interests || []))}`);
+  };
 
   const handleFollowClick = async () => {
     if (currentUserContext) {
@@ -54,6 +62,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user }) => {
             <button onClick={handleFollowClick}>
               {isFollowed ? 'Unfollow' : 'Follow'}
             </button>
+            <button onClick={handleInterestsButtonClick}>Show Interests</button>
           </div>
         </div>
         <div className='profile-info__content-interests'>
