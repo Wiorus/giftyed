@@ -16,10 +16,11 @@
       font-size: 18px;
       color: $lightBrown;
       text-align: center;
+      margin: 10px;
     }
 
     &-followedUsers {
-      height: calc(100% - 95px);
+      height: calc(100% - 45px);
       overflow-y: auto;
 
       &::-webkit-scrollbar {
@@ -90,23 +91,18 @@
 
   &__wishList {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-text-align: center;
     &-header {
+      text-align: center;
       font-family: "Inter", sans-serif;
       font-size: 18px;
       color: $lightBrown;
-      
+      margin: 10px;
     }
 
     &-items {
-      text-align: center;
-      display: flex;
-      flex-wrap: wrap;
-      height: 30vh;
+      height: calc(100% - 45px);
       overflow-y: auto;
-      justify-content: space-between;
 
       &::-webkit-scrollbar {
         width: 10px;

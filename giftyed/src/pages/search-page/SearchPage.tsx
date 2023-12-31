@@ -140,7 +140,9 @@ const SearchPage: React.FC = () => {
                 </div>
             )}
             <div className='SearchPage__searchListContainer'>
-                <SearchList searchQuery={selectedTags.join(' ')} onGiftClick={handleGiftClick} />
+                <SearchList searchQuery={selectedTags.join(' ')}
+                    onGiftClick={handleGiftClick}
+                    userWishes={currentUserContext?.wishes || []} />
             </div>
             <img className="FollowPage__wavesTwoImg" src={wavesTwo} alt="wavesTwo" />
         </div>

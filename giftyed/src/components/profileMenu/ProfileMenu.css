@@ -15,9 +15,10 @@
   font-size: 18px;
   color: #854b25;
   text-align: center;
+  margin: 10px;
 }
 .profile-menu__upcomingBirthday-followedUsers {
-  height: calc(100% - 95px);
+  height: calc(100% - 45px);
   overflow-y: auto;
 }
 .profile-menu__upcomingBirthday-followedUsers::-webkit-scrollbar {
@@ -77,22 +78,18 @@
 }
 .profile-menu__wishList {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  text-align: center;
 }
 .profile-menu__wishList-header {
+  text-align: center;
   font-family: "Inter", sans-serif;
   font-size: 18px;
   color: #854b25;
+  margin: 10px;
 }
 .profile-menu__wishList-items {
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  height: 30vh;
+  height: calc(100% - 45px);
   overflow-y: auto;
-  justify-content: space-between;
 }
 .profile-menu__wishList-items::-webkit-scrollbar {
   width: 10px;
