@@ -62,7 +62,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user }) => {
             <button onClick={handleFollowClick}>
               {isFollowed ? 'Unfollow' : 'Follow'}
             </button>
-            <button onClick={handleInterestsButtonClick}>Show Interests</button>
+            
           </div>
         </div>
         <div className='profile-info__content-interests'>
@@ -73,6 +73,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user }) => {
                 <Chip key={index} label={interest} />
               ))}
             </Stack>
+            <button onClick={handleInterestsButtonClick}>Match Gift</button>
           </div>
         </div>
       </div>
