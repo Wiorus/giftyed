@@ -25,13 +25,21 @@
 .SearchList__item-photo:hover {
   opacity: 0.5;
 }
+.SearchList__item-photo.added {
+  opacity: 0.5;
+}
+.SearchList__item-photo.added + .SearchList__item-label {
+  opacity: 1;
+}
 .SearchList__item-photo + .SearchList__item-label {
   position: absolute;
-  top: 80%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #854b25;
   font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
 }
 .SearchList__item-name {
   font-size: 12px;

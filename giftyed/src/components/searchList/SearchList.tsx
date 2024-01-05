@@ -7,7 +7,7 @@ import { getDocs, collection, query, where } from 'firebase/firestore';
 interface SearchListProps {
   searchQuery: string;
   onGiftClick: (giftId: string) => void;
-  userWishes: string[] | null; // Add this prop to pass user wishes
+  userWishes: string[] | null;
 }
 
 const SearchList: React.FC<SearchListProps> = ({ searchQuery, onGiftClick, userWishes }) => {
@@ -34,7 +34,7 @@ const SearchList: React.FC<SearchListProps> = ({ searchQuery, onGiftClick, userW
 
     fetchGifts();
   }, [searchQuery]);
-  
+
   const handleGiftClick = (giftId: string) => {
     onGiftClick(giftId);
   };
@@ -42,7 +42,11 @@ const SearchList: React.FC<SearchListProps> = ({ searchQuery, onGiftClick, userW
     <div className='SearchList'>
       {gifts.map((gift) => (
         <div key={gift.id} className='SearchList__item' onClick={() => handleGiftClick(gift.id)}>
-          <img className='SearchList__item-photo' src={gift.photoURL || 'placeholder-url'} alt={gift.name} />
+          <img
+            className={`SearchList__item-photo ${userWishes && userWishes.includes(gift.id) ? 'added' : ''}`}
+            src={gift.photoURL || 'placeholder-url'}
+            alt={gift.name}
+          />
           {userWishes && userWishes.includes(gift.id) && (
             <p className='SearchList__item-label'>Added</p>
           )}

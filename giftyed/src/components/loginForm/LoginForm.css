@@ -69,7 +69,7 @@
   border-radius: 20px;
   margin-top: 15px;
 }
-.LoginForm__container-loginButton button:hover {
+.LoginForm__container-loginButton:hover {
   color: #EDE7DC;
 }
 .LoginForm .LoginForm__otherOptions {

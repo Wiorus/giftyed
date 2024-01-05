@@ -15,7 +15,7 @@
     width: 20%;
     text-align: center;
     margin: 10px;
-    position: relative; // Ensure the container is positioned relative
+    position: relative;
 
     &-photo {
       width: 50%;
@@ -27,15 +27,26 @@
         opacity: 0.5;
       }
 
+      &.added {
+        opacity: 0.5;
+
+        + .SearchList__item-label {
+          opacity: 1;
+        }
+      }
+
       & + .SearchList__item-label {
         position: absolute;
-        top: 80%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color:$lightBrown;
+        color: $lightBrown;
         font-size: 16px;
+        opacity: 0;
+        transition: opacity 0.3s ease-out;
       }
     }
+
     &-name {
       font-size: 12px;
       color: $lightBrown;

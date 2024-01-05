@@ -59,6 +59,9 @@
   margin-right: 5px;
   margin-top: 10px;
 }
+.profile-info__content-info button:hover {
+  color: #EDE7DC;
+}
 .profile-info__content-info-name {
   font-size: 28px;
 }
@@ -91,4 +94,20 @@
   font-family: "Inter", sans-serif;
   background-color: #F0AB55;
   color: #854b25;
+}
+.profile-info__content-interests button {
+  cursor: pointer;
+  height: 35px;
+  width: 80px;
+  font-size: 14px;
+  color: #F0AB55;
+  background-color: #2C1E1A;
+  font-family: "Inter", sans-serif;
+  border: none;
+  border-radius: 7px;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+.profile-info__content-interests button:hover {
+  color: #EDE7DC;
 }/*# sourceMappingURL=ProfileInfo.css.map */
