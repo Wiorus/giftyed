@@ -10,7 +10,6 @@ import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/fire
 import { db } from '../../utils/firebase/firebase.utils';
 import { UserApp } from '../../utils/types/user';
 import Dialog from '@mui/material/Dialog/Dialog';
-import DialogTitle from '@mui/material/DialogTitle/DialogTitle';
 import DialogContent from '@mui/material/DialogContent/DialogContent';
 import DialogActions from '@mui/material/DialogActions/DialogActions';
 import Button from '@mui/material/Button/Button';
@@ -25,6 +24,8 @@ const ProfileMenu: React.FC = () => {
   const [selectedGift, setSelectedGift] = useState<string>('');
   const [selectedUser, setSelectedUser] = useState<string>('');
   const [selectedNote, setSelectedNote] = useState<string>('');
+  const [notesForSelectedDate, setNotesForSelectedDate] = useState<string[]>([]);
+
 
   useEffect(() => {
     const fetchObservedUsers = async () => {
@@ -103,6 +104,8 @@ const ProfileMenu: React.FC = () => {
     const selectedDateString = date?.toISOString() || '';
     const matchingNote = currentUserContext?.calendarNote?.find((note) => note.includes(selectedDateString));
     setSelectedNote(matchingNote || '');
+    const notesForDate = currentUserContext?.calendarNote?.filter((note) => note.includes(selectedDateString)) || [];
+    setNotesForSelectedDate(notesForDate);
   };
 
   const handleSaveNotes = async () => {
@@ -131,14 +134,14 @@ const ProfileMenu: React.FC = () => {
     }
   };
 
-  const handleRemoveNote = async () => {
+  const handleRemoveNote = async (noteToRemove: string) => {
     try {
-      if (currentUserContext && currentUserContext._id && selectedNote) {
+      if (currentUserContext && currentUserContext._id) {
         const userId = currentUserContext._id;
 
         const updatedUser: UserApp = {
           ...currentUserContext,
-          calendarNote: (currentUserContext?.calendarNote || []).filter((note) => note !== selectedNote),
+          calendarNote: (currentUserContext?.calendarNote || []).filter((note) => note !== noteToRemove),
         };
 
         setCurrentUserContext(updatedUser);
@@ -146,7 +149,6 @@ const ProfileMenu: React.FC = () => {
 
         const userRef = doc(collection(db, 'users'), userId);
         await updateDoc(userRef, { calendarNote: updatedUser.calendarNote });
-
         setOpenModal(false);
       }
     } catch (error) {
@@ -177,6 +179,7 @@ const ProfileMenu: React.FC = () => {
                     value={selectedGift}
                     onChange={(e) => setSelectedGift(e.target.value)}
                   >
+                    <option value="">Select Gift</option>
                     {wishGifts.map((gift) => (
                       <option key={gift.id} value={gift.id}>
                         {gift.name}
@@ -190,6 +193,7 @@ const ProfileMenu: React.FC = () => {
                     value={selectedUser}
                     onChange={(e) => setSelectedUser(e.target.value)}
                   >
+                    <option value="">Select User</option>
                     {observedUsers.map((user) => (
                       <option key={user._id} value={user._id}>
                         {user.displayName}
@@ -197,12 +201,30 @@ const ProfileMenu: React.FC = () => {
                     ))}
                   </select>
                 </div>
+                {notesForSelectedDate.length > 0 && (
+                  <div>
+                    <label>Notes:</label>
+                    <ul>
+                      {notesForSelectedDate.map((note, index) => {
+                        const [, giftId, userId] = /Gift: (.+), User: (.+)/.exec(note) || [];
+                        const selectedGift = wishGifts.find((gift) => gift.id === giftId);
+                        const selectedUser = observedUsers.find((user) => user._id === userId);
+
+                        return (
+                          <li key={index}>
+                            {`Gift: ${selectedGift?.name || 'Unknown Gift'}, User: ${selectedUser?.displayName || 'Unknown User'}`}
+                            <Button onClick={() => handleRemoveNote(note)} >Remove</Button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </DialogContent>
               <DialogActions>
-            <Button onClick={() => setOpenModal(false)}>Cancel</Button>
-            <Button onClick={handleSaveNotes}>Save</Button>
-            {selectedNote && <Button onClick={handleRemoveNote}>Remove</Button>}
-          </DialogActions>
+                <Button onClick={() => setOpenModal(false)}>Cancel</Button>
+                <Button onClick={handleSaveNotes}>Save</Button>
+              </DialogActions>
             </Dialog>
           )}
         </LocalizationProvider>
