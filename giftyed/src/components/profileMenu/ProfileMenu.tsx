@@ -25,6 +25,8 @@ const ProfileMenu: React.FC = () => {
   const [selectedGift, setSelectedGift] = useState<string>('');
   const [selectedUser, setSelectedUser] = useState<string>('');
   const [selectedNote, setSelectedNote] = useState<string>('');
+  const [notesForSelectedDate, setNotesForSelectedDate] = useState<string[]>([]);
+
 
   useEffect(() => {
     const fetchObservedUsers = async () => {
@@ -103,6 +105,10 @@ const ProfileMenu: React.FC = () => {
     const selectedDateString = date?.toISOString() || '';
     const matchingNote = currentUserContext?.calendarNote?.find((note) => note.includes(selectedDateString));
     setSelectedNote(matchingNote || '');
+
+    // Ustaw notatki dla wybranego dnia
+    const notesForDate = currentUserContext?.calendarNote?.filter((note) => note.includes(selectedDateString)) || [];
+    setNotesForSelectedDate(notesForDate);
   };
 
   const handleSaveNotes = async () => {
@@ -131,28 +137,29 @@ const ProfileMenu: React.FC = () => {
     }
   };
 
-  const handleRemoveNote = async () => {
-    try {
-      if (currentUserContext && currentUserContext._id && selectedNote) {
-        const userId = currentUserContext._id;
+  const handleRemoveNote = async (noteToRemove: string) => {
+  try {
+    if (currentUserContext && currentUserContext._id) {
+      const userId = currentUserContext._id;
 
-        const updatedUser: UserApp = {
-          ...currentUserContext,
-          calendarNote: (currentUserContext?.calendarNote || []).filter((note) => note !== selectedNote),
-        };
+      const updatedUser: UserApp = {
+        ...currentUserContext,
+        calendarNote: (currentUserContext?.calendarNote || []).filter((note) => note !== noteToRemove),
+      };
 
-        setCurrentUserContext(updatedUser);
-        localStorage.setItem('userData', JSON.stringify(updatedUser));
+      setCurrentUserContext(updatedUser);
+      localStorage.setItem('userData', JSON.stringify(updatedUser));
 
-        const userRef = doc(collection(db, 'users'), userId);
-        await updateDoc(userRef, { calendarNote: updatedUser.calendarNote });
+      const userRef = doc(collection(db, 'users'), userId);
+      await updateDoc(userRef, { calendarNote: updatedUser.calendarNote });
 
-        setOpenModal(false);
-      }
-    } catch (error) {
-      console.error('Error removing note:', error);
+      // Close the modal after removing the note
+      setOpenModal(false);
     }
-  };
+  } catch (error) {
+    console.error('Error removing note:', error);
+  }
+};
 
   return (
     <div className='profile-menu'>
@@ -171,38 +178,59 @@ const ProfileMenu: React.FC = () => {
           {selectedDate && (
             <Dialog open={openModal} onClose={() => setOpenModal(false)}>
               <DialogContent>
-                <div>
-                  <label>Gift:</label>
-                  <select
-                    value={selectedGift}
-                    onChange={(e) => setSelectedGift(e.target.value)}
-                  >
-                    {wishGifts.map((gift) => (
-                      <option key={gift.id} value={gift.id}>
-                        {gift.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label>User:</label>
-                  <select
-                    value={selectedUser}
-                    onChange={(e) => setSelectedUser(e.target.value)}
-                  >
-                    {observedUsers.map((user) => (
-                      <option key={user._id} value={user._id}>
-                        {user.displayName}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div>
+  <label>Gift:</label>
+  <select
+    value={selectedGift}
+    onChange={(e) => setSelectedGift(e.target.value)}
+  >
+    <option value="">Select Gift</option>
+    {wishGifts.map((gift) => (
+      <option key={gift.id} value={gift.id}>
+        {gift.name}
+      </option>
+    ))}
+  </select>
+</div>
+<div>
+  <label>User:</label>
+  <select
+    value={selectedUser}
+    onChange={(e) => setSelectedUser(e.target.value)}
+  >
+    <option value="">Select User</option>
+    {observedUsers.map((user) => (
+      <option key={user._id} value={user._id}>
+        {user.displayName}
+      </option>
+    ))}
+  </select>
+</div>
+                {notesForSelectedDate.length > 0 && (
+                  <div>
+                    <label>Notes:</label>
+                    <ul>
+                      {notesForSelectedDate.map((note, index) => {
+                        // Parse note string to extract details
+                        const [, giftId, userId] = /Gift: (.+), User: (.+)/.exec(note) || [];
+                        const selectedGift = wishGifts.find((gift) => gift.id === giftId);
+                        const selectedUser = observedUsers.find((user) => user._id === userId);
+
+                        return (
+                          <li key={index}>
+                            {`Gift: ${selectedGift?.name || 'Unknown Gift'}, User: ${selectedUser?.displayName || 'Unknown User'}`}
+                            <Button onClick={() => handleRemoveNote(note)} >Remove</Button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </DialogContent>
               <DialogActions>
-            <Button onClick={() => setOpenModal(false)}>Cancel</Button>
-            <Button onClick={handleSaveNotes}>Save</Button>
-            {selectedNote && <Button onClick={handleRemoveNote}>Remove</Button>}
-          </DialogActions>
+                <Button onClick={() => setOpenModal(false)}>Cancel</Button>
+                <Button onClick={handleSaveNotes}>Save</Button>
+              </DialogActions>
             </Dialog>
           )}
         </LocalizationProvider>
