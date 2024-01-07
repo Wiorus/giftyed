@@ -20,7 +20,6 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user }) => {
   const navigate = useNavigate();
 
   const handleInterestsButtonClick = () => {
-    // Przekierowanie do SearchPage z zainteresowaniami jako parametrem
     navigate(`/search?interests=${encodeURIComponent(JSON.stringify(user.interests || []))}`);
   };
 

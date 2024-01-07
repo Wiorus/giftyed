@@ -10,17 +10,18 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUserData = localStorage.getItem('userData');
+    const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
       setCurrentUserContext(JSON.parse(storedUserData));
     }
   }, [setCurrentUserContext]);
 
   const handleSignOut = () => {
-    localStorage.removeItem('userData');
+    localStorage.removeItem("userData");
     setCurrentUserContext(undefined);
     const auth = getAuth();
     signOut(auth);
+    navigate("/", { replace: true });
   };
 
   const handleProfileClick = () => {
@@ -31,29 +32,38 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="Navbar">
-      <div className="Navbar__match" onClick={() => navigate("/search")}>Match</div>
+      <div className="Navbar__logo" onClick={() => navigate("/")}>
+        <div className="Navbar__logo-logoName">
+          <span className="Navbar__logo-logoName-one">Gift</span>
+          <span className="Navbar__logo-logoName-two">yed</span>
+        </div>
+      </div>
+      <div className="Navbar__match" onClick={() => navigate("/search")}>
+        Match
+      </div>
 
       {currentUserContext && (
-        <>
-          <div className="Navbar__best" onClick={() => navigate("/")}>Best</div>
-          <div className="Navbar__followed" onClick={() => navigate("/follow")}>Followed</div>
-        </>
+        <div className="Navbar__followed" onClick={() => navigate("/follow")}>
+          Followed
+        </div>
       )}
 
       <div className="Navbar__user">
         <img className="Navbar__user-img" src={userImg} alt="userImg" onClick={handleProfileClick} />
         <div className="Navbar__user-AuthButton">
-          {currentUserContext ?
-            (<p className="Navbar__user-AuthButton-signOut"
-              onClick={handleSignOut}>Sign Out</p>) :
-
-            (<p className="Navbar__user-AuthButton-signIn"
-              onClick={() => navigate("/login")}>Sign In</p>)
-          }
+          {currentUserContext ? (
+            <p className="Navbar__user-AuthButton-signOut" onClick={handleSignOut}>
+              Sign Out
+            </p>
+          ) : (
+            <p className="Navbar__user-AuthButton-signIn" onClick={() => navigate("/login")}>
+              Sign In
+            </p>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;

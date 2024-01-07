@@ -7,14 +7,32 @@
   width: 100%;
   top: 0;
 }
-.Navbar__match, .Navbar__best, .Navbar__followed, .Navbar__search {
+.Navbar__logo {
+  margin-right: auto;
+  margin-left: 15px;
+}
+.Navbar__logo-logoName {
+  font-size: 42px;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+.Navbar__logo-logoName-one {
+  color: #eda452;
+}
+.Navbar__logo-logoName-two {
+  color: #fbd9a3;
+}
+.Navbar .Navbar__match {
+  margin-left: 1vw;
+}
+.Navbar__match, .Navbar__followed, .Navbar__search {
   cursor: pointer;
   font-size: 14px;
   margin: 0 1vw 0 1vw;
   font-family: "Inter", sans-serif;
   color: #EDE7DC;
 }
-.Navbar__match:hover, .Navbar__best:hover, .Navbar__followed:hover, .Navbar__search:hover {
+.Navbar__match:hover, .Navbar__followed:hover, .Navbar__search:hover {
   color: #854b25;
 }
 .Navbar__user {

@@ -76,6 +76,7 @@
 
           input {
             width: 110px;
+            margin-bottom: 5%;
           }
 
           &-upload {
@@ -90,7 +91,14 @@
               display: none;
             }
           }
+          &-date {
+            margin: 10% 0;
+          }
         }
+      }
+
+      &-edit {
+        margin-top: 10%;
       }
     }
 

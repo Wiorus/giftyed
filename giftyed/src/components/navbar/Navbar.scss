@@ -8,8 +8,29 @@
   width: 100%;
   top: 0;
 
+  &__logo {
+    margin-right: auto;
+    margin-left: 15px;
+
+    &-logoName {
+      font-size: 42px;
+      font-family: "Inter", sans-serif;
+      cursor: pointer;
+
+      &-one {
+        color: #eda452;
+      }
+
+      &-two {
+        color: #fbd9a3;
+      }
+    }
+  }
+
+  .Navbar__match {
+    margin-left: 1vw;
+  }
   &__match,
-  &__best,
   &__followed,
   &__search {
     cursor: pointer;
@@ -18,7 +39,7 @@
     font-family: "Inter", sans-serif;
     color: $whiteText;
 
-    &:hover{
+    &:hover {
       color: $lightBrown;
     }
   }
@@ -35,7 +56,7 @@
       height: 45px;
     }
 
-    &-AuthButton{
+    &-AuthButton {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -44,7 +65,7 @@
       font-family: "Inter", sans-serif;
       text-decoration: none;
 
-      &:hover{
+      &:hover {
         color: $lightBrown;
       }
     }
