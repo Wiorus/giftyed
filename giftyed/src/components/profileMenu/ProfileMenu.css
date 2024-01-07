@@ -36,6 +36,10 @@
   display: flex;
   align-items: center;
 }
+.profile-menu__calendar .MuiPickersDay-dayWithMargin.dayMarker {
+  background-color: #2C1E1A;
+  color: white;
+}
 .profile-menu__calendar .MuiDateCalendar-root {
   color: #EDE7DC;
   border-radius: 25px;

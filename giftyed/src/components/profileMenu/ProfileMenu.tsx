@@ -108,6 +108,29 @@ const ProfileMenu: React.FC = () => {
     setNotesForSelectedDate(notesForDate);
   };
 
+  useEffect(() => {
+    const updateCalendarColors = () => {
+      const calendarDays = document.querySelectorAll('.MuiPickersDay-dayWithMargin');
+      calendarDays.forEach((day) => {
+        const timestamp = parseInt(day.getAttribute('data-timestamp') || '0', 10);
+        const date = new Date(timestamp);
+        const formattedDate = date.toISOString().split('T')[0];
+        if (currentUserContext?.calendarNote?.some((note) => note.includes(formattedDate))) {
+          day.classList.add('dayMarker');
+        } else {
+          day.classList.remove('dayMarker');
+        }
+      });
+    };
+    updateCalendarColors();
+    const observer = new MutationObserver(updateCalendarColors);
+    observer.observe(document.body, { subtree: true, childList: true });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [currentUserContext?.calendarNote]);
+
   const handleSaveNotes = async () => {
     try {
       if (currentUserContext && currentUserContext._id && selectedDate && selectedGift && selectedUser) {

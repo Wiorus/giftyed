@@ -5,7 +5,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   background-color: #ecd3af;
   height: 100%;
-
+  
   &__upcomingBirthday {
     display: flex;
     flex-direction: column;
@@ -42,7 +42,10 @@
   &__calendar {
     display: flex;
     align-items: center;
-
+    .MuiPickersDay-dayWithMargin.dayMarker {
+      background-color: $darkBrown;
+      color: white;
+    }
     .MuiDateCalendar-root {
       color: $whiteText;
       border-radius: 25px;
@@ -80,7 +83,6 @@
     .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
       border: 3px solid $whiteText;
     }
-
     .Mui-selected {
       background-color: $orange !important;
     }
