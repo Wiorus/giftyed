@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './WishItem.scss';
 import { GiftApp } from '../../utils/types/gift';
 

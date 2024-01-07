@@ -28,10 +28,6 @@ const MyProfileInfo: React.FC = () => {
   const { age, birthday } = currentUserContext || {};
   const formattedBirthday = birthday ? new Date(birthday.seconds * 1000).toLocaleDateString() : 'Not set yet';
 
-  const handleClick = () => {
-    console.info('You clicked the Chip.');
-  };
-
   useEffect(() => {
     if (isInitialRender) {
       setIsInitialRender(false);
@@ -237,7 +233,7 @@ const MyProfileInfo: React.FC = () => {
             ) : (
               <Stack direction='row' spacing={1}>
                 {(currentUserContext?.interests || []).map((interest, index) => (
-                  <Chip key={index} label={interest} onClick={handleClick} />
+                  <Chip key={index} label={interest} />
                 ))}
               </Stack>
             )}
