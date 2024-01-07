@@ -69,6 +69,7 @@
 }
 .my-profile-info__content-info-name-others input {
   width: 110px;
+  margin-bottom: 5%;
 }
 .my-profile-info__content-info-name-others-upload {
   width: 120px;
@@ -81,6 +82,12 @@
 }
 .my-profile-info__content-info-name-others-upload-uploadHiden {
   display: none;
+}
+.my-profile-info__content-info-name-others-date {
+  margin: 10% 0;
+}
+.my-profile-info__content-info-edit {
+  margin-top: 10%;
 }
 .my-profile-info__content-interests {
   width: 50%;

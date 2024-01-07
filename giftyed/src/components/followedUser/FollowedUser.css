@@ -4,10 +4,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  height: 30vh;
+  height: 110px;
 }
 .followed-user__container {
-  width: 28%;
+  width: 30%;
   margin: 11px;
   cursor: pointer;
 }

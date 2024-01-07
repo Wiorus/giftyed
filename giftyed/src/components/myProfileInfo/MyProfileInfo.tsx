@@ -78,6 +78,23 @@ const MyProfileInfo: React.FC = () => {
     setSelectedInterests((prevInterests) => prevInterests.filter((interest) => interest !== tag));
   };
 
+  const calculateAge = (birthdate: Date | null): number => {
+    if (!birthdate) return 0;
+
+    const today = new Date();
+    const birthdateDate = new Date(birthdate);
+    let age = today.getFullYear() - birthdateDate.getFullYear();
+
+    if (
+      today.getMonth() < birthdateDate.getMonth() ||
+      (today.getMonth() === birthdateDate.getMonth() && today.getDate() < birthdateDate.getDate())
+    ) {
+      age--;
+    }
+
+    return age;
+  };
+
   const handleSaveEdit = async () => {
     if (currentUserContext) {
       try {
@@ -87,7 +104,7 @@ const MyProfileInfo: React.FC = () => {
           const photoURL = await getDownloadURL(fileRef);
           const updatedData = {
             displayName: editDisplayName,
-            age: editAge,
+            age: calculateAge(editBirthday),
             birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
             photoURL: photoURL,
             interests: selectedInterests,
@@ -100,7 +117,7 @@ const MyProfileInfo: React.FC = () => {
         } else {
           const updatedData = {
             displayName: editDisplayName,
-            age: editAge,
+            age: calculateAge(editBirthday),
             birthday: editBirthday ? new Timestamp(editBirthday.getTime() / 1000, 0) : null,
             interests: selectedInterests,
           };
@@ -161,15 +178,14 @@ const MyProfileInfo: React.FC = () => {
               editProfile ? (
                 <input type='text' value={editDisplayName} onChange={(e) => setEditDisplayName(e.target.value)} />
               ) : (
-                <p>{currentUserContext.displayName}</p>
+                <p>{currentUserContext.displayName} </p>
               )
             ) : null}
           </div>
           <div className='my-profile-info__content-info-name-others'>
             {editProfile ? (
               <>
-                <input type='number' value={editAge} onChange={(event) => setEditAge(parseInt(event.target.value))} />
-                <input
+                <input className='my-profile-info__content-info-name-others-date'
                   type='date'
                   value={editBirthday?.toISOString().split('T')[0]}
                   onChange={(e) => setEditBirthday(new Date(e.target.value))}
@@ -192,7 +208,7 @@ const MyProfileInfo: React.FC = () => {
             )}
           </div>
           {editProfile ? (
-            <div>
+            <div className='my-profile-info__content-info-edit'>
               <button onClick={handleSaveEdit}>Save</button>
               <button onClick={handleCancelEdit}>Cancel</button>
             </div>
