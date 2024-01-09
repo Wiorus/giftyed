@@ -94,8 +94,14 @@
   height: 50%;
   font-size: 28px;
 }
+.my-profile-info__content-interests-container .MuiStack-root {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .my-profile-info__content-interests-container .MuiStack-root > :not(style) {
   font-family: "Inter", sans-serif;
   background-color: #F0AB55;
   color: #854b25;
+  margin-top: 10px;
 }/*# sourceMappingURL=MyProfileInfo.css.map */
