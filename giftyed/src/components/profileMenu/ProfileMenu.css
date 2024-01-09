@@ -80,6 +80,72 @@
 .profile-menu__calendar .MuiPickersYear-root {
   flex-basis: 20vw;
 }
+.profile-menu__calendar-popup {
+  font-family: "Inter", sans-serif;
+}
+.profile-menu__calendar-popup .MuiDialog-paper {
+  background-color: #ECD3AF;
+  border-radius: 25px;
+  border: 2px solid #ECD3AF;
+}
+.profile-menu__calendar-popup-content {
+  color: #EDE7DC !important;
+  background-color: #422D27;
+  width: 350px;
+}
+.profile-menu__calendar-popup-content-gift, .profile-menu__calendar-popup-content-user {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+  align-items: center;
+}
+.profile-menu__calendar-popup-content-gift-element, .profile-menu__calendar-popup-content-user-element {
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  height: 25px;
+  width: 125px;
+  border: none;
+  border-radius: 15px;
+  color: #2C1E1A;
+  background-color: #F0AB55;
+}
+.profile-menu__calendar-popup-content-gift-element:hover, .profile-menu__calendar-popup-content-user-element:hover {
+  background-color: #ECD3AF !important;
+  color: #854b25;
+}
+.profile-menu__calendar-popup-content-notes {
+  width: 100%;
+}
+.profile-menu__calendar-popup-content-notes-element {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.profile-menu__calendar-popup-content-notes-element-remove {
+  font-family: "Inter", sans-serif !important;
+  border-radius: 25px !important;
+  height: 25px;
+  background-color: #ECD3AF !important;
+  color: #854b25 !important;
+}
+.profile-menu__calendar-popup-content-notes-element-remove:hover {
+  background-color: #422D27 !important;
+  color: #ECD3AF !important;
+}
+.profile-menu__calendar-popup-action {
+  height: 45px;
+}
+.profile-menu__calendar-popup-action-cancel, .profile-menu__calendar-popup-action-save {
+  font-family: "Inter", sans-serif !important;
+  border-radius: 25px !important;
+  height: 35px;
+  background-color: #2C1E1A !important;
+  color: #ECD3AF !important;
+}
+.profile-menu__calendar-popup-action-cancel:hover, .profile-menu__calendar-popup-action-save:hover {
+  background-color: #ECD3AF !important;
+  color: #854b25 !important;
+}
 .profile-menu__wishList {
   display: flex;
   flex-direction: column;
