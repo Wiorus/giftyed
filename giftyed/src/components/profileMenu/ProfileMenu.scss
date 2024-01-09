@@ -5,7 +5,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   background-color: #ecd3af;
   height: 100%;
-  
+
   &__upcomingBirthday {
     display: flex;
     flex-direction: column;
@@ -88,6 +88,86 @@
     }
     .MuiPickersYear-root {
       flex-basis: 20vw;
+    }
+
+    &-popup {
+      font-family: "Inter", sans-serif;
+
+      .MuiDialog-paper {
+        background-color: $creamy;
+        border-radius: 25px;
+        border: 2px solid $creamy;
+      }
+
+      &-content {
+        color: $whiteText !important;
+        background-color: $brown;
+        width: 350px;
+        &-gift,
+        &-user {
+          display: flex;
+          justify-content: center;
+          margin: 10px 0;
+          align-items: center;
+
+          &-element {
+            text-align: center;
+            font-family: "Inter", sans-serif;
+            height: 25px;
+            width: 125px;
+            border: none;
+            border-radius: 15px;
+            color: $darkBrown;
+            background-color: $orange;
+            &:hover {
+              background-color: $creamy !important;
+              color:$lightBrown;
+            }
+          }
+
+        }
+
+        &-notes {
+          width: 100%;
+
+          &-element {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+
+            &-remove {
+              font-family: "Inter", sans-serif !important;
+              border-radius: 25px !important;
+              height: 25px;
+              background-color: $creamy !important;
+              color: $lightBrown !important;
+
+              &:hover {
+                background-color: $brown !important;
+                color: $creamy !important;
+              }
+            }
+          }
+        }
+      }
+
+      &-action {
+        height: 45px;
+
+        &-cancel,
+        &-save {
+          font-family: "Inter", sans-serif !important;
+          border-radius: 25px !important;
+          height: 35px;
+          background-color: $darkBrown !important;
+          color: $creamy !important;
+
+          &:hover {
+            background-color: $creamy !important;
+            color: $lightBrown !important;
+          }
+        }
+      }
     }
   }
 

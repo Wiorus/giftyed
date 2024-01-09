@@ -194,11 +194,24 @@ const ProfileMenu: React.FC = () => {
             onChange={handleDateChange}
           />
           {selectedDate && (
-            <Dialog open={openModal} onClose={() => setOpenModal(false)}>
-              <DialogContent>
-                <div>
-                  <label>Gift:</label>
-                  <select
+            <Dialog className='profile-menu__calendar-popup' open={openModal} onClose={() => setOpenModal(false)}>
+              <DialogContent className='profile-menu__calendar-popup-content'>
+
+                <div className='profile-menu__calendar-popup-content-user'>
+                  <select className='profile-menu__calendar-popup-content-user-element'
+                    value={selectedUser}
+                    onChange={(e) => setSelectedUser(e.target.value)}
+                  >
+                    <option value="" >Select User</option>
+                    {observedUsers.map((user) => (
+                      <option className='profile-menu__calendar-popup-content-user-element-dropdown' key={user._id} value={user._id}>
+                        {user.displayName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className='profile-menu__calendar-popup-content-gift'>
+                  <select className='profile-menu__calendar-popup-content-gift-element'
                     value={selectedGift}
                     onChange={(e) => setSelectedGift(e.target.value)}
                   >
@@ -210,43 +223,29 @@ const ProfileMenu: React.FC = () => {
                     ))}
                   </select>
                 </div>
-                <div>
-                  <label>User:</label>
-                  <select
-                    value={selectedUser}
-                    onChange={(e) => setSelectedUser(e.target.value)}
-                  >
-                    <option value="">Select User</option>
-                    {observedUsers.map((user) => (
-                      <option key={user._id} value={user._id}>
-                        {user.displayName}
-                      </option>
-                    ))}
-                  </select>
-                </div>
                 {notesForSelectedDate.length > 0 && (
-                  <div>
-                    <label>Notes:</label>
-                    <ul>
+                  <div className='profile-menu__calendar-popup-content-notes'>
+                    <p className='profile-menu__calendar-popup-content-notes-header'>NOTES:</p>
+                    <p>
                       {notesForSelectedDate.map((note, index) => {
                         const [, giftId, userId] = /Gift: (.+), User: (.+)/.exec(note) || [];
                         const selectedGift = wishGifts.find((gift) => gift.id === giftId);
                         const selectedUser = observedUsers.find((user) => user._id === userId);
 
                         return (
-                          <li key={index}>
-                            {`Gift: ${selectedGift?.name || 'Unknown Gift'}, User: ${selectedUser?.displayName || 'Unknown User'}`}
-                            <Button onClick={() => handleRemoveNote(note)} >Remove</Button>
+                          <li className='profile-menu__calendar-popup-content-notes-element' key={index}>
+                            {<span>{selectedUser?.displayName || 'Unknown User'} <span>: {selectedGift?.name || 'Unknown Gift'}</span></span>}
+                            <Button className='profile-menu__calendar-popup-content-notes-element-remove' onClick={() => handleRemoveNote(note)} >Remove</Button>
                           </li>
                         );
                       })}
-                    </ul>
+                    </p>
                   </div>
                 )}
               </DialogContent>
-              <DialogActions>
-                <Button onClick={() => setOpenModal(false)}>Cancel</Button>
-                <Button onClick={handleSaveNotes}>Save</Button>
+              <DialogActions className='profile-menu__calendar-popup-action'>
+                <Button className='profile-menu__calendar-popup-action-cancel' onClick={() => setOpenModal(false)}>Cancel</Button>
+                <Button className='profile-menu__calendar-popup-action-save' onClick={handleSaveNotes}>Save</Button>
               </DialogActions>
             </Dialog>
           )}
