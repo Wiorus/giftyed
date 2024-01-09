@@ -107,12 +107,20 @@
       height: 50%;
       font-size: 28px;
 
-      &-container {
+      &-container {        
+        
+        .MuiStack-root {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
         .MuiStack-root > :not(style) {
           font-family: "Inter", sans-serif;
           background-color: $orange;
           color: $lightBrown;
+          margin-top: 10px;
         }
+
       }
     }
   }
