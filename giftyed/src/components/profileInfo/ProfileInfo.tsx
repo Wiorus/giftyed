@@ -42,13 +42,14 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user }) => {
 
   return (
     <div className='profile-info'>
-      <div className='profile-info__avatar'>
-        <div className='profile-info__avatar-square'></div>
-        <div className='profile-info__avatar-photo'>
-          <img src={user.photoURL || photo} alt="User" />
-        </div>
-      </div>
+
       <div className='profile-info__content'>
+        <div className='my-profile-info__content-avatar'>
+          <div className='my-profile-info__content-avatar-square'></div>
+          <div className='my-profile-info__content-avatar-photo'>
+            <img src={user.photoURL || photo} alt="User" />
+          </div>
+        </div>
         <div className='profile-info__content-info'>
           <div className='profile-info__content-info-name'>
             <p>{user.displayName}</p>
@@ -61,7 +62,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user }) => {
             <button onClick={handleFollowClick}>
               {isFollowed ? 'Unfollow' : 'Follow'}
             </button>
-            
+
           </div>
         </div>
         <div className='profile-info__content-interests'>

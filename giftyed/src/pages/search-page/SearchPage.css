@@ -26,6 +26,11 @@
   width: 50%;
   margin: 5px;
 }
+.SearchPage__categories .MuiStack-root {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .SearchPage__wavesTwoImg {
   height: 100%;
   width: 100vw;

@@ -161,13 +161,14 @@ const MyProfileInfo: React.FC = () => {
 
   return (
     <div className='my-profile-info'>
-      <div className='my-profile-info__avatar'>
-        <div className='my-profile-info__avatar-square'></div>
-        <div className='my-profile-info__avatar-photo'>
+
+      <div className='my-profile-info__content'>
+      <div className='my-profile-info__content-avatar'>
+        <div className='my-profile-info__content-avatar-square'></div>
+        <div className='my-profile-info__content-avatar-photo'>
           <img src={realTimeURL || photo} alt="User" />
         </div>
       </div>
-      <div className='my-profile-info__content'>
         <div className='my-profile-info__content-info'>
           <div className='my-profile-info__content-info-name'>
             {currentUserContext ? (

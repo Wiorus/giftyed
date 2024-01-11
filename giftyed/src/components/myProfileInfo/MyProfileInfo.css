@@ -2,49 +2,52 @@
 .my-profile-info {
   height: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-.my-profile-info__avatar {
-  position: relative;
-  width: 40%;
-}
-.my-profile-info__avatar-square {
-  width: calc(10vw + 175px);
-  position: absolute;
-  top: 25%;
-  height: 248px;
-  background-color: #2C1E1A;
-}
-.my-profile-info__avatar-photo {
-  position: absolute;
-  top: 25%;
-  left: 15vw;
-}
-.my-profile-info__avatar-photo img {
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
+  align-items: center;
 }
 .my-profile-info__content {
-  width: 60%;
+  width: 100vw;
   display: flex;
+  flex-wrap: wrap;
   color: #EDE7DC;
   font-family: "Inter", sans-serif;
 }
 .my-profile-info__content input {
   font-family: "Inter", sans-serif;
-  margin-bottom: 23px;
+  height: 25px;
+  margin-bottom: 45px;
   color: #854b25;
   background-color: #F0AB55;
   font-size: 14px;
   border: none;
-  border-radius: 10px;
+  border-radius: 25px;
   padding-left: 10px;
 }
+.my-profile-info__content-avatar {
+  min-width: 40%;
+}
+.my-profile-info__content-avatar-square {
+  width: calc(40vw - 155px);
+  height: 250px;
+  position: absolute;
+  z-index: -1;
+  background-color: #2c1e1a;
+}
+.my-profile-info__content-avatar-photo {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2vw;
+}
+.my-profile-info__content-avatar-photo img {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+}
 .my-profile-info__content-info {
-  width: 50%;
-  height: 50%;
+  min-width: 30%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 .my-profile-info__content-info button {
   cursor: pointer;
@@ -63,13 +66,17 @@
   font-size: 28px;
 }
 .my-profile-info__content-info-name-others {
+  padding-left: 15px;
   display: flex;
   flex-direction: column;
-  margin-left: 25px;
+}
+.my-profile-info__content-info-name-others p {
+  padding: 5px;
 }
 .my-profile-info__content-info-name-others input {
   width: 110px;
-  margin-bottom: 5%;
+  height: 35px;
+  border-radius: 25px;
 }
 .my-profile-info__content-info-name-others-upload {
   width: 120px;
@@ -77,22 +84,18 @@
   background-color: #F0AB55 !important;
   color: #854b25 !important;
   border-radius: 25px !important;
-  height: 25px;
+  height: 35px;
   font-family: "Inter", sans-serif !important;
 }
 .my-profile-info__content-info-name-others-upload-uploadHiden {
   display: none;
 }
-.my-profile-info__content-info-name-others-date {
-  margin: 10% 0;
-}
-.my-profile-info__content-info-edit {
-  margin-top: 10%;
-}
 .my-profile-info__content-interests {
-  width: 50%;
-  height: 50%;
   font-size: 28px;
+  min-width: 30%;
+}
+.my-profile-info__content-interests-container {
+  width: 25vw;
 }
 .my-profile-info__content-interests-container .MuiStack-root {
   display: flex;
