@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import SearchList from '../../components/searchList/SearchList';
-import { Chip } from '@mui/material';
+import { Chip, Stack } from '@mui/material';
 import { db, removeGiftFromWishes, updateUserWishes } from '../../utils/firebase/firebase.utils';
 import { getDocs, collection } from 'firebase/firestore';
 import { UsersContext, UsersContextType } from '../../contexts/user.context';
@@ -113,30 +113,23 @@ const SearchPage: React.FC = () => {
             </div>
             {selectedTags.length > 0 && (
                 <div className='SearchPage__categories'>
-                    <Box sx={{ flexGrow: 1 }}>
-                        <Grid container spacing={2}>
-                            {selectedTags.map((tag) => (
-                                <Grid key={tag} xs={6} md={4}>
-                                    <Chip label={tag} onDelete={() => setSelectedTags((prevTags) => prevTags.filter((t) => t !== tag))} />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </Box>
+                    <Stack direction='row' spacing={2}>
+                        {selectedTags.map((tag) => (
+                            <Chip key={tag} label={tag} onDelete={() => setSelectedTags((prevTags) => prevTags.filter((t) => t !== tag))} />
+                        ))}
+                    </Stack>
                 </div>
             )}
+
             {searchQuery && (
                 <div className='SearchPage__categories'>
-                    <Box sx={{ flexGrow: 1 }}>
-                        <Grid container spacing={2}>
-                            {availableTags
-                                .filter(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-                                .map((tag) => (
-                                    <Grid key={tag} xs={6} md={4}>
-                                        <Chip label={tag} onClick={() => handleTagClick(tag)} />
-                                    </Grid>
-                                ))}
-                        </Grid>
-                    </Box>
+                    <Stack direction='row' spacing={2}>
+                        {availableTags
+                            .filter(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+                            .map((tag) => (
+                                <Chip key={tag} label={tag} onClick={() => handleTagClick(tag)} />
+                            ))}
+                    </Stack>
                 </div>
             )}
             <div className='SearchPage__searchListContainer'>

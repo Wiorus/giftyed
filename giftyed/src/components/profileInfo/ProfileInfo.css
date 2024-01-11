@@ -2,54 +2,46 @@
 .profile-info {
   height: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
 }
-.profile-info__avatar {
-  position: relative;
-  width: 40%;
+.profile-info__content {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  color: #EDE7DC;
+  font-family: "Inter", sans-serif;
 }
-.profile-info__avatar-square {
-  width: calc(10vw + 175px);
+.profile-info__content-avatar {
+  min-width: 40%;
+}
+.profile-info__content-avatar-square {
+  width: calc(40vw - 155px);
+  height: 250px;
   position: absolute;
-  top: 25%;
-  height: 248px;
-  background-color: #2C1E1A;
+  z-index: -1;
+  background-color: #2c1e1a;
 }
-.profile-info__avatar-photo {
-  position: absolute;
-  top: 25%;
-  left: 15vw;
+.profile-info__content-avatar-photo {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2vw;
 }
-.profile-info__avatar-photo img {
+.profile-info__content-avatar-photo img {
   border-radius: 50%;
   width: 250px;
   height: 250px;
 }
-.profile-info__content {
-  width: 60%;
-  display: flex;
-  color: #EDE7DC;
-  font-family: "Inter", sans-serif;
-}
-.profile-info__content input {
-  font-family: "Inter", sans-serif;
-  margin-bottom: 23px;
-  color: #854b25;
-  background-color: #F0AB55;
-  font-size: 14px;
-  border: none;
-  border-radius: 10px;
-  padding-left: 10px;
-}
 .profile-info__content-info {
-  width: 50%;
-  height: 50%;
+  min-width: 30%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 .profile-info__content-info button {
   cursor: pointer;
   height: 25px;
-  width: 80px;
+  width: 75px;
   font-size: 14px;
   color: #854b25;
   background-color: #F0AB55;
@@ -66,29 +58,16 @@
   font-size: 28px;
 }
 .profile-info__content-info-name-others {
+  padding-left: 15px;
   display: flex;
   flex-direction: column;
-  margin-left: 25px;
 }
-.profile-info__content-info-name-others input {
-  width: 110px;
-}
-.profile-info__content-info-name-others-upload {
-  width: 120px;
-  font-size: 12px !important;
-  background-color: #F0AB55 !important;
-  color: #854b25 !important;
-  border-radius: 25px !important;
-  height: 25px;
-  font-family: "Inter", sans-serif !important;
-}
-.profile-info__content-info-name-others-upload-uploadHiden {
-  display: none;
+.profile-info__content-info-name-others p {
+  padding: 5px;
 }
 .profile-info__content-interests {
-  width: 50%;
-  height: 50%;
   font-size: 28px;
+  min-width: 30%;
 }
 .profile-info__content-interests-container .MuiStack-root > :not(style) {
   font-family: "Inter", sans-serif;
