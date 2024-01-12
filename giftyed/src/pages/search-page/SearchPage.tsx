@@ -3,12 +3,10 @@ import Navbar from '../../components/navbar/Navbar';
 import wavesTwo from '../../utils/wavesTwo.png';
 import './SearchPage.scss';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
 import SearchList from '../../components/searchList/SearchList';
 import { Chip, Stack } from '@mui/material';
-import { db, removeGiftFromWishes, updateUserWishes } from '../../utils/firebase/firebase.utils';
+import { db, removeGiftFromDesiredGifts, removeGiftFromWishes, updateDesiredGifts, updateUserWishes } from '../../utils/firebase/firebase.utils';
 import { getDocs, collection } from 'firebase/firestore';
 import { UsersContext, UsersContextType } from '../../contexts/user.context';
 
@@ -100,6 +98,38 @@ const SearchPage: React.FC = () => {
         }
     };
 
+    const handleHeartClick = async (giftId: string) => {
+        if (currentUserContext) {
+            try {
+                const isDesired = currentUserContext.desiredGifts
+                    ? currentUserContext.desiredGifts.includes(giftId)
+                    : false;
+                const numberOfDesiredGifts = currentUserContext.desiredGifts
+                    ? currentUserContext.desiredGifts.length
+                    : 0;
+                if (isDesired || numberOfDesiredGifts < 3) {
+                    if (isDesired) {
+                        await removeGiftFromDesiredGifts(currentUserContext._id, giftId);
+                    } else {
+                        await updateDesiredGifts(currentUserContext._id, giftId);
+                    }
+                    const updatedUser = {
+                        ...currentUserContext,
+                        desiredGifts: isDesired
+                            ? currentUserContext.desiredGifts?.filter((id) => id !== giftId) || []
+                            : [...(currentUserContext.desiredGifts || []), giftId],
+                    };
+                    localStorage.setItem('userData', JSON.stringify(updatedUser));
+                    setCurrentUserContext(updatedUser);
+                } else {
+                    alert('You can only add 3 gifts.');
+                }
+            } catch (error) {
+                console.error('Error updating desired gifts:', error);
+            }
+        }
+    };
+
     return (
         <div className='SearchPage'>
             <Navbar />
@@ -133,9 +163,13 @@ const SearchPage: React.FC = () => {
                 </div>
             )}
             <div className='SearchPage__searchListContainer'>
-                <SearchList searchQuery={selectedTags.join(' ')}
+                <SearchList
+                    searchQuery={selectedTags.join(' ')}
                     onGiftClick={handleGiftClick}
-                    userWishes={currentUserContext?.wishes || []} />
+                    onHeartClick={handleHeartClick}
+                    userWishes={currentUserContext?.wishes || []}
+                    userDesiredGifts={currentUserContext?.desiredGifts || []}
+                />
             </div>
             <img className="FollowPage__wavesTwoImg" src={wavesTwo} alt="wavesTwo" />
         </div>

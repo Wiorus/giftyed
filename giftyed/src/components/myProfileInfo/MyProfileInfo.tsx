@@ -6,27 +6,42 @@ import photo from '../../utils/user.png';
 import { UsersContext, UsersContextType } from '../../contexts/user.context';
 import { useNavigate } from 'react-router-dom';
 import { Timestamp } from "firebase/firestore";
-import { storagePhoto, updateUserDoc } from '../../utils/firebase/firebase.utils';
+import { getAllGifts, removeGiftFromDesiredGifts, storagePhoto, updateUserDoc } from '../../utils/firebase/firebase.utils';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Button from '@mui/material/Button';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../../utils/firebase/firebase.utils';
+import { GiftApp } from '../../utils/types/gift';
+import { UserApp } from '../../utils/types/user';
 
 const MyProfileInfo: React.FC = () => {
   const { currentUserContext, setCurrentUserContext } = useContext(UsersContext) as UsersContextType;
   const [editProfile, setEditProfile] = useState(false);
   const [editDisplayName, setEditDisplayName] = useState(currentUserContext?.displayName || '');
-  const [editAge, setEditAge] = useState(currentUserContext?.age || 0);
   const [editBirthday, setEditBirthday] = useState(currentUserContext?.birthday ? new Date(currentUserContext.birthday.seconds * 1000) : null);
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState<File | null>(null);
   const [realTimeURL, setRealTimeURL] = useState<string | null>(currentUserContext && currentUserContext.photoURL ? currentUserContext.photoURL : null);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
   const [selectedInterests, setSelectedInterests] = useState<string[]>(currentUserContext?.interests || []);
-
+  const [gifts, setGifts] = useState<GiftApp[]>([]);
   const navigate = useNavigate();
   const { age, birthday } = currentUserContext || {};
+
   const formattedBirthday = birthday ? new Date(birthday.seconds * 1000).toLocaleDateString() : 'Not set yet';
+
+  useEffect(() => {
+    const fetchGifts = async () => {
+      try {
+        const allGifts = await getAllGifts();
+        setGifts(allGifts);
+      } catch (error) {
+        console.error('Error fetching gifts:', error);
+      }
+    };
+
+    fetchGifts();
+  }, []);
 
   useEffect(() => {
     if (isInitialRender) {
@@ -39,6 +54,7 @@ const MyProfileInfo: React.FC = () => {
       setRealTimeURL(currentUserContext.photoURL || null);
     }
   }, [currentUserContext, navigate, isInitialRender]);
+
 
   const handleEditProfile = () => {
     setEditProfile(true);
@@ -131,7 +147,6 @@ const MyProfileInfo: React.FC = () => {
 
   const handleCancelEdit = () => {
     setEditDisplayName(currentUserContext?.displayName ?? '');
-    setEditAge(currentUserContext?.age || 0);
     setEditBirthday(currentUserContext?.birthday ? new Date(currentUserContext.birthday.seconds * 1000) : null);
     setEditProfile(false);
   };
@@ -159,16 +174,28 @@ const MyProfileInfo: React.FC = () => {
     }
   };
 
+  const handleRemoveDesiredGift = async (giftId: string) => {
+    try {
+      await removeGiftFromDesiredGifts(currentUserContext?._id || '', giftId);
+      const updatedDesiredGifts = (currentUserContext?.desiredGifts || []).filter(id => id !== giftId);
+      const updatedUser: UserApp = { ...currentUserContext!, desiredGifts: updatedDesiredGifts };
+      localStorage.setItem('userData', JSON.stringify(updatedUser));
+      setCurrentUserContext(updatedUser);
+    } catch (error) {
+      console.error('Error removing desired gift:', error);
+    }
+  };
+
   return (
     <div className='my-profile-info'>
 
       <div className='my-profile-info__content'>
-      <div className='my-profile-info__content-avatar'>
-        <div className='my-profile-info__content-avatar-square'></div>
-        <div className='my-profile-info__content-avatar-photo'>
-          <img src={realTimeURL || photo} alt="User" />
+        <div className='my-profile-info__content-avatar'>
+          <div className='my-profile-info__content-avatar-square'></div>
+          <div className='my-profile-info__content-avatar-photo'>
+            <img src={realTimeURL || photo} alt="User" />
+          </div>
         </div>
-      </div>
         <div className='my-profile-info__content-info'>
           <div className='my-profile-info__content-info-name'>
             {currentUserContext ? (
@@ -238,6 +265,20 @@ const MyProfileInfo: React.FC = () => {
                 ))}
               </Stack>
             )}
+          </div>
+        </div>
+        <div className='my-profile-info__content-desiredGifts'>
+          <div className='my-profile-info__content-desiredGifts-header'>Desired Gifts</div>
+          <div className='my-profile-info__content-desiredGifts-box'>
+            {currentUserContext?.desiredGifts?.map((giftId, index) => {
+              const gift = gifts.find((g) => g.id === giftId);
+              return (
+                <div key={index} className='my-profile-info__content-desiredGifts-box-item' onClick={() => handleRemoveDesiredGift(giftId)}>
+                  <img src={gift?.photoURL || 'placeholder-url'} alt={gift?.name || 'Unknown Gift'} />
+                  <p>{gift?.name || 'Unknown Gift'}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

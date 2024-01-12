@@ -3,14 +3,24 @@ import './SearchList.scss';
 import { db } from '../../utils/firebase/firebase.utils';
 import { GiftApp } from '../../utils/types/gift';
 import { getDocs, collection, query, where } from 'firebase/firestore';
+import IconButton from '@mui/material/IconButton/IconButton';
+import { FavoriteBorder } from '@mui/icons-material';
 
 interface SearchListProps {
   searchQuery: string;
   onGiftClick: (giftId: string) => void;
+  onHeartClick: (giftId: string) => void;
   userWishes: string[] | null;
+  userDesiredGifts: string[] | null;
 }
 
-const SearchList: React.FC<SearchListProps> = ({ searchQuery, onGiftClick, userWishes }) => {
+const SearchList: React.FC<SearchListProps> = ({
+  searchQuery,
+  onGiftClick,
+  onHeartClick,
+  userWishes,
+  userDesiredGifts,
+}) => {
   const [gifts, setGifts] = useState<GiftApp[]>([]);
 
   useEffect(() => {
@@ -35,13 +45,14 @@ const SearchList: React.FC<SearchListProps> = ({ searchQuery, onGiftClick, userW
     fetchGifts();
   }, [searchQuery]);
 
-  const handleGiftClick = (giftId: string) => {
-    onGiftClick(giftId);
+  const handleHeartClick = (giftId: string) => {
+    onHeartClick(giftId);
   };
+
   return (
     <div className='SearchList'>
       {gifts.map((gift) => (
-        <div key={gift.id} className='SearchList__item' onClick={() => handleGiftClick(gift.id)}>
+        <div key={gift.id} className='SearchList__item' onClick={() => onGiftClick(gift.id)}>
           <img
             className={`SearchList__item-photo ${userWishes && userWishes.includes(gift.id) ? 'added' : ''}`}
             src={gift.photoURL || 'placeholder-url'}
@@ -50,7 +61,12 @@ const SearchList: React.FC<SearchListProps> = ({ searchQuery, onGiftClick, userW
           {userWishes && userWishes.includes(gift.id) && (
             <p className='SearchList__item-label'>Added</p>
           )}
-          <p className='SearchList__item-name'>{gift.name}</p>
+          <p className='SearchList__item-name'>
+            {gift.name}
+            <IconButton onClick={(e) => { e.stopPropagation(); handleHeartClick(gift.id); }}>
+              <FavoriteBorder sx={{ fill: userDesiredGifts && userDesiredGifts.includes(gift.id) ? 'red' : 'inherit' }} />
+            </IconButton>
+          </p>
         </div>
       ))}
     </div>

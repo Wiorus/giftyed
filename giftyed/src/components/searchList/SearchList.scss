@@ -17,6 +17,11 @@
     margin: 10px;
     position: relative;
 
+    &-heart {
+      width: 30px;
+      height: 30px;
+    }
+
     &-photo {
       width: 50%;
       border-radius: 20px;
