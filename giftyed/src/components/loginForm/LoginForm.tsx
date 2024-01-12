@@ -64,6 +64,7 @@ const LoginForm: React.FC = () => {
             followed: userData.followed || null,
             wishes: userData.wishes || null,
             calendarNote: userData.calendarNote || null,
+            desiredGifts: userData.desiredGifts || null,
           }
           localStorage.setItem('userData', JSON.stringify(loggedUser));
           setCurrentUserContext(loggedUser);

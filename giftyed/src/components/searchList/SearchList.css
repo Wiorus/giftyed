@@ -16,6 +16,10 @@
   margin: 10px;
   position: relative;
 }
+.SearchList__item-heart {
+  width: 30px;
+  height: 30px;
+}
 .SearchList__item-photo {
   width: 50%;
   border-radius: 20px;

@@ -17,6 +17,7 @@ import {
   query,
 } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { GiftApp } from "../types/gift";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDBv2xXKlGAs89GdEMEmSOoKo_AUcqGizw",
@@ -95,7 +96,7 @@ export const updateUserDoc = async (uid: string, updatedData: any) => {
 
 // GIFTS
 
-export const getAllGifts = async () => {
+export const getAllGifts = async (): Promise<GiftApp[]> => {
   try {
     const giftsCollection = collection(db, "gifts");
     const giftsQuery = query(giftsCollection);
@@ -104,7 +105,7 @@ export const getAllGifts = async () => {
     return giftsSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
-    }));
+    })) as GiftApp[];
   } catch (error) {
     console.error("Error getting gifts:", error);
     throw error;
@@ -139,6 +140,39 @@ export const removeGiftFromWishes = async (uid: string, giftId: string) => {
     }
   } catch (error) {
     console.error('Error removing gift from wishes:', error);
+    throw error;
+  }
+};
+
+
+export const updateDesiredGifts = async (uid: string, giftId: string) => {
+  try {
+    const userDocRef = doc(db, 'users', uid);
+    const userDoc = await getDoc(userDocRef);
+
+    if (userDoc.exists()) {
+      await updateDoc(userDocRef, {
+        desiredGifts: [...(userDoc.data().desiredGifts || []), giftId],
+      });
+    }
+  } catch (error) {
+    console.error('Error updating desiredGifts:', error);
+    throw error;
+  }
+};
+
+export const removeGiftFromDesiredGifts = async (uid: string, giftId: string) => {
+  try {
+    const userDocRef = doc(db, 'users', uid);
+    const userDoc = await getDoc(userDocRef);
+
+    if (userDoc.exists()) {
+      await updateDoc(userDocRef, {
+        desiredGifts: userDoc.data().desiredGifts.filter((id: string) => id !== giftId),
+      });
+    }
+  } catch (error) {
+    console.error('Error removing gift from desiredGifts:', error);
     throw error;
   }
 };

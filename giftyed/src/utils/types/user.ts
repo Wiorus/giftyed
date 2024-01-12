@@ -11,5 +11,6 @@ export type UserApp = {
   interests: Array<string> | null;
   followed: Array<string> | null;
   wishes: Array<string> | null;
+  desiredGifts: Array<string> | null;
   calendarNote: Array<string> | null;
 };
