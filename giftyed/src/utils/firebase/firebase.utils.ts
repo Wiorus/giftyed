@@ -176,3 +176,19 @@ export const removeGiftFromDesiredGifts = async (uid: string, giftId: string) =>
     throw error;
   }
 };
+
+export const removeDesiredGiftFromUser = async (currentUserUid: string, targetUserUid: string, giftId: string) => {
+  try {
+    const targetUserDocRef = doc(db, 'users', targetUserUid);
+    const targetUserDoc = await getDoc(targetUserDocRef);
+
+    if (targetUserDoc.exists()) {
+      await updateDoc(targetUserDocRef, {
+        desiredGifts: targetUserDoc.data().desiredGifts.filter((id: string) => id !== giftId),
+      });
+    }
+  } catch (error) {
+    console.error('Error removing desired gift from user:', error);
+    throw error;
+  }
+};
