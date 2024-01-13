@@ -29,12 +29,24 @@ const ProfilePage: React.FC = () => {
     fetchUser();
   }, [userId]);
 
+  const handleRemoveDesiredGift = (giftId: string) => {
+    if (userData) {
+      const updatedUser = {
+        ...userData,
+        desiredGifts: userData.desiredGifts?.filter((id) => id !== giftId) || [],
+      };
+      setUserData(updatedUser);
+    }
+  };
+
   return (
     <div className='ProfilePage'>
       <Navbar />
       <div className='ProfilePage__content'>
         <div className='ProfilePage__content-info'>
-          {userData && <ProfileInfo user={userData} />}
+          {userData && (
+            <ProfileInfo user={userData} onRemoveDesiredGift={handleRemoveDesiredGift} />
+          )}
         </div>
         <div className='ProfilePage__content-menu'>
           <ProfileMenu />

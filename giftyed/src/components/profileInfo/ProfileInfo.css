@@ -89,4 +89,18 @@
 }
 .profile-info__content-interests button:hover {
   color: #EDE7DC;
+}
+.profile-info__content-desiredGifts-box {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.profile-info__content-desiredGifts-box-item {
+  font-size: 11px;
+}
+.profile-info__content-desiredGifts-box-item img {
+  width: 30px;
+  height: 30px;
 }/*# sourceMappingURL=ProfileInfo.css.map */
