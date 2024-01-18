@@ -88,9 +88,9 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, onRemoveDesiredGift }) 
   return (
     <div className='profile-info'>
       <div className='profile-info__content'>
-        <div className='my-profile-info__content-avatar'>
-          <div className='my-profile-info__content-avatar-square'></div>
-          <div className='my-profile-info__content-avatar-photo'>
+        <div className='profile-info__content-avatar'>
+          <div className='profile-info__content-avatar-square'></div>
+          <div className='profile-info__content-avatar-photo'>
             <img src={user.photoURL || photo} alt="User" />
           </div>
         </div>
@@ -120,7 +120,9 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, onRemoveDesiredGift }) 
           </div>
         </div>
         <div className='profile-info__content-desiredGifts'>
-          <div className='profile-info__content-desiredGifts-header'>Desired Gifts</div>
+          <div className='profile-info__content-desiredGifts-header'>
+            <p>Desired Gifts</p>
+          </div>
           <div className='profile-info__content-desiredGifts-box'>
             {user.desiredGifts?.map((giftId, index) => {
               const gift = gifts.find((g) => g.id === giftId);

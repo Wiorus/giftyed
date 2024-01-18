@@ -7,7 +7,7 @@
 .my-profile-info__content {
   width: 100vw;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   color: #EDE7DC;
   font-family: "Inter", sans-serif;
 }
@@ -22,22 +22,11 @@
   border-radius: 25px;
   padding-left: 10px;
 }
-.my-profile-info__content-desiredGifts-box {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-.my-profile-info__content-desiredGifts-box img {
-  width: 30px;
-  height: 30px;
-}
 .my-profile-info__content-avatar {
-  min-width: 40%;
+  min-width: 30%;
 }
 .my-profile-info__content-avatar-square {
-  width: calc(40vw - 155px);
+  width: calc(30vw - 155px);
   height: 250px;
   position: absolute;
   z-index: -1;
@@ -54,11 +43,9 @@
   height: 250px;
 }
 .my-profile-info__content-info {
-  min-width: 30%;
+  min-width: 25%;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
 }
 .my-profile-info__content-info button {
   cursor: pointer;
@@ -73,8 +60,14 @@
   margin-right: 5px;
   margin-top: 10px;
 }
+.my-profile-info__content-info button:hover {
+  color: #EDE7DC;
+}
 .my-profile-info__content-info-name {
   font-size: 28px;
+}
+.my-profile-info__content-info-name p {
+  margin: 10px;
 }
 .my-profile-info__content-info-name-others {
   padding-left: 15px;
@@ -103,10 +96,10 @@
 }
 .my-profile-info__content-interests {
   font-size: 28px;
-  min-width: 30%;
+  min-width: 25%;
 }
-.my-profile-info__content-interests-container {
-  width: 25vw;
+.my-profile-info__content-interests p {
+  margin: 10px;
 }
 .my-profile-info__content-interests-container .MuiStack-root {
   display: flex;
@@ -118,4 +111,36 @@
   background-color: #F0AB55;
   color: #854b25;
   margin-top: 10px;
+}
+.my-profile-info__content-desiredGifts {
+  min-width: 20%;
+}
+.my-profile-info__content-desiredGifts-header {
+  text-align: center;
+}
+.my-profile-info__content-desiredGifts-header p {
+  font-size: 28px;
+  margin: 10px;
+}
+.my-profile-info__content-desiredGifts-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.my-profile-info__content-desiredGifts-box-item {
+  cursor: pointer;
+  text-align: center;
+  font-size: 11px;
+  width: 100px;
+}
+.my-profile-info__content-desiredGifts-box-item img {
+  width: 45px;
+  border-radius: 10px;
+  transition: opacity 0.3s ease-out;
+}
+.my-profile-info__content-desiredGifts-box-item img:hover {
+  opacity: 0.5;
+}
+.my-profile-info__content-desiredGifts-box-item p {
+  margin: 5px;
 }/*# sourceMappingURL=MyProfileInfo.css.map */

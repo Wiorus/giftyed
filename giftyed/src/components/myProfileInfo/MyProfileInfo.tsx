@@ -268,7 +268,7 @@ const MyProfileInfo: React.FC = () => {
           </div>
         </div>
         <div className='my-profile-info__content-desiredGifts'>
-          <div className='my-profile-info__content-desiredGifts-header'>Desired Gifts</div>
+          <div className='my-profile-info__content-desiredGifts-header'><p>Desired Gifts</p></div>
           <div className='my-profile-info__content-desiredGifts-box'>
             {currentUserContext?.desiredGifts?.map((giftId, index) => {
               const gift = gifts.find((g) => g.id === giftId);
