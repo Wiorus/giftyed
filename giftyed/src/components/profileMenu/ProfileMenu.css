@@ -1,105 +1,79 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
 .profile-menu {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  background-color: #ecd3af;
-  height: 100%;
+  width: 100vw;
 }
-.profile-menu__upcomingBirthday {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.profile-menu__content-upcomingBirthday {
+  width: 33.33%;
 }
-.profile-menu__upcomingBirthday-header {
+.profile-menu__content-upcomingBirthday-header {
   font-family: "Inter", sans-serif;
-  font-size: 18px;
-  color: #854b25;
   text-align: center;
-  margin: 10px;
+  color: #854b25;
 }
-.profile-menu__upcomingBirthday-followedUsers {
-  height: calc(100% - 45px);
-  overflow-y: auto;
-}
-.profile-menu__upcomingBirthday-followedUsers::-webkit-scrollbar {
-  width: 10px;
-}
-.profile-menu__upcomingBirthday-followedUsers::-webkit-scrollbar-thumb {
-  background-color: #F0AB55;
-  border-radius: 20px;
-}
-.profile-menu__upcomingBirthday-followedUsers::-webkit-scrollbar-track {
-  background-color: rgba(237, 231, 220, 0.7);
-  border-radius: 20px;
-}
-.profile-menu__calendar {
+.profile-menu__content-calendar {
   display: flex;
   align-items: center;
 }
-.profile-menu__calendar .MuiPickersDay-dayWithMargin.dayMarker {
+.profile-menu__content-calendar .MuiPickersDay-dayWithMargin.dayMarker {
   background-color: #2C1E1A;
   color: white;
 }
-.profile-menu__calendar .MuiDateCalendar-root {
+.profile-menu__content-calendar .MuiDateCalendar-root {
+  margin: 15px 0 15px 0;
   color: #EDE7DC;
   border-radius: 25px;
   background-color: #422D27;
   font-family: "Inter", sans-serif;
-  height: 39vh;
-  width: 22vw;
+  height: 35vh;
   overflow-y: auto;
 }
-.profile-menu__calendar .MuiDateCalendar-root::-webkit-scrollbar {
+.profile-menu__content-calendar .MuiDateCalendar-root::-webkit-scrollbar {
   display: none;
 }
-.profile-menu__calendar .MuiDateCalendar-root div::-webkit-scrollbar {
+.profile-menu__content-calendar .MuiDateCalendar-root div::-webkit-scrollbar {
   display: none;
 }
-.profile-menu__calendar .MuiPickersDay-root {
-  height: 3vw;
-  width: 3vw;
+.profile-menu__content-calendar .MuiPickersDay-root {
   color: #EDE7DC;
   font-family: "Inter", sans-serif;
   margin: 0;
 }
-.profile-menu__calendar .MuiDayCalendar-weekDayLabel,
-.profile-menu__calendar .MuiPickersArrowSwitcher-button,
-.profile-menu__calendar .MuiPickersCalendarHeader-switchViewButton {
-  height: 3vw;
-  width: 3vw;
+.profile-menu__content-calendar .MuiDayCalendar-weekDayLabel,
+.profile-menu__content-calendar .MuiPickersArrowSwitcher-button,
+.profile-menu__content-calendar .MuiPickersCalendarHeader-switchViewButton {
   margin: 0;
   color: #EDE7DC;
   font-family: "Inter", sans-serif !important;
 }
-.profile-menu__calendar .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+.profile-menu__content-calendar .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
   border: 3px solid #EDE7DC;
 }
-.profile-menu__calendar .Mui-selected {
+.profile-menu__content-calendar .Mui-selected {
   background-color: #F0AB55 !important;
 }
-.profile-menu__calendar .MuiPickersYear-root {
+.profile-menu__content-calendar .MuiPickersYear-root {
   flex-basis: 20vw;
 }
-.profile-menu__calendar-popup {
+.profile-menu__content-calendar-popup {
   font-family: "Inter", sans-serif;
 }
-.profile-menu__calendar-popup .MuiDialog-paper {
+.profile-menu__content-calendar-popup .MuiDialog-paper {
   background-color: #ECD3AF;
   border-radius: 25px;
   border: 2px solid #ECD3AF;
 }
-.profile-menu__calendar-popup-content {
+.profile-menu__content-calendar-popup-content {
   color: #EDE7DC !important;
   background-color: #422D27;
   width: 350px;
 }
-.profile-menu__calendar-popup-content-gift, .profile-menu__calendar-popup-content-user {
+.profile-menu__content-calendar-popup-content-gift, .profile-menu__content-calendar-popup-content-user {
   display: flex;
   justify-content: center;
   margin: 10px 0;
   align-items: center;
 }
-.profile-menu__calendar-popup-content-gift-element, .profile-menu__calendar-popup-content-user-element {
+.profile-menu__content-calendar-popup-content-gift-element, .profile-menu__content-calendar-popup-content-user-element {
   text-align: center;
   font-family: "Inter", sans-serif;
   height: 25px;
@@ -109,66 +83,48 @@
   color: #2C1E1A;
   background-color: #F0AB55;
 }
-.profile-menu__calendar-popup-content-gift-element:hover, .profile-menu__calendar-popup-content-user-element:hover {
+.profile-menu__content-calendar-popup-content-gift-element:hover, .profile-menu__content-calendar-popup-content-user-element:hover {
   background-color: #ECD3AF !important;
   color: #854b25;
 }
-.profile-menu__calendar-popup-content-notes {
+.profile-menu__content-calendar-popup-content-notes {
   width: 100%;
 }
-.profile-menu__calendar-popup-content-notes-element {
+.profile-menu__content-calendar-popup-content-notes-element {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
 }
-.profile-menu__calendar-popup-content-notes-element-remove {
+.profile-menu__content-calendar-popup-content-notes-element-remove {
   font-family: "Inter", sans-serif !important;
   border-radius: 25px !important;
   height: 25px;
   background-color: #ECD3AF !important;
   color: #854b25 !important;
 }
-.profile-menu__calendar-popup-content-notes-element-remove:hover {
+.profile-menu__content-calendar-popup-content-notes-element-remove:hover {
   background-color: #422D27 !important;
   color: #ECD3AF !important;
 }
-.profile-menu__calendar-popup-action {
+.profile-menu__content-calendar-popup-action {
   height: 45px;
 }
-.profile-menu__calendar-popup-action-cancel, .profile-menu__calendar-popup-action-save {
+.profile-menu__content-calendar-popup-action-cancel, .profile-menu__content-calendar-popup-action-save {
   font-family: "Inter", sans-serif !important;
   border-radius: 25px !important;
   height: 35px;
   background-color: #2C1E1A !important;
   color: #ECD3AF !important;
 }
-.profile-menu__calendar-popup-action-cancel:hover, .profile-menu__calendar-popup-action-save:hover {
+.profile-menu__content-calendar-popup-action-cancel:hover, .profile-menu__content-calendar-popup-action-save:hover {
   background-color: #ECD3AF !important;
   color: #854b25 !important;
 }
-.profile-menu__wishList {
-  display: flex;
-  flex-direction: column;
+.profile-menu__content-wishList {
+  width: 33.33%;
 }
-.profile-menu__wishList-header {
-  text-align: center;
+.profile-menu__content-wishList-header {
   font-family: "Inter", sans-serif;
-  font-size: 18px;
+  text-align: center;
   color: #854b25;
-  margin: 10px;
-}
-.profile-menu__wishList-items {
-  height: calc(100% - 45px);
-  overflow-y: auto;
-}
-.profile-menu__wishList-items::-webkit-scrollbar {
-  width: 10px;
-}
-.profile-menu__wishList-items::-webkit-scrollbar-thumb {
-  background-color: #F0AB55;
-  border-radius: 20px;
-}
-.profile-menu__wishList-items::-webkit-scrollbar-track {
-  background-color: rgba(237, 231, 220, 0.7);
-  border-radius: 20px;
 }/*# sourceMappingURL=ProfileMenu.css.map */

@@ -1,22 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
 .followed-user {
-  text-align: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  height: 110px;
+  flex-direction: row;
 }
 .followed-user__container {
-  width: 30%;
-  margin: 11px;
+  width: 33.33%;
   cursor: pointer;
+  text-align: center;
 }
-.followed-user__container-photo img {
-  max-width: 35%;
-  height: auto;
+.followed-user__container-photo {
+  width: 50px;
   border-radius: 50%;
 }
-.followed-user__container-name p {
+.followed-user__container-name {
   font-family: "Inter", sans-serif;
   font-size: 12px;
   color: #854b25;

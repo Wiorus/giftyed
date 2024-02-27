@@ -45,12 +45,8 @@ const FollowedUser: React.FC = () => {
     <div className='followed-user'>
       {users.map((user, index) => (
         <div key={index} className='followed-user__container' onClick={() => handleUserClick(user._id)}>
-          <div className='followed-user__container-photo'>
-            <img src={user.photoURL ?? photo} alt='user' />
-          </div>
-          <div className='followed-user__container-name'>
-            <p>{user.displayName}</p>
-          </div>
+          <img className='followed-user__container-photo' src={user.photoURL ?? photo} alt='user' />
+          <p className='followed-user__container-name'>{user.displayName}</p>
         </div>
       ))}
     </div>

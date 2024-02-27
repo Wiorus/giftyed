@@ -6,9 +6,8 @@
   justify-content: space-between;
 }
 .wish-item__item {
-  width: 28%;
+  width: 100px;
   margin: 10px;
-  border-radius: 20%;
   cursor: pointer;
   position: relative;
   overflow: hidden;

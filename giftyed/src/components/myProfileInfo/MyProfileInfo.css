@@ -1,14 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
 .my-profile-info {
-  height: 100%;
-  display: flex;
-  align-items: center;
+  width: 100%;
 }
 .my-profile-info__content {
-  width: 100vw;
   display: flex;
-  flex-wrap: nowrap;
-  color: #EDE7DC;
+  flex-wrap: wrap;
+  justify-content: space-between;
   font-family: "Inter", sans-serif;
 }
 .my-profile-info__content input {
@@ -23,27 +20,31 @@
   padding-left: 10px;
 }
 .my-profile-info__content-avatar {
-  min-width: 30%;
+  position: relative;
+  width: calc(20vw + 125px);
 }
 .my-profile-info__content-avatar-square {
-  width: calc(30vw - 155px);
+  width: 20vw;
   height: 250px;
-  position: absolute;
-  z-index: -1;
-  background-color: #2c1e1a;
+  position: relative;
+  background-color: #2C1E1A;
+  overflow: hidden;
 }
 .my-profile-info__content-avatar-photo {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 2vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: calc(20vw - 125px);
 }
 .my-profile-info__content-avatar-photo img {
   border-radius: 50%;
   width: 250px;
   height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .my-profile-info__content-info {
-  min-width: 25%;
   display: flex;
   flex-direction: column;
 }
@@ -64,18 +65,20 @@
   color: #EDE7DC;
 }
 .my-profile-info__content-info-name {
-  font-size: 28px;
+  font-size: 24px;
 }
 .my-profile-info__content-info-name p {
-  margin: 10px;
+  color: #EDE7DC;
 }
 .my-profile-info__content-info-name-others {
   padding-left: 15px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
 }
 .my-profile-info__content-info-name-others p {
   padding: 5px;
+  color: #EDE7DC;
 }
 .my-profile-info__content-info-name-others input {
   width: 110px;
@@ -94,53 +97,52 @@
 .my-profile-info__content-info-name-others-upload-uploadHiden {
   display: none;
 }
-.my-profile-info__content-interests {
-  font-size: 28px;
-  min-width: 25%;
+.my-profile-info__content-interests-header {
+  font-size: 24px;
+  color: #EDE7DC;
 }
-.my-profile-info__content-interests p {
-  margin: 10px;
-}
-.my-profile-info__content-interests-container .MuiStack-root {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.my-profile-info__content-interests-container .MuiStack-root > :not(style) {
-  font-family: "Inter", sans-serif;
-  background-color: #F0AB55;
-  color: #854b25;
+.my-profile-info__content-interests-container-tagsOnEdit {
   margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 200px;
 }
-.my-profile-info__content-desiredGifts {
-  min-width: 20%;
+.my-profile-info__content-interests-container-tagsOnEdit-tag {
+  margin: 1px !important;
+  font-family: "Inter", sans-serif !important;
+  background-color: #F0AB55 !important;
+  color: #854b25 !important;
+}
+.my-profile-info__content-interests-container-tag {
+  margin: 1px !important;
+  font-family: "Inter", sans-serif !important;
+  background-color: #F0AB55 !important;
+  color: #854b25 !important;
 }
 .my-profile-info__content-desiredGifts-header {
-  text-align: center;
+  font-size: 24px;
+  color: #EDE7DC;
 }
-.my-profile-info__content-desiredGifts-header p {
-  font-size: 28px;
-  margin: 10px;
-}
-.my-profile-info__content-desiredGifts-box {
+.my-profile-info__content-desiredGifts-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
-.my-profile-info__content-desiredGifts-box-item {
+.my-profile-info__content-desiredGifts-container-gift {
   cursor: pointer;
-  text-align: center;
-  font-size: 11px;
-  width: 100px;
+  width: -moz-min-content;
+  width: min-content;
+  margin: 5px;
 }
-.my-profile-info__content-desiredGifts-box-item img {
-  width: 45px;
-  border-radius: 10px;
+.my-profile-info__content-desiredGifts-container-gift-photo {
+  width: 70px;
+  border-radius: 20px;
   transition: opacity 0.3s ease-out;
 }
-.my-profile-info__content-desiredGifts-box-item img:hover {
+.my-profile-info__content-desiredGifts-container-gift-photo:hover {
   opacity: 0.5;
 }
-.my-profile-info__content-desiredGifts-box-item p {
-  margin: 5px;
+.my-profile-info__content-desiredGifts-container-gift-name {
+  color: #EDE7DC;
+  text-align: center;
+  font-size: 12px;
 }/*# sourceMappingURL=MyProfileInfo.css.map */
