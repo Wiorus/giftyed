@@ -1,15 +1,12 @@
 @import "../../utils/variables.scss";
 
 .my-profile-info {
-  height: 100%;
-  display: flex;
-  align-items: center;
+  width: 100%;
 
   &__content {
-    width: 100vw;
     display: flex;
-    flex-wrap: nowrap;
-    color: $whiteText;
+    flex-wrap: wrap;
+    justify-content: space-between;
     font-family: "Inter", sans-serif;
 
     input {
@@ -25,29 +22,34 @@
     }
 
     &-avatar {
-      min-width: 30%;
+      position: relative;
+      width: calc(20vw + 125px);
+
       &-square {
-        width: calc(30vw - 155px);
+        width: 20vw;
         height: 250px;
-        position: absolute;
-        z-index: -1;
-        background-color: #2c1e1a;
+        position: relative;
+        background-color: $darkBrown;
+        overflow: hidden;
       }
 
       &-photo {
-        display: flex;
-        justify-content: flex-end;
-        padding-right: 2vw;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: calc(20vw - 125px);
+
         img {
           border-radius: 50%;
           width: 250px;
           height: 250px;
+          object-fit: cover;
         }
       }
     }
 
     &-info {
-      min-width: 25%;
       display: flex;
       flex-direction: column;
       button {
@@ -69,17 +71,19 @@
       }
 
       &-name {
-        font-size: 28px;
+        font-size: 24px;
         p {
-          margin: 10px;
+          color: $whiteText;
         }
 
         &-others {
           padding-left: 15px;
+          font-size: 16px;
           display: flex;
           flex-direction: column;
           p {
             padding: 5px;
+            color: $whiteText;
           }
           input {
             width: 110px;
@@ -103,50 +107,52 @@
     }
 
     &-interests {
-      font-size: 28px;
-      min-width: 25%;
-      p {
-        margin: 10px;
+      &-header {
+        font-size: 24px;
+        color: $whiteText;
       }
 
       &-container {
-        .MuiStack-root {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-        }
-        .MuiStack-root > :not(style) {
-          font-family: "Inter", sans-serif;
-          background-color: $orange;
-          color: $lightBrown;
+        &-tagsOnEdit{
           margin-top: 10px;
+          display: flex;
+          flex-wrap: wrap;
+          max-width: 200px;
+
+          &-tag {
+            margin: 1px !important;
+            font-family: "Inter", sans-serif !important;
+            background-color: $orange !important;
+            color: $lightBrown !important;
+          }
+        }
+        &-tag {
+          margin: 1px !important;
+          font-family: "Inter", sans-serif !important;
+          background-color: $orange !important;
+          color: $lightBrown !important;
         }
       }
     }
 
     &-desiredGifts {
-      min-width: 20%;
 
       &-header {
-        text-align: center;
-        p {
-          font-size: 28px;
-          margin: 10px;
-        }
+        font-size: 24px;
+        color: $whiteText;
       }
 
-      &-box {
+      &-container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        &-item {
+
+        &-gift {
           cursor: pointer;
-          text-align: center;
-          font-size: 11px;
-          width: 100px;
-          img {
-            width: 45px;
-            border-radius: 10px;
+          width: min-content;
+          margin: 5px;
+          &-photo {
+            width: 70px;
+            border-radius: 20px;
             transition: opacity 0.3s ease-out;
 
             &:hover {
@@ -154,8 +160,10 @@
             }
           }
 
-          p {
-            margin: 5px;
+          &-name {
+            color: $whiteText;
+            text-align: center;
+            font-size: 12px;
           }
         }
       }

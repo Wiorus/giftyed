@@ -181,80 +181,82 @@ const ProfileMenu: React.FC = () => {
 
   return (
     <div className='profile-menu'>
-      <div className='profile-menu__upcomingBirthday'>
-        <p className='profile-menu__upcomingBirthday-header'>Upcoming Birthday</p>
-        <div className='profile-menu__upcomingBirthday-followedUsers'>
-          <FollowedUser />
+      <div className='profile-info__content'>
+        <div className='profile-menu__content-upcomingBirthday'>
+          <p className='profile-menu__content-upcomingBirthday-header'>Upcoming Birthday</p>
+          <div className='profile-menu__content-upcomingBirthday-followedUsers'>
+            <FollowedUser />
+          </div>
         </div>
-      </div>
-      <div className='profile-menu__calendar'>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateCalendar
-            value={selectedDate}
-            onChange={handleDateChange}
-          />
-          {selectedDate && (
-            <Dialog className='profile-menu__calendar-popup' open={openModal} onClose={() => setOpenModal(false)}>
-              <DialogContent className='profile-menu__calendar-popup-content'>
+        <div className='profile-menu__content-calendar'>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateCalendar
+              value={selectedDate}
+              onChange={handleDateChange}
+            />
+            {selectedDate && (
+              <Dialog className='profile-menu__content-calendar-popup' open={openModal} onClose={() => setOpenModal(false)}>
+                <DialogContent className='profile-menu__content-calendar-popup-content'>
 
-                <div className='profile-menu__calendar-popup-content-user'>
-                  <select className='profile-menu__calendar-popup-content-user-element'
-                    value={selectedUser}
-                    onChange={(e) => setSelectedUser(e.target.value)}
-                  >
-                    <option value="" >Select User</option>
-                    {observedUsers.map((user) => (
-                      <option className='profile-menu__calendar-popup-content-user-element-dropdown' key={user._id} value={user._id}>
-                        {user.displayName}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className='profile-menu__calendar-popup-content-gift'>
-                  <select className='profile-menu__calendar-popup-content-gift-element'
-                    value={selectedGift}
-                    onChange={(e) => setSelectedGift(e.target.value)}
-                  >
-                    <option value="">Select Gift</option>
-                    {wishGifts.map((gift) => (
-                      <option key={gift.id} value={gift.id}>
-                        {gift.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                {notesForSelectedDate.length > 0 && (
-                  <div className='profile-menu__calendar-popup-content-notes'>
-                    <p className='profile-menu__calendar-popup-content-notes-header'>NOTES:</p>
-                    <p>
-                      {notesForSelectedDate.map((note, index) => {
-                        const [, giftId, userId] = /Gift: (.+), User: (.+)/.exec(note) || [];
-                        const selectedGift = wishGifts.find((gift) => gift.id === giftId);
-                        const selectedUser = observedUsers.find((user) => user._id === userId);
-
-                        return (
-                          <li className='profile-menu__calendar-popup-content-notes-element' key={index}>
-                            {<span>{selectedUser?.displayName || 'Unknown User'} <span>: {selectedGift?.name || 'Unknown Gift'}</span></span>}
-                            <Button className='profile-menu__calendar-popup-content-notes-element-remove' onClick={() => handleRemoveNote(note)} >Remove</Button>
-                          </li>
-                        );
-                      })}
-                    </p>
+                  <div className='profile-menu__content-calendar-popup-content-user'>
+                    <select className='profile-menu__content-calendar-popup-content-user-element'
+                      value={selectedUser}
+                      onChange={(e) => setSelectedUser(e.target.value)}
+                    >
+                      <option value="" >Select User</option>
+                      {observedUsers.map((user) => (
+                        <option className='profile-menu__content-calendar-popup-content-user-element-dropdown' key={user._id} value={user._id}>
+                          {user.displayName}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                )}
-              </DialogContent>
-              <DialogActions className='profile-menu__calendar-popup-action'>
-                <Button className='profile-menu__calendar-popup-action-cancel' onClick={() => setOpenModal(false)}>Cancel</Button>
-                <Button className='profile-menu__calendar-popup-action-save' onClick={handleSaveNotes}>Save</Button>
-              </DialogActions>
-            </Dialog>
-          )}
-        </LocalizationProvider>
-      </div>
-      <div className='profile-menu__wishList'>
-        <p className='profile-menu__wishList-header'>Wish List</p>
-        <div className='profile-menu__wishList-items'>
-          <WishItem gifts={wishGifts} onRemoveGift={removeGiftFromWishes} />
+                  <div className='profile-menu__content-calendar-popup-content-gift'>
+                    <select className='profile-menu__content-calendar-popup-content-gift-element'
+                      value={selectedGift}
+                      onChange={(e) => setSelectedGift(e.target.value)}
+                    >
+                      <option value="">Select Gift</option>
+                      {wishGifts.map((gift) => (
+                        <option key={gift.id} value={gift.id}>
+                          {gift.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  {notesForSelectedDate.length > 0 && (
+                    <div className='profile-menu__content-calendar-popup-content-notes'>
+                      <p className='profile-menu__content-calendar-popup-content-notes-header'>NOTES:</p>
+                      <p>
+                        {notesForSelectedDate.map((note, index) => {
+                          const [, giftId, userId] = /Gift: (.+), User: (.+)/.exec(note) || [];
+                          const selectedGift = wishGifts.find((gift) => gift.id === giftId);
+                          const selectedUser = observedUsers.find((user) => user._id === userId);
+
+                          return (
+                            <li className='profile-menu__content-calendar-popup-content-notes-element' key={index}>
+                              {<span>{selectedUser?.displayName || 'Unknown User'} <span>: {selectedGift?.name || 'Unknown Gift'}</span></span>}
+                              <Button className='profile-menu__content-calendar-popup-content-notes-element-remove' onClick={() => handleRemoveNote(note)} >Remove</Button>
+                            </li>
+                          );
+                        })}
+                      </p>
+                    </div>
+                  )}
+                </DialogContent>
+                <DialogActions className='profile-menu__content-calendar-popup-action'>
+                  <Button className='profile-menu__content-calendar-popup-action-cancel' onClick={() => setOpenModal(false)}>Cancel</Button>
+                  <Button className='profile-menu__content-calendar-popup-action-save' onClick={handleSaveNotes}>Save</Button>
+                </DialogActions>
+              </Dialog>
+            )}
+          </LocalizationProvider>
+        </div>
+        <div className='profile-menu__content-wishList'>
+          <p className='profile-menu__content-wishList-header'>Wish List</p>
+          <div className='profile-menu__content-wishList-items'>
+            <WishItem gifts={wishGifts} onRemoveGift={removeGiftFromWishes} />
+          </div>
         </div>
       </div>
     </div>

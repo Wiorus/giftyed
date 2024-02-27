@@ -94,11 +94,12 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, onRemoveDesiredGift }) 
             <img src={user.photoURL || photo} alt="User" />
           </div>
         </div>
+
         <div className='profile-info__content-info'>
           <div className='profile-info__content-info-name'>
             <p>{user.displayName}</p>
           </div>
-          <div className='profile-info__content-info-name-others'>
+          <div className='profile-info__content-info-others'>
             <p> Age:{user.age} </p>
             <p> Birthday: {formattedBirthday}</p>
           </div>
@@ -108,37 +109,38 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, onRemoveDesiredGift }) 
             </button>
           </div>
         </div>
+
         <div className='profile-info__content-interests'>
-          <p>Interests</p>
-          <div className='profile-info__content-interests-container'>
-            <Stack direction='row' spacing={1}>
-              {user.interests?.map((interest, index) => (
-                <Chip key={index} label={interest} />
-              ))}
-            </Stack>
-            <button onClick={handleInterestsButtonClick}>Match Gift</button>
-          </div>
+          <p className='profile-info__content-interests-header'>Interests</p>
+          <Stack className='profile-info__content-interests-container'
+            direction='row' spacing={1}>
+            {user.interests?.map((interest, index) => (
+              <Chip className='profile-info__content-interests-container-tag'
+                key={index} label={interest} />
+            ))}
+          </Stack>
+          <button onClick={handleInterestsButtonClick}>Match Gift</button>
         </div>
+
         <div className='profile-info__content-desiredGifts'>
-          <div className='profile-info__content-desiredGifts-header'>
-            <p>Desired Gifts</p>
-          </div>
-          <div className='profile-info__content-desiredGifts-box'>
+          <p className='profile-info__content-desiredGifts-header'>Desired Gifts</p>
+          <div className='profile-info__content-desiredGifts-container'>
             {user.desiredGifts?.map((giftId, index) => {
               const gift = gifts.find((g) => g.id === giftId);
               return (
                 <div
                   key={index}
-                  className='profile-info__content-desiredGifts-box-item'
+                  className='profile-info__content-desiredGifts-container-gift'
                   onClick={() => handleRemoveDesiredGift(giftId)}
                 >
-                  <img src={gift?.photoURL || 'placeholder-url'} alt={gift?.name || 'Unknown Gift'} />
-                  <p>{gift?.name || 'Unknown Gift'}</p>
+                  <img className='profile-info__content-desiredGifts-container-gift-photo' src={gift?.photoURL || 'placeholder-url'} alt={gift?.name || 'Unknown Gift'} />
+                  <p className='profile-info__content-desiredGifts-container-gift-name'>{gift?.name || 'Unknown Gift'}</p>
                 </div>
               );
             })}
           </div>
         </div>
+
       </div>
     </div>
   );

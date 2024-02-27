@@ -1,15 +1,24 @@
+@import "../../utils/variables.scss";
+
 .ProfilePage {
   &__content {
-    height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    min-height: calc(100vh - 120px);
+    justify-content: space-evenly;
+
     &-info {
-      height: 50%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      height: 50vh;
     }
 
     &-menu {
-      height: 50%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background-color: $creamy;
     }
   }
 }

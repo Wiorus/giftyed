@@ -241,41 +241,42 @@ const MyProfileInfo: React.FC = () => {
           )}
         </div>
         <div className='my-profile-info__content-interests'>
-          <p>Interests</p>
+          <p className='my-profile-info__content-interests-header'>Interests</p>
           <div className='my-profile-info__content-interests-container'>
             {editProfile ? (
               <>
                 <Stack direction='row' spacing={1}>
                   {selectedInterests.map((tag, index) => (
-                    <Chip key={index} label={tag} onDelete={() => handleRemoveTag(tag)} />
+                    <Chip className='my-profile-info__content-interests-container-tag' key={index} label={tag} onDelete={() => handleRemoveTag(tag)} />
                   ))}
                 </Stack>
-                <Stack direction='row' spacing={1}>
+                <Stack className='my-profile-info__content-interests-container-tagsOnEdit' direction='row' spacing={1}>
                   {availableTags
                     .filter((tag) => !selectedInterests.includes(tag))
                     .map((tag, index) => (
-                      <Chip key={index} label={tag} onClick={() => handleAddTag(tag)} />
+                      <Chip className='my-profile-info__content-interests-container-tagsOnEdit-tag' key={index} label={tag} onClick={() => handleAddTag(tag)} />
                     ))}
                 </Stack>
               </>
             ) : (
               <Stack direction='row' spacing={1}>
                 {(currentUserContext?.interests || []).map((interest, index) => (
-                  <Chip key={index} label={interest} />
+                  <Chip className='my-profile-info__content-interests-container-tag' key={index} label={interest} />
                 ))}
               </Stack>
             )}
           </div>
         </div>
         <div className='my-profile-info__content-desiredGifts'>
-          <div className='my-profile-info__content-desiredGifts-header'><p>Desired Gifts</p></div>
-          <div className='my-profile-info__content-desiredGifts-box'>
+          <p className='my-profile-info__content-desiredGifts-header' >Desired Gifts</p>
+          <div className='my-profile-info__content-desiredGifts-container'>
             {currentUserContext?.desiredGifts?.map((giftId, index) => {
               const gift = gifts.find((g) => g.id === giftId);
               return (
-                <div key={index} className='my-profile-info__content-desiredGifts-box-item' onClick={() => handleRemoveDesiredGift(giftId)}>
-                  <img src={gift?.photoURL || 'placeholder-url'} alt={gift?.name || 'Unknown Gift'} />
-                  <p>{gift?.name || 'Unknown Gift'}</p>
+                <div key={index} className='my-profile-info__content-desiredGifts-container-gift'
+                  onClick={() => handleRemoveDesiredGift(giftId)}>
+                  <img className='my-profile-info__content-desiredGifts-container-gift-photo' src={gift?.photoURL || 'placeholder-url'} alt={gift?.name || 'Unknown Gift'} />
+                  <p className='my-profile-info__content-desiredGifts-container-gift-name'>{gift?.name || 'Unknown Gift'}</p>
                 </div>
               );
             })}
