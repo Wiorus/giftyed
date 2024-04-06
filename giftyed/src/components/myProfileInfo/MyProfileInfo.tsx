@@ -215,7 +215,7 @@ const MyProfileInfo: React.FC = () => {
                   onChange={(e) => setEditBirthday(new Date(e.target.value))}
                 />
                 <Button className='my-profile-info__content-info-name-others-upload' component="label" variant="contained">
-                  Upload file
+                  Upload Photo
                   <input
                     className='my-profile-info__content-info-name-others-upload-uploadHiden'
                     type="file"

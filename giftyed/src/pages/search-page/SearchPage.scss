@@ -31,6 +31,10 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+      & .MuiChip-label {
+        color: $lightBrown;
+        font-family: "Inter", sans-serif !important;
+      }
     }
   }
 

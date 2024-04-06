@@ -24,7 +24,7 @@
   border-radius: 25px;
   background-color: #422D27;
   font-family: "Inter", sans-serif;
-  height: 35vh;
+  height: 36vh;
   overflow-y: auto;
 }
 .profile-menu__content-calendar .MuiDateCalendar-root::-webkit-scrollbar {
