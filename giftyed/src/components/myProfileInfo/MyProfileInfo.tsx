@@ -95,6 +95,10 @@ const MyProfileInfo: React.FC = () => {
 
     const today = new Date();
     const birthdateDate = new Date(birthdate);
+    if (birthdateDate.getTime() > today.getTime()) {
+      return 0;
+    }
+
     let age = today.getFullYear() - birthdateDate.getFullYear();
 
     if (
@@ -110,6 +114,11 @@ const MyProfileInfo: React.FC = () => {
   const handleSaveEdit = async () => {
     if (currentUserContext) {
       try {
+        const age = calculateAge(editBirthday);
+        if (age === 0) {
+          alert("Your birth date cannot be in the future. Please correct your birth date.");
+          return;
+        }
         if (selectedPhoto) {
           const fileRef = ref(storagePhoto, `usersPhotos/${selectedPhoto.name}`);
           await uploadBytes(fileRef, selectedPhoto);
@@ -215,7 +224,7 @@ const MyProfileInfo: React.FC = () => {
                   onChange={(e) => setEditBirthday(new Date(e.target.value))}
                 />
                 <Button className='my-profile-info__content-info-name-others-upload' component="label" variant="contained">
-                  Upload file
+                  Upload Photo
                   <input
                     className='my-profile-info__content-info-name-others-upload-uploadHiden'
                     type="file"

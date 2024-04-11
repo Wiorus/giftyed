@@ -31,6 +31,10 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+.SearchPage__categories .MuiStack-root .MuiChip-label {
+  color: #854b25;
+  font-family: "Inter", sans-serif !important;
+}
 .SearchPage__wavesTwoImg {
   height: 100%;
   width: 100vw;

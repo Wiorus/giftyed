@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap");
 .SearchList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   width: 95vw;
   height: calc(100vh - 250px);
   font-family: "Inter", sans-serif;
@@ -21,7 +24,7 @@
   height: 30px;
 }
 .SearchList__item-photo {
-  width: 50%;
+  width: 30%;
   border-radius: 20px;
   transition: opacity 0.3s ease-out;
   position: relative;
