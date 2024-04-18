@@ -4,7 +4,6 @@ import HomePage from "./pages/home-page/HomePage";
 import LoginPage from "./pages/login-page/LoginPage";
 import RegisterPage from "./pages/register-page/RegisterPage";
 import React from "react";
-import AdminPage from "./pages/admin-page/AdminPage";
 import FollowPage from "./pages/follow-page/FollowPage";
 import SearchPage from "./pages/search-page/SearchPage";
 import MyProfilePage from "./pages/my-profile-page/MyProfilePage";
@@ -18,7 +17,6 @@ const App: React.FC = () => {
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/admin" element={<AdminPage />} />
         <Route path="/follow" element={<FollowPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/MyProfile" element={<MyProfilePage />} />
